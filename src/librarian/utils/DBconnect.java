@@ -22,7 +22,7 @@ public class DBconnect {
         }
 
         try {
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it011873", "eC*w9Ed+!w8<u8Fk");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it011873", "it011873");
         } catch (SQLException ex) {
             Logger.getLogger(DBconnect.class.getName()).log(Level.SEVERE, null, ex);
         }
