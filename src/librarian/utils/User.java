@@ -10,6 +10,7 @@ public class User {
     private static String name;
     private static String surname;
     private static int role;
+    private static Object exception;
 
     public User() {
     }
@@ -37,6 +38,10 @@ public class User {
         surname = surnameInput;
     }
 
+    public static void setException(Object exception) {
+        User.exception = exception;
+    }
+
     public static String getName() {
         return name;
     }
@@ -51,6 +56,10 @@ public class User {
 
     public static void setUserid(int useridInput) {
         userid = useridInput;
+    }
+
+    public static Object getException() {
+        return exception;
     }
 
 }

@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import oracle.jdbc.OracleTypes;
 import librarian.utils.DBconnect;
 import librarian.utils.Hash;
+import librarian.utils.User;
+import java.sql.Connection;
 
 /**
  * Οι DBhandlers μιλούν με τη βάση δεδομένων για όλες τις εντολές DDL και DML Το
@@ -21,23 +23,23 @@ import librarian.utils.Hash;
  */
 public class UsersHandler {
 
-    public static ResultSet loginUser(String username, String password) {
+    public static ResultSet loginUser(String username, String password) throws SQLException {
 
         CallableStatement cstmt = null;
         ResultSet rs = null;
         String passwd = Hash.getHashedString(password);
+        Connection conn = DBconnect.getConnection();
 
-        try {
-            cstmt = DBconnect.getConnection().prepareCall("{call loginuser(?,?,?)}");
+        if (conn != null) {
+            cstmt = conn.prepareCall("{call loginuser(?,?,?)}");
             cstmt.setString(1, username);
             cstmt.setString(2, passwd);
             cstmt.registerOutParameter(3, OracleTypes.CURSOR);
             cstmt.execute();
             rs = (ResultSet) cstmt.getObject(3);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsersHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            throw new SQLException();
         }
-
         return rs;
     }
 
@@ -106,9 +108,9 @@ public class UsersHandler {
      * @param searchCat
      * @param searchTerm
      * @return εάν οριστεί userID τότε επιστρέφεται ο συγκεκριμένος χρήστης, εάν
- οριστεί το 0 ως userID με κατηγορία αναζήτησης to -1 τότε επιστρέφονται όλοι
- οι χρήστες, εάν οριστεί το 0 ως userID και η κατηγορία οριστεί με τιμή τότε
- επιστρέφονται οι χρήστες με τις παραμέτρους
+     * οριστεί το 0 ως userID με κατηγορία αναζήτησης to -1 τότε επιστρέφονται
+     * όλοι οι χρήστες, εάν οριστεί το 0 ως userID και η κατηγορία οριστεί με
+     * τιμή τότε επιστρέφονται οι χρήστες με τις παραμέτρους
      *
      */
     public static ResultSet selectUser(int userID, int searchCat, String searchTerm) {
