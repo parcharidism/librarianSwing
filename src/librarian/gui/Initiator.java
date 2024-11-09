@@ -1,6 +1,7 @@
 package librarian.gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.KeyEvent;
 import librarian.handlers.UsersHandler;
 import librarian.utils.User;
 import java.sql.ResultSet;
@@ -96,6 +97,7 @@ public class Initiator extends javax.swing.JFrame {
         labelPassword.setText("password");
 
         loginBtn.setText("Login");
+        loginBtn.setMnemonic(KeyEvent.VK_L);
         loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loginBtnMouseEntered(evt);
@@ -111,6 +113,7 @@ public class Initiator extends javax.swing.JFrame {
         });
 
         resetBtn.setText("Clear");
+        resetBtn.setMnemonic(KeyEvent.VK_C);
         resetBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 resetBtnMouseEntered(evt);
@@ -128,7 +131,7 @@ public class Initiator extends javax.swing.JFrame {
         labelLogin.setBackground(rightPanel.getBackground());
         labelLogin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelLogin.setText("Please login");
+        labelLogin.setText("Welcome back");
 
         usernameText.setBorder(null);
         usernameText.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -139,6 +142,11 @@ public class Initiator extends javax.swing.JFrame {
                 usernameTextFocusLost(evt);
             }
         });
+        usernameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTextActionPerformed(evt);
+            }
+        });
 
         passwordText.setBorder(null);
         passwordText.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -147,6 +155,11 @@ public class Initiator extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 passwordTextFocusLost(evt);
+            }
+        });
+        passwordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextActionPerformed(evt);
             }
         });
 
@@ -163,28 +176,27 @@ public class Initiator extends javax.swing.JFrame {
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(50, 50, 50)
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(labelLogin))
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(rightPanelLayout.createSequentialGroup()
-                                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelPassword)
-                                    .addComponent(labelUsername))
-                                .addGap(18, 18, 18)
-                                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rightPanelLayout.createSequentialGroup()
-                                        .addComponent(resetBtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(loginBtn))
-                                    .addComponent(usernameText, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(passwordText, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(labelForgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(50, 50, 50))
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelPassword)
+                            .addComponent(labelUsername))
+                        .addGap(18, 18, 18)
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rightPanelLayout.createSequentialGroup()
+                                .addComponent(resetBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(loginBtn))
+                            .addComponent(usernameText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passwordText, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(labelForgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,6 +243,7 @@ public class Initiator extends javax.swing.JFrame {
         jSplitPane1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void passwordTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextFocusLost
@@ -315,6 +328,14 @@ public class Initiator extends javax.swing.JFrame {
         loginBtn.setBackground(new java.awt.Color(201, 210, 216));
         loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
     }//GEN-LAST:event_loginBtnMouseEntered
+
+    private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
+        loginBtnActionPerformed(evt);
+    }//GEN-LAST:event_usernameTextActionPerformed
+
+    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+        loginBtnActionPerformed(evt);
+    }//GEN-LAST:event_passwordTextActionPerformed
 
     /**
      * @param args the command line arguments
