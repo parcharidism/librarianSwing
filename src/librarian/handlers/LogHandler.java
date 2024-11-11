@@ -36,15 +36,13 @@ public class LogHandler {
         return rs;
     }
 
-    public static void insertActivityLog(String logEntry) {
+    public static void insertActivityLog(String logEntry) throws SQLException {
         CallableStatement cstmt = null;
-        try {
+        
             cstmt = DBconnect.getConnection().prepareCall("{call insertlog(?)}");
             cstmt.setString(1, logEntry);
             cstmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(UsersHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
 }
