@@ -62,4 +62,11 @@ public class User {
         return exception;
     }
 
+    public static void clearValues() {
+        userid = -1;
+        name = null;
+        surname = null;
+        role = -1;
+        exception = null;
+    }
 }
