@@ -30,7 +30,11 @@ public class MenuAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
+        dialogAbout = new javax.swing.JDialog();
+        panelAbout = new javax.swing.JPanel();
+        scrollPaneAbout = new javax.swing.JScrollPane();
+        textAreaAbout = new javax.swing.JTextArea();
+        labelImage = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         returnBookBtn = new javax.swing.JButton();
         insertBookBtn = new javax.swing.JButton();
@@ -60,7 +64,67 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuHelp = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
-        jMenu1.setText("jMenu1");
+        dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogAbout.setTitle("About this app");
+        dialogAbout.setBackground(new java.awt.Color(156, 193, 194));
+        dialogAbout.setResizable(false);
+        dialogAbout.setSize(new java.awt.Dimension(473, 325));
+
+        panelAbout.setBackground(new java.awt.Color(156, 193, 194));
+        panelAbout.setPreferredSize(new java.awt.Dimension(450, 300));
+
+        textAreaAbout.setBackground(new java.awt.Color(156, 193, 194));
+        textAreaAbout.setColumns(20);
+        textAreaAbout.setRows(5);
+        textAreaAbout.setText("Librarian App\n\nThis app was created by SoftGen Inc.\n\nversion: 1.41\nRelease date: 01/12/2024");
+        textAreaAbout.setToolTipText("About this application");
+        textAreaAbout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 112, 104), 3));
+        textAreaAbout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textAreaAbout.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        textAreaAbout.setSelectionColor(new java.awt.Color(140, 112, 104));
+        textAreaAbout.setVerifyInputWhenFocusTarget(false);
+        scrollPaneAbout.setViewportView(textAreaAbout);
+
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/libraryAbout.png"))); // NOI18N
+        labelImage.setToolTipText("Library logo");
+
+        javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
+        panelAbout.setLayout(panelAboutLayout);
+        panelAboutLayout.setHorizontalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAboutLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(labelImage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(scrollPaneAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelAboutLayout.setVerticalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(scrollPaneAbout))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout dialogAboutLayout = new javax.swing.GroupLayout(dialogAbout.getContentPane());
+        dialogAbout.getContentPane().setLayout(dialogAboutLayout);
+        dialogAboutLayout.setHorizontalGroup(
+            dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dialogAboutLayout.setVerticalGroup(
+            dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Main Menu");
@@ -368,6 +432,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem4.setMnemonic('b');
         jMenuItem4.setText("About");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         menuHelp.add(jMenuItem4);
 
         menuBar.add(menuHelp);
@@ -495,16 +564,17 @@ public class MenuAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuLendStateChanged
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        dialogAbout.setLocationRelativeTo(this);
+        dialogAbout.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
+        FlatLightLaf.setup();
         UIManager.put("Component.hideMnemonics", false);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -515,14 +585,15 @@ public class MenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog dialogAbout;
     private javax.swing.JButton editAuthorBtn;
     private javax.swing.JButton editUserBtn;
     private javax.swing.JButton insertAuthorBtn;
     private javax.swing.JButton insertBookBtn;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelFullname;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JButton lendBookBtn;
     private javax.swing.JButton logBtn;
     private javax.swing.JButton logOutBtn;
@@ -542,7 +613,10 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuViewAuthor;
     private javax.swing.JMenuItem menuViewLog;
     private javax.swing.JButton newUserBtn;
+    private javax.swing.JPanel panelAbout;
     private javax.swing.JButton returnBookBtn;
+    private javax.swing.JScrollPane scrollPaneAbout;
     private javax.swing.JButton searchBooksBtn;
+    private javax.swing.JTextArea textAreaAbout;
     // End of variables declaration//GEN-END:variables
 }

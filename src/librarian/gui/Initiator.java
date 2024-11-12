@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import librarian.handlers.LogHandler;
 
 /**
@@ -33,6 +34,8 @@ public class Initiator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogWelcome = new javax.swing.JDialog();
+        labelWelcome = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
         labelImage = new javax.swing.JLabel();
@@ -46,6 +49,33 @@ public class Initiator extends javax.swing.JFrame {
         labelUsername = new javax.swing.JLabel();
         labelError = new javax.swing.JLabel();
         labelForgot = new javax.swing.JLabel();
+
+        dialogWelcome.setTitle("Successful login");
+        dialogWelcome.setBackground(new java.awt.Color(156, 193, 194));
+        dialogWelcome.setPreferredSize(new java.awt.Dimension(250, 100));
+
+        labelWelcome.setText("jLabel1");
+
+        javax.swing.GroupLayout dialogWelcomeLayout = new javax.swing.GroupLayout(dialogWelcome.getContentPane());
+        dialogWelcome.getContentPane().setLayout(dialogWelcomeLayout);
+        dialogWelcomeLayout.setHorizontalGroup(
+            dialogWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+            .addGroup(dialogWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dialogWelcomeLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(labelWelcome)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        dialogWelcomeLayout.setVerticalGroup(
+            dialogWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(dialogWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dialogWelcomeLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(labelWelcome)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to our Library");
@@ -64,7 +94,7 @@ public class Initiator extends javax.swing.JFrame {
         leftPanel.setRequestFocusEnabled(false);
 
         labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/library.jpg"))); // NOI18N
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/library.jpg"))); // NOI18N
         labelImage.setAlignmentY(0.0F);
         labelImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         labelImage.setIconTextGap(0);
@@ -134,6 +164,7 @@ public class Initiator extends javax.swing.JFrame {
         labelLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelLogin.setText("Welcome back");
 
+        usernameText.setText("parharidis@gmail.com");
         usernameText.setBorder(null);
         usernameText.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -149,6 +180,7 @@ public class Initiator extends javax.swing.JFrame {
             }
         });
 
+        passwordText.setText("123");
         passwordText.setBorder(null);
         passwordText.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -220,7 +252,7 @@ public class Initiator extends javax.swing.JFrame {
                 .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelForgot)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(rightPanel);
@@ -299,10 +331,13 @@ public class Initiator extends javax.swing.JFrame {
                     User.setRole(rs.getInt(4));
                     LogHandler.insertActivityLog("User " + User.getUserid() + " "
                             + User.getName() + " " + User.getSurname() + " has logged in");
-                    this.setVisible(false);
+
+                    //showLoginDialog();
+
                     if (User.getRole() == 1) {
                         MenuAdmin menuAdmin = new MenuAdmin();
                         menuAdmin.setVisible(true);
+                        this.setVisible(false);
                     }
                 } else {
                     throw new SQLException("wrong credentials");
@@ -353,6 +388,7 @@ public class Initiator extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog dialogWelcome;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel labelError;
     private javax.swing.JLabel labelForgot;
@@ -360,6 +396,7 @@ public class Initiator extends javax.swing.JFrame {
     private javax.swing.JLabel labelLogin;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelUsername;
+    private javax.swing.JLabel labelWelcome;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField passwordText;
@@ -367,4 +404,19 @@ public class Initiator extends javax.swing.JFrame {
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
+
+    private void showLoginDialog() {
+
+        labelWelcome.setText("Glad you are back " + User.getName());
+        dialogWelcome.setLocationRelativeTo(this);
+        dialogWelcome.pack();
+        dialogWelcome.setVisible(true);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dialogWelcome.setVisible(false);
+    }
 }
