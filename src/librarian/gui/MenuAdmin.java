@@ -32,9 +32,10 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         dialogAbout = new javax.swing.JDialog();
         panelAbout = new javax.swing.JPanel();
-        scrollPaneAbout = new javax.swing.JScrollPane();
-        textAreaAbout = new javax.swing.JTextArea();
+        buttonOK = new javax.swing.JButton();
         labelImage = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaAbout = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         returnBookBtn = new javax.swing.JButton();
         insertBookBtn = new javax.swing.JButton();
@@ -64,65 +65,82 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuHelp = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
-        dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogAbout.setTitle("About this app");
         dialogAbout.setBackground(new java.awt.Color(156, 193, 194));
         dialogAbout.setResizable(false);
-        dialogAbout.setSize(new java.awt.Dimension(473, 325));
+        dialogAbout.setSize(new java.awt.Dimension(439, 242));
 
         panelAbout.setBackground(new java.awt.Color(156, 193, 194));
-        panelAbout.setPreferredSize(new java.awt.Dimension(450, 300));
+        panelAbout.setPreferredSize(new java.awt.Dimension(427, 230));
 
-        textAreaAbout.setBackground(new java.awt.Color(156, 193, 194));
-        textAreaAbout.setColumns(20);
-        textAreaAbout.setRows(5);
-        textAreaAbout.setText("Librarian App\n\nThis app was created by SoftGen Inc.\n\nversion: 1.41\nRelease date: 01/12/2024");
-        textAreaAbout.setToolTipText("About this application");
-        textAreaAbout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 112, 104), 3));
-        textAreaAbout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        textAreaAbout.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        textAreaAbout.setSelectionColor(new java.awt.Color(140, 112, 104));
-        textAreaAbout.setVerifyInputWhenFocusTarget(false);
-        scrollPaneAbout.setViewportView(textAreaAbout);
+        buttonOK.setText("OK");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOKActionPerformed(evt);
+            }
+        });
 
         labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/libraryAbout.png"))); // NOI18N
         labelImage.setToolTipText("Library logo");
+
+        jScrollPane2.setHorizontalScrollBar(null);
+
+        textAreaAbout.setEditable(false);
+        textAreaAbout.setBackground(new java.awt.Color(156, 193, 194));
+        textAreaAbout.setColumns(20);
+        textAreaAbout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textAreaAbout.setForeground(new java.awt.Color(140, 112, 104));
+        textAreaAbout.setRows(5);
+        textAreaAbout.setText("Librarian App\n\nCreated by SoftGen Inc.\n\nversion: 1.41\nRelease date: 01/12/2024");
+        textAreaAbout.setToolTipText("About this application");
+        textAreaAbout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 210, 216), 3, true));
+        textAreaAbout.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        textAreaAbout.setSelectedTextColor(new java.awt.Color(201, 210, 216));
+        textAreaAbout.setSelectionColor(new java.awt.Color(140, 112, 104));
+        jScrollPane2.setViewportView(textAreaAbout);
 
         javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
         panelAbout.setLayout(panelAboutLayout);
         panelAboutLayout.setHorizontalGroup(
             panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAboutLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(labelImage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(scrollPaneAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelAboutLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(buttonOK)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelAboutLayout.setVerticalGroup(
             panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAboutLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                    .addComponent(scrollPaneAbout))
-                .addContainerGap())
+                    .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonOK)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dialogAboutLayout = new javax.swing.GroupLayout(dialogAbout.getContentPane());
         dialogAbout.getContentPane().setLayout(dialogAboutLayout);
         dialogAboutLayout.setHorizontalGroup(
             dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogAboutLayout.createSequentialGroup()
+            .addGroup(dialogAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dialogAboutLayout.setVerticalGroup(
             dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -569,6 +587,10 @@ public class MenuAdmin extends javax.swing.JFrame {
         dialogAbout.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        dialogAbout.dispose();
+    }//GEN-LAST:event_buttonOKActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -585,6 +607,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonOK;
     private javax.swing.JDialog dialogAbout;
     private javax.swing.JButton editAuthorBtn;
     private javax.swing.JButton editUserBtn;
@@ -592,11 +615,15 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton insertBookBtn;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
     private javax.swing.JButton lendBookBtn;
     private javax.swing.JButton logBtn;
     private javax.swing.JButton logOutBtn;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JButton loginBtn1;
+    private javax.swing.JButton loginBtn2;
     private javax.swing.JMenuItem menuAuthorInsert;
     private javax.swing.JMenu menuAuthors;
     private javax.swing.JMenuBar menuBar;
@@ -615,7 +642,6 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton newUserBtn;
     private javax.swing.JPanel panelAbout;
     private javax.swing.JButton returnBookBtn;
-    private javax.swing.JScrollPane scrollPaneAbout;
     private javax.swing.JButton searchBooksBtn;
     private javax.swing.JTextArea textAreaAbout;
     // End of variables declaration//GEN-END:variables
