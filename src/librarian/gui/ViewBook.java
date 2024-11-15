@@ -56,6 +56,10 @@ public class ViewBook extends javax.swing.JFrame {
             lendCatCombo.setSelectedIndex(rs.getInt(10)-1);
 
             isbnTxt.setText(rs.getString(8));
+            
+            if (bookID == 22) {
+                labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/secrets and lies2.jpg")));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,6 +77,7 @@ public class ViewBook extends javax.swing.JFrame {
 
         jSplitPane = new javax.swing.JSplitPane();
         leftPane = new javax.swing.JPanel();
+        labelImage = new javax.swing.JLabel();
         rightPane = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         lendCatCombo = new javax.swing.JComboBox<>();
@@ -103,20 +108,30 @@ public class ViewBook extends javax.swing.JFrame {
 
         leftPane.setPreferredSize(new java.awt.Dimension(300, 230));
 
+        labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/secrets and lies2.jpg"))); // NOI18N
+        labelImage.setText("jLabel1");
+
         javax.swing.GroupLayout leftPaneLayout = new javax.swing.GroupLayout(leftPane);
         leftPane.setLayout(leftPaneLayout);
         leftPaneLayout.setHorizontalGroup(
             leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPaneLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         leftPaneLayout.setVerticalGroup(
             leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelImage)
+                .addGap(119, 119, 119))
         );
 
         jSplitPane.setLeftComponent(leftPane);
 
-        rightPane.setPreferredSize(new java.awt.Dimension(300, 230));
+        rightPane.setPreferredSize(new java.awt.Dimension(300, 210));
 
         labelTitle.setText("Title");
 
@@ -335,6 +350,7 @@ public class ViewBook extends javax.swing.JFrame {
     private javax.swing.JTextField isbnTxt;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JLabel labelCategory;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelIsbn;
     private javax.swing.JLabel labelLendCat;
     private javax.swing.JLabel labelPubDate;

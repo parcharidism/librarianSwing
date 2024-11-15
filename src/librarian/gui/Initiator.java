@@ -52,7 +52,6 @@ public class Initiator extends javax.swing.JFrame {
 
         dialogWelcome.setTitle("Successful login");
         dialogWelcome.setBackground(new java.awt.Color(156, 193, 194));
-        dialogWelcome.setPreferredSize(new java.awt.Dimension(250, 100));
 
         labelWelcome.setText("jLabel1");
 

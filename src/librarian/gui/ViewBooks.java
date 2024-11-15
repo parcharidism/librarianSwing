@@ -80,9 +80,19 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         jTableBooks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableBooks.setShowGrid(true);
+        jTableBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableBooksMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableBooks);
 
         searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        searchTermTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTermTxtActionPerformed(evt);
+            }
+        });
 
         jComboBoxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Title", "Category", "Publishing House", "ISBN" }));
 
@@ -169,6 +179,16 @@ public class ViewBooks extends javax.swing.JFrame {
         showBooks(rs);
 
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void searchTermTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTermTxtActionPerformed
+        searchBtnActionPerformed(evt);
+    }//GEN-LAST:event_searchTermTxtActionPerformed
+
+    private void jTableBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBooksMouseClicked
+        if (evt.getClickCount() == 2 && jTableBooks.getSelectedRow() != -1) {
+            selectBtnActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableBooksMouseClicked
 
     /**
      * @param args the command line arguments
