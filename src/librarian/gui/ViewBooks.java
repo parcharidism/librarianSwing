@@ -146,8 +146,13 @@ public class ViewBooks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        int bookID = 0;
+        int row = jTableBooks.getSelectedRow();
+        bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
+        this.setVisible(false);
+        ViewBook viewBook = new ViewBook(bookID);
+        viewBook.setVisible(true);
 
-        
     }//GEN-LAST:event_selectBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
