@@ -4,11 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import librarian.handlers.BookHandler;
 import librarian.handlers.LendHandler;
 import librarian.handlers.PublHouseHandler;
-import librarian.handlers.UsersHandler;
 
 /**
  *
@@ -42,23 +40,23 @@ public class ViewBook extends javax.swing.JFrame {
             while (rsCat.next()) {
                 categoryCombo.addItem(rsCat.getString(2));
             }
-            categoryCombo.setSelectedIndex(rs.getInt(3)-1);
+            categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
             pubDateTxt.setText(rs.getString(5));
 
             while (rsPubHouses.next()) {
                 pubHouseCombo.addItem(rsPubHouses.getString(2));
             }
-            pubHouseCombo.setSelectedIndex(rs.getInt(7)-1);
+            pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
 
             while (rsLendCat.next()) {
                 lendCatCombo.addItem(rsLendCat.getString(2));
             }
-            lendCatCombo.setSelectedIndex(rs.getInt(10)-1);
+            lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
 
             isbnTxt.setText(rs.getString(8));
-            
+
             if (bookID == 22) {
-                labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/"+titleTxt.getText()+".jpg")));
+                labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/" + titleTxt.getText() + ".jpg")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,7 +107,6 @@ public class ViewBook extends javax.swing.JFrame {
         leftPane.setPreferredSize(new java.awt.Dimension(300, 230));
 
         labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/secrets and lies2.jpg"))); // NOI18N
         labelImage.setText("jLabel1");
 
         javax.swing.GroupLayout leftPaneLayout = new javax.swing.GroupLayout(leftPane);
