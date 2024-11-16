@@ -1,10 +1,16 @@
 package librarian.gui;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import librarian.handlers.AuthorsHandler;
 import librarian.handlers.BookHandler;
@@ -41,7 +47,7 @@ public class InsertBook extends javax.swing.JFrame {
         }
         bookCatCombo.setSelectedIndex(0);
 
-        ResultSet rsA = AuthorsHandler.selectAuthors(0,-1,null); // δείξτους όλους
+        ResultSet rsA = AuthorsHandler.selectAuthors(0, -1, null); // δείξτους όλους
         int row = 0;
 
         try {
@@ -117,6 +123,8 @@ public class InsertBook extends javax.swing.JFrame {
         stockTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         isbnTxt = new javax.swing.JTextField();
+        labelBrowse = new javax.swing.JLabel();
+        browseBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,6 +213,15 @@ public class InsertBook extends javax.swing.JFrame {
 
         jLabel9.setText("Stock:");
 
+        labelBrowse.setText("Image Cover:");
+
+        browseBtn.setText("Browse Image");
+        browseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,7 +244,8 @@ public class InsertBook extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelBrowse, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -250,7 +268,8 @@ public class InsertBook extends javax.swing.JFrame {
                             .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(publHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(browseBtn))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(178, 178, 178)
@@ -296,7 +315,11 @@ public class InsertBook extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelBrowse)
+                    .addComponent(browseBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(insertBtn)
                     .addComponent(resetBtn)
@@ -365,6 +388,39 @@ public class InsertBook extends javax.swing.JFrame {
         publDateTxt.setText("");
     }//GEN-LAST:event_publDateTxtMouseClicked
 
+    private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBtnActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File src = chooser.getSelectedFile();
+
+        String path = InsertBook.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        try {
+            String decodedPath = URLDecoder.decode(path, "UTF-8");
+            int countslash = decodedPath.length() - decodedPath.replace("/", "").length();
+            countslash -= 2;
+
+            String finalPath = "";
+            int counting = 0;
+            for (int i = 0; i < decodedPath.length(); i++) {
+                finalPath += decodedPath.charAt(i);
+                if (decodedPath.charAt(i) == '/') {
+                    counting++;
+                }
+                if (counting == 6) {
+                    break;
+                }
+
+            }
+            finalPath += "src/external/images/bookImages/"+titleTxt.getText()+".jpg";
+            File dest = new File(finalPath);
+            System.out.println(dest.getPath());
+            Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        } catch (IOException ex) {
+            Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_browseBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +460,7 @@ public class InsertBook extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox<String> bookCatCombo;
+    private javax.swing.JButton browseBtn;
     private javax.swing.JButton insertBtn;
     private javax.swing.JTextField isbnTxt;
     private javax.swing.JLabel jLabel1;
@@ -417,6 +474,7 @@ public class InsertBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAuthors;
+    private javax.swing.JLabel labelBrowse;
     private javax.swing.JComboBox<String> lendCatCombo;
     private javax.swing.JTextField publDateTxt;
     private javax.swing.JComboBox<String> publHouseCombo;

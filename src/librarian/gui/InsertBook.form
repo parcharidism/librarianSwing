@@ -44,6 +44,7 @@
                                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
                                   <Component id="jLabel9" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="labelBrowse" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -75,6 +76,7 @@
                           <Component id="publHouseCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="stockTxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="isbnTxt" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="browseBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -137,7 +139,12 @@
                   <Component id="stockTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelBrowse" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="browseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="insertBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="resetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -312,6 +319,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="isbnTxt">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelBrowse">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Image Cover:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="browseBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Browse Image"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

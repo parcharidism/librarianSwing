@@ -58,7 +58,7 @@ public class ViewBook extends javax.swing.JFrame {
             isbnTxt.setText(rs.getString(8));
             
             if (bookID == 22) {
-                labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/secrets and lies2.jpg")));
+                labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/"+titleTxt.getText()+".jpg")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +101,7 @@ public class ViewBook extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(640, 480));
 
-        jSplitPane.setDividerLocation(200);
+        jSplitPane.setDividerLocation(235);
         jSplitPane.setDividerSize(8);
         jSplitPane.setToolTipText("");
         jSplitPane.setPreferredSize(new java.awt.Dimension(630, 470));
@@ -193,7 +193,7 @@ public class ViewBook extends javax.swing.JFrame {
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPaneLayout.createSequentialGroup()
                         .addComponent(backBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                         .addComponent(resetBtn)
                         .addGap(26, 26, 26)
                         .addComponent(updateBtn)
