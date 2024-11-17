@@ -49,6 +49,7 @@ public class Initiator extends javax.swing.JFrame {
         labelUsername = new javax.swing.JLabel();
         labelError = new javax.swing.JLabel();
         labelForgot = new javax.swing.JLabel();
+        labelResolution = new javax.swing.JLabel();
 
         dialogWelcome.setTitle("Successful login");
         dialogWelcome.setBackground(new java.awt.Color(156, 193, 194));
@@ -203,6 +204,9 @@ public class Initiator extends javax.swing.JFrame {
         labelForgot.setForeground(new java.awt.Color(193, 81, 135));
         labelForgot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        labelResolution.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        labelResolution.setText("Suggested Resolution: 1024x768");
+
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
@@ -227,7 +231,11 @@ public class Initiator extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelResolution)))
                 .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
@@ -251,7 +259,9 @@ public class Initiator extends javax.swing.JFrame {
                 .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelForgot)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addComponent(labelResolution)
+                .addContainerGap())
         );
 
         jSplitPane1.setRightComponent(rightPanel);
@@ -394,6 +404,7 @@ public class Initiator extends javax.swing.JFrame {
     private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelLogin;
     private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelResolution;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel labelWelcome;
     private javax.swing.JPanel leftPanel;
