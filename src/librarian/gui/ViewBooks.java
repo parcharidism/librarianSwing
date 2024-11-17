@@ -20,9 +20,9 @@ public class ViewBooks extends javax.swing.JFrame {
      */
     public ViewBooks() {
         initComponents();
-
+        
         showBooks(null);
-
+        
     }
 
     /**
@@ -50,7 +50,7 @@ public class ViewBooks extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1024, 768));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Browse Books");
 
         selectBtn.setText("Select Book");
@@ -72,11 +72,11 @@ public class ViewBooks extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Title", "Category", "Publish Date", "Publishing House", "ISBN", "Lend Category"
+                "ID", "Title", "Category", "Publish Date", "Publishing House", "ISBN", "Lend Category", "Stock"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -95,12 +95,12 @@ public class ViewBooks extends javax.swing.JFrame {
             jTableBooks.getColumnModel().getColumn(0).setMinWidth(40);
             jTableBooks.getColumnModel().getColumn(0).setPreferredWidth(40);
             jTableBooks.getColumnModel().getColumn(0).setMaxWidth(40);
-            jTableBooks.getColumnModel().getColumn(1).setMinWidth(350);
-            jTableBooks.getColumnModel().getColumn(1).setPreferredWidth(350);
-            jTableBooks.getColumnModel().getColumn(1).setMaxWidth(350);
-            jTableBooks.getColumnModel().getColumn(2).setMinWidth(120);
-            jTableBooks.getColumnModel().getColumn(2).setPreferredWidth(120);
-            jTableBooks.getColumnModel().getColumn(2).setMaxWidth(120);
+            jTableBooks.getColumnModel().getColumn(1).setMinWidth(310);
+            jTableBooks.getColumnModel().getColumn(1).setPreferredWidth(310);
+            jTableBooks.getColumnModel().getColumn(1).setMaxWidth(310);
+            jTableBooks.getColumnModel().getColumn(2).setMinWidth(110);
+            jTableBooks.getColumnModel().getColumn(2).setPreferredWidth(110);
+            jTableBooks.getColumnModel().getColumn(2).setMaxWidth(110);
             jTableBooks.getColumnModel().getColumn(3).setMinWidth(100);
             jTableBooks.getColumnModel().getColumn(3).setPreferredWidth(100);
             jTableBooks.getColumnModel().getColumn(3).setMaxWidth(100);
@@ -113,6 +113,9 @@ public class ViewBooks extends javax.swing.JFrame {
             jTableBooks.getColumnModel().getColumn(6).setMinWidth(95);
             jTableBooks.getColumnModel().getColumn(6).setPreferredWidth(95);
             jTableBooks.getColumnModel().getColumn(6).setMaxWidth(95);
+            jTableBooks.getColumnModel().getColumn(7).setMinWidth(40);
+            jTableBooks.getColumnModel().getColumn(7).setPreferredWidth(40);
+            jTableBooks.getColumnModel().getColumn(7).setMaxWidth(40);
         }
 
         searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
@@ -135,29 +138,28 @@ public class ViewBooks extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectBtn))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(456, 456, 456))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(searchBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(selectBtn))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(searchBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,21 +275,21 @@ public class ViewBooks extends javax.swing.JFrame {
     private void showBooks(ResultSet rs) {
         Date date = null;
         SimpleDateFormat formatter;
-
+        
         DefaultTableModel model = (DefaultTableModel) jTableBooks.getModel();
         model.setRowCount(0);
-
+        
         if (rs == null) {
             rs = BookHandler.selectBooksDetail(0, null);
         }
-
+        
         try {
             while (rs.next()) {
                 date = rs.getDate(4);
                 formatter = new SimpleDateFormat("dd/MM/yyyy");
                 String strDate = formatter.format(date);
-
-                Object data[] = {rs.getInt(1), rs.getString(2), rs.getString(3), strDate, rs.getString(5), rs.getString(6), rs.getString(7)};
+                
+                Object data[] = {rs.getInt(1), rs.getString(2), rs.getString(3), strDate, rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)};
                 model.addRow(data);
             }
         } catch (SQLException ex) {

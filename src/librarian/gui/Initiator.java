@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import librarian.handlers.LogHandler;
 
 /**
@@ -166,6 +165,8 @@ public class Initiator extends javax.swing.JFrame {
 
         usernameText.setText("parharidis@gmail.com");
         usernameText.setBorder(null);
+        usernameText.setCaretColor(new java.awt.Color(140, 112, 104));
+        usernameText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         usernameText.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 usernameTextFocusGained(evt);
@@ -342,7 +343,6 @@ public class Initiator extends javax.swing.JFrame {
                             + User.getName() + " " + User.getSurname() + " has logged in");
 
                     //showLoginDialog();
-
                     if (User.getRole() == 1) {
                         MenuAdmin menuAdmin = new MenuAdmin();
                         menuAdmin.setVisible(true);
