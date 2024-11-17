@@ -62,6 +62,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuViewAuthor = new javax.swing.JMenuItem();
         menuUsers = new javax.swing.JMenu();
         menuUser = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuHelp = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
@@ -205,7 +206,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        searchBooksBtn.setText("Search Books");
+        searchBooksBtn.setText("Browse Books");
         searchBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBooksBtnActionPerformed(evt);
@@ -252,20 +253,22 @@ public class MenuAdmin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(insertAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(298, Short.MAX_VALUE)
@@ -292,8 +295,8 @@ public class MenuAdmin extends javax.swing.JFrame {
                     .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
-                .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -309,16 +312,31 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuFile.setMnemonic('O');
         menuFile.setText("File");
         menuFile.setToolTipText("Actions about the Application");
+        menuFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFileActionPerformed(evt);
+            }
+        });
 
         menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuViewLog.setMnemonic('g');
         menuViewLog.setText("View Log");
         menuViewLog.setToolTipText("Examine the application log");
+        menuViewLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewLogActionPerformed(evt);
+            }
+        });
         menuFile.add(menuViewLog);
 
         menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuLogout.setText("Logout");
         menuLogout.setToolTipText("Exit safely from the application");
+        menuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLogoutActionPerformed(evt);
+            }
+        });
         menuFile.add(menuLogout);
 
         menuBar.add(menuFile);
@@ -338,6 +356,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuBooks.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuBooksMouseEntered(evt);
+            }
+        });
+        menuBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBooksActionPerformed(evt);
             }
         });
 
@@ -366,18 +389,33 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuReturn.setMnemonic('R');
         menuReturn.setText("Return Book");
         menuReturn.setToolTipText("Return a book to the Library");
+        menuReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReturnActionPerformed(evt);
+            }
+        });
         menuBooks.add(menuReturn);
 
         menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuInsert.setMnemonic('I');
         menuInsert.setText("Insert Book");
         menuInsert.setToolTipText("Register a new book to the Library");
+        menuInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInsertActionPerformed(evt);
+            }
+        });
         menuBooks.add(menuInsert);
 
         menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuSearch.setMnemonic('S');
-        menuSearch.setText("Search Books");
+        menuSearch.setText("Browse Books");
         menuSearch.setToolTipText("Find books based on title");
+        menuSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchActionPerformed(evt);
+            }
+        });
         menuBooks.add(menuSearch);
 
         menuBar.add(menuBooks);
@@ -399,17 +437,40 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuViewAuthor.setMnemonic('V');
         menuViewAuthor.setText("View/Edit Author");
         menuViewAuthor.setToolTipText("View or Edit Authors");
+        menuViewAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewAuthorActionPerformed(evt);
+            }
+        });
         menuAuthors.add(menuViewAuthor);
 
         menuBar.add(menuAuthors);
 
         menuUsers.setText("Users");
         menuUsers.setToolTipText("Action about Users");
+        menuUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUsersActionPerformed(evt);
+            }
+        });
 
         menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuUser.setMnemonic('U');
         menuUser.setText("Insert User");
+        menuUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUserActionPerformed(evt);
+            }
+        });
         menuUsers.add(menuUser);
+
+        jMenuItem1.setText("View/Edit User");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuUsers.add(jMenuItem1);
 
         menuBar.add(menuUsers);
 
@@ -528,11 +589,11 @@ public class MenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutHandler
 
     private void menuLendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLendActionPerformed
-        // TODO add your handling code here:
+        lendBookBtnActionPerformed(evt);
     }//GEN-LAST:event_menuLendActionPerformed
 
     private void menuAuthorInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAuthorInsertActionPerformed
-        // TODO add your handling code here:
+        insertAuthorBtnActionPerformed(evt);
     }//GEN-LAST:event_menuAuthorInsertActionPerformed
 
     private void menuBooksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBooksMouseEntered
@@ -560,6 +621,50 @@ public class MenuAdmin extends javax.swing.JFrame {
         dialogAbout.dispose();
     }//GEN-LAST:event_buttonOKActionPerformed
 
+    private void menuViewLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewLogActionPerformed
+        logBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuViewLogActionPerformed
+
+    private void menuFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileActionPerformed
+        logOutBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuFileActionPerformed
+
+    private void menuReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReturnActionPerformed
+        returnBookBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuReturnActionPerformed
+
+    private void menuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertActionPerformed
+        insertBookBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuInsertActionPerformed
+
+    private void menuBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBooksActionPerformed
+        searchBooksBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuBooksActionPerformed
+
+    private void menuViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewAuthorActionPerformed
+        editAuthorBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuViewAuthorActionPerformed
+
+    private void menuUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUserActionPerformed
+        newUserBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuUserActionPerformed
+
+    private void menuUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsersActionPerformed
+        editUserBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuUsersActionPerformed
+
+    private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutActionPerformed
+        logOutBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuLogoutActionPerformed
+
+    private void menuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchActionPerformed
+        searchBooksBtnActionPerformed(evt);
+    }//GEN-LAST:event_menuSearchActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        editUserBtnActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -582,6 +687,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton editUserBtn;
     private javax.swing.JButton insertAuthorBtn;
     private javax.swing.JButton insertBookBtn;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
