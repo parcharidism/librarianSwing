@@ -242,7 +242,7 @@
                   <KeyStroke key="Alt+I"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="73"/>
-                <Property name="text" type="java.lang.String" value="Insert Book"/>
+                <Property name="text" type="java.lang.String" value="Register Book"/>
                 <Property name="toolTipText" type="java.lang.String" value="Register a new book to the Library"/>
               </Properties>
               <Events>
@@ -499,7 +499,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="insertBookBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Insert Book"/>
+            <Property name="text" type="java.lang.String" value="Register Book"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertBookBtnActionPerformed"/>

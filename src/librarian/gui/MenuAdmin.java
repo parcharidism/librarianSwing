@@ -164,7 +164,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        insertBookBtn.setText("Insert Book");
+        insertBookBtn.setText("Register Book");
         insertBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertBookBtnActionPerformed(evt);
@@ -399,7 +399,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuInsert.setMnemonic('I');
-        menuInsert.setText("Insert Book");
+        menuInsert.setText("Register Book");
         menuInsert.setToolTipText("Register a new book to the Library");
         menuInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
