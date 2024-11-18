@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -23,7 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -57,35 +62,37 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="resetBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="insertBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="343" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="343" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="titleTxt" max="32767" attributes="0"/>
-                              <Component id="bookCatCombo" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                              <Component id="publDateTxt" min="-2" pref="452" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="titleTxt" max="32767" attributes="0"/>
+                          <Component id="bookCatCombo" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                          <Component id="publDateTxt" min="-2" pref="452" max="-2" attributes="0"/>
                           <Component id="lendCatCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="publHouseCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="stockTxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="isbnTxt" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="browseBtn" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="isbnTxt" min="-2" pref="172" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="isbnNotify" min="-2" pref="217" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="browseBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="browseNotify" min="-2" pref="209" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="409" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,15 +100,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="titleTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="titleTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bookCatCombo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -130,9 +137,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="isbnTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="isbnNotify" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -143,8 +151,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelBrowse" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="browseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="browseNotify" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="insertBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="resetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -195,13 +204,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="titleTxt">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="titleTxtFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="publDateTxt">
       <Properties>
         <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="publDateTxtMouseClicked"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="publDateTxtFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="publDateTxtFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="bookCatCombo">
@@ -232,7 +245,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="text" type="java.lang.String" value="&lt;&lt; Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
@@ -319,6 +332,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="isbnTxt">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="isbnTxtFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelBrowse">
       <Properties>
@@ -332,6 +348,20 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="isbnNotify">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="87" green="51" red="c1" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="browseNotify">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="87" green="51" red="c1" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

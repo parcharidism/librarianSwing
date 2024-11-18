@@ -125,6 +125,8 @@ public class InsertBook extends javax.swing.JFrame {
         isbnTxt = new javax.swing.JTextField();
         labelBrowse = new javax.swing.JLabel();
         browseBtn = new javax.swing.JButton();
+        isbnNotify = new javax.swing.JLabel();
+        browseNotify = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,10 +145,19 @@ public class InsertBook extends javax.swing.JFrame {
 
         jLabel7.setText("Lend Category:");
 
+        titleTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                titleTxtFocusLost(evt);
+            }
+        });
+
         publDateTxt.setText("dd/mm/yyyy");
-        publDateTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                publDateTxtMouseClicked(evt);
+        publDateTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                publDateTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                publDateTxtFocusLost(evt);
             }
         });
 
@@ -164,7 +175,7 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setText("Back");
+        backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -213,6 +224,12 @@ public class InsertBook extends javax.swing.JFrame {
 
         jLabel9.setText("Stock:");
 
+        isbnTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                isbnTxtFocusLost(evt);
+            }
+        });
+
         labelBrowse.setText("Image Cover:");
 
         browseBtn.setText("Browse Image");
@@ -222,11 +239,19 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
 
+        isbnNotify.setForeground(new java.awt.Color(193, 81, 135));
+
+        browseNotify.setForeground(new java.awt.Color(193, 81, 135));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,37 +282,39 @@ public class InsertBook extends javax.swing.JFrame {
                         .addComponent(resetBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(insertBtn)
-                        .addContainerGap(343, Short.MAX_VALUE))
+                        .addGap(343, 343, 343))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(titleTxt)
-                                .addComponent(bookCatCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(publDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(titleTxt)
+                            .addComponent(bookCatCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(publDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(publHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(browseBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(browseBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(browseNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(114, 114, 114)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel1)
-                .addContainerGap(409, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(bookCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -309,17 +336,19 @@ public class InsertBook extends javax.swing.JFrame {
                             .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(40, 40, 40))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(isbnNotify)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBrowse)
-                    .addComponent(browseBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addComponent(browseBtn)
+                    .addComponent(browseNotify))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(insertBtn)
                     .addComponent(resetBtn)
@@ -328,6 +357,7 @@ public class InsertBook extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -384,11 +414,11 @@ public class InsertBook extends javax.swing.JFrame {
         menuAdmin.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void publDateTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_publDateTxtMouseClicked
-        publDateTxt.setText("");
-    }//GEN-LAST:event_publDateTxtMouseClicked
-
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBtnActionPerformed
+        if (titleTxt.getText().equalsIgnoreCase("")) {
+            browseNotify.setText("Please type the book title first");
+            return;
+        }
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File src = chooser.getSelectedFile();
@@ -409,9 +439,9 @@ public class InsertBook extends javax.swing.JFrame {
                 if (counting == 6) {
                     break;
                 }
-
             }
-            finalPath += "src/external/images/bookImages/"+titleTxt.getText()+".jpg";
+            String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9]", "");
+            finalPath += "src/external/images/bookImages/" + titleImage + ".jpg";
             File dest = new File(finalPath);
             System.out.println(dest.getPath());
             Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -420,6 +450,32 @@ public class InsertBook extends javax.swing.JFrame {
             Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_browseBtnActionPerformed
+
+    private void isbnTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusLost
+        if(!isbnTxt.getText().equalsIgnoreCase("")) {
+            String digits = isbnTxt.getText().replaceAll("[^0-9]", "");
+        isbnTxt.setText(digits);
+        isbnNotify.setText("> Special characters were removed");
+        }
+    }//GEN-LAST:event_isbnTxtFocusLost
+
+    private void publDateTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusGained
+        publDateTxt.setText("");
+    }//GEN-LAST:event_publDateTxtFocusGained
+
+    private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
+        if (publDateTxt.getText().equalsIgnoreCase("")) {
+            publDateTxt.setText("dd/mm/yyyy");
+        }
+    }//GEN-LAST:event_publDateTxtFocusLost
+
+    private void titleTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTxtFocusLost
+        if (!titleTxt.getText().equalsIgnoreCase("")) {
+            browseNotify.setText("");
+            String noSpecial = titleTxt.getText().replaceAll("[^A-Za-z0-9]", "");
+            titleTxt.setText(noSpecial);
+        }
+    }//GEN-LAST:event_titleTxtFocusLost
 
     /**
      * @param args the command line arguments
@@ -461,7 +517,9 @@ public class InsertBook extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox<String> bookCatCombo;
     private javax.swing.JButton browseBtn;
+    private javax.swing.JLabel browseNotify;
     private javax.swing.JButton insertBtn;
+    private javax.swing.JLabel isbnNotify;
     private javax.swing.JTextField isbnTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
