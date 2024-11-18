@@ -294,8 +294,8 @@ public class InsertBook extends javax.swing.JFrame {
                             .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(browseBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,7 +339,7 @@ public class InsertBook extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
                         .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(isbnNotify)))
+                        .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -440,7 +440,7 @@ public class InsertBook extends javax.swing.JFrame {
                     break;
                 }
             }
-            String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9]", "");
+            String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9\\s]", "");
             finalPath += "src/external/images/bookImages/" + titleImage + ".jpg";
             File dest = new File(finalPath);
             System.out.println(dest.getPath());
@@ -452,19 +452,23 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_browseBtnActionPerformed
 
     private void isbnTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusLost
-        if(!isbnTxt.getText().equalsIgnoreCase("")) {
+        if (!isbnTxt.getText().equalsIgnoreCase("")) {
             String digits = isbnTxt.getText().replaceAll("[^0-9]", "");
-        isbnTxt.setText(digits);
-        isbnNotify.setText("> Special characters were removed");
+            isbnTxt.setText(digits);
+            isbnNotify.setText("> Special characters were removed");
         }
     }//GEN-LAST:event_isbnTxtFocusLost
 
     private void publDateTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusGained
-        publDateTxt.setText("");
+        if (publDateTxt.getText().equalsIgnoreCase("dd/mm/yyyy")) {
+            publDateTxt.setText("");
+            publDateTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
+        }
     }//GEN-LAST:event_publDateTxtFocusGained
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
         if (publDateTxt.getText().equalsIgnoreCase("")) {
+            publDateTxt.setFont(new java.awt.Font("Segoe UI", 2, 12));
             publDateTxt.setText("dd/mm/yyyy");
         }
     }//GEN-LAST:event_publDateTxtFocusLost
@@ -472,7 +476,7 @@ public class InsertBook extends javax.swing.JFrame {
     private void titleTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTxtFocusLost
         if (!titleTxt.getText().equalsIgnoreCase("")) {
             browseNotify.setText("");
-            String noSpecial = titleTxt.getText().replaceAll("[^A-Za-z0-9]", "");
+            String noSpecial = titleTxt.getText().replaceAll("[^A-Za-z0-9\\s]", "");
             titleTxt.setText(noSpecial);
         }
     }//GEN-LAST:event_titleTxtFocusLost

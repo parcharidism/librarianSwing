@@ -448,7 +448,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuBar.add(menuAuthors);
 
         menuUsers.setText("Users");
-        menuUsers.setToolTipText("Action about Users");
+        menuUsers.setToolTipText("Actions about Users");
         menuUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuUsersActionPerformed(evt);

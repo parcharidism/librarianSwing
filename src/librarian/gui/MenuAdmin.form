@@ -300,7 +300,7 @@
         <Menu class="javax.swing.JMenu" name="menuUsers">
           <Properties>
             <Property name="text" type="java.lang.String" value="Users"/>
-            <Property name="toolTipText" type="java.lang.String" value="Action about Users"/>
+            <Property name="toolTipText" type="java.lang.String" value="Actions about Users"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuUsersActionPerformed"/>

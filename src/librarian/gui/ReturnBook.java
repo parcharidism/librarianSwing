@@ -154,7 +154,7 @@ public class ReturnBook extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setText("Back");
+        backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
