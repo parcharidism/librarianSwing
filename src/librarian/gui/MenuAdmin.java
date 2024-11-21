@@ -534,6 +534,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         try {
             LogHandler.insertActivityLog("User " + User.getUserid() + " "
                     + User.getName() + " " + User.getSurname() + " has logged off");
+            User.clearValues();
         } catch (SQLException ex) {
             Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -557,8 +558,8 @@ public class MenuAdmin extends javax.swing.JFrame {
 
     private void logBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logBtnActionPerformed
         this.setVisible(false);
-        ViewLog lendBook = new ViewLog();
-        lendBook.setVisible(true);
+        ViewLog viewLog = new ViewLog();
+        viewLog.setVisible(true);
     }//GEN-LAST:event_logBtnActionPerformed
 
     private void returnBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookBtnActionPerformed
