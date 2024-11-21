@@ -1,5 +1,6 @@
 package librarian.gui;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -12,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import librarian.handlers.AuthorsHandler;
 import librarian.handlers.BookHandler;
 import librarian.handlers.PublHouseHandler;
@@ -43,12 +46,13 @@ public class InsertBook extends javax.swing.JFrame {
             while (rsB.next()) {
                 bookCatiDs.add(rsB.getString(1));
                 bookCatCombo.addItem(rsB.getString(2));
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
         }
         bookCatCombo.setSelectedIndex(0);
-
+        
         ResultSet rsA = AuthorsHandler.selectAuthors(0, -1, null); // δείξτους όλους
         int row = 0;
 
@@ -136,6 +140,8 @@ public class InsertBook extends javax.swing.JFrame {
         browseBtn = new javax.swing.JButton();
         isbnNotify = new javax.swing.JLabel();
         browseNotify = new javax.swing.JLabel();
+        labelFullname = new javax.swing.JLabel();
+        logOutBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -236,7 +242,6 @@ public class InsertBook extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register a new book to the library");
-        setPreferredSize(new java.awt.Dimension(950, 750));
         setResizable(false);
         setSize(new java.awt.Dimension(950, 750));
 
@@ -279,6 +284,11 @@ public class InsertBook extends javax.swing.JFrame {
         });
 
         bookCatCombo.setToolTipText("Choose Book category based on its content");
+        bookCatCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookCatComboActionPerformed(evt);
+            }
+        });
 
         resetBtn.setText("Clear");
         resetBtn.setToolTipText("Reset the form fields");
@@ -363,11 +373,12 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
         jTableAuthors.setToolTipText("Select authors (max 3)");
+        jTableAuthors.setSelectionBackground(new java.awt.Color(190, 132, 81));
         jScrollPane1.setViewportView(jTableAuthors);
         if (jTableAuthors.getColumnModel().getColumnCount() > 0) {
-            jTableAuthors.getColumnModel().getColumn(0).setMinWidth(70);
-            jTableAuthors.getColumnModel().getColumn(0).setPreferredWidth(70);
-            jTableAuthors.getColumnModel().getColumn(0).setMaxWidth(70);
+            jTableAuthors.getColumnModel().getColumn(0).setMinWidth(50);
+            jTableAuthors.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTableAuthors.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
         publHouseCombo.setToolTipText("Choose the publishing house of the book");
@@ -403,6 +414,26 @@ public class InsertBook extends javax.swing.JFrame {
         browseNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         browseNotify.setForeground(new java.awt.Color(193, 81, 135));
 
+        labelFullname.setText(User.getName() + " " + User.getSurname());
+        labelFullname.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFullname.setText(User.getName() + " " + User.getSurname());
+        labelFullname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
+        logOutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        logOutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        logOutBtn.setMnemonic('O');
+        logOutBtn.setText("Log Out");
+        logOutBtn.setBorder(null);
+        logOutBtn.setBorderPainted(false);
+        logOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logOutBtn.setDisplayedMnemonicIndex(4);
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -422,33 +453,48 @@ public class InsertBook extends javax.swing.JFrame {
                     .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(publDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(publDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(browseBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(browseNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(publHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bookCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(insertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(resetBtn)))
+                        .addContainerGap(194, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(browseBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(browseNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(publHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(insertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(resetBtn)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(logOutBtn)
+                        .addGap(28, 28, 28))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(logOutBtn)
+                            .addComponent(labelFullname))))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -756,7 +802,6 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
-
         /**
          * bookCatiDs publiDs IMPLEMENTATION lendiDs
          */
@@ -801,7 +846,7 @@ public class InsertBook extends javax.swing.JFrame {
         lendCatCombo.setSelectedIndex(0);
         isbnTxt.setText("");
         stockTxt.setText("");
-        jTableAuthors.setGridColor(new java.awt.Color(255, 0, 0));
+        jTableAuthors.clearSelection();
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
@@ -959,33 +1004,30 @@ public class InsertBook extends javax.swing.JFrame {
         backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_backBtnMouseExited
 
+    private void bookCatComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookCatComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookCatComboActionPerformed
+
+    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
+        try {
+            LogHandler.insertActivityLog("User " + User.getUserid() + " "
+                + User.getName() + " " + User.getSurname() + " has logged off");
+            User.clearValues();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        Initiator init = new Initiator();
+        init.setVisible(true);
+    }//GEN-LAST:event_logOutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InsertBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InsertBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InsertBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InsertBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+        
+        FlatLightLaf.setup();
+        UIManager.put("Component.hideMnemonics", false);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1021,8 +1063,10 @@ public class InsertBook extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAuthors;
     private javax.swing.JLabel labelBrowse;
+    private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
     private javax.swing.JComboBox<String> lendCatCombo;
+    private javax.swing.JButton logOutBtn;
     private javax.swing.JMenuItem menuAuthorInsert;
     private javax.swing.JMenu menuAuthors;
     private javax.swing.JMenuBar menuBar;
