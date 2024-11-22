@@ -155,5 +155,32 @@ public class BookHandler {
 
         return rs;
     }
+    
+    public static boolean updateBook(int bookID, String titleTxt, int bookCatCombo,
+            String publDateTxt, int publHouseCombo, int lendCatCombo,
+            String isbnTxt, int stockTxt) {
+
+        CallableStatement cstmt = null;
+        int rowsUpdated = -1;
+
+        try {
+            cstmt = DBconnect.getConnection().prepareCall("{call updatebook(?,?,?,?,?,?,?,?)}");
+
+            cstmt.setInt(1, bookID);
+            cstmt.setString(2, titleTxt);
+            cstmt.setInt(3, bookCatCombo);
+            cstmt.setString(4, publDateTxt);
+            cstmt.setInt(5, publHouseCombo);
+            cstmt.setInt(6, lendCatCombo);
+            cstmt.setString(7, isbnTxt);
+            cstmt.setInt(8, stockTxt);
+
+            rowsUpdated = cstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthorsHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rowsUpdated == 1;
+    }
 
 }

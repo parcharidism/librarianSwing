@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import librarian.handlers.LogHandler;
+import librarian.utils.User;
 
 /**
  *
@@ -51,22 +52,124 @@ public class ViewLog extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogAbout = new javax.swing.JDialog();
+        panelAbout = new javax.swing.JPanel();
+        buttonOK = new javax.swing.JButton();
+        labelImage = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaAbout = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLog = new javax.swing.JTable();
+        backBtn = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        menuFile = new javax.swing.JMenu();
+        menuViewLog = new javax.swing.JMenuItem();
+        menuLogout = new javax.swing.JMenuItem();
+        menuBooks = new javax.swing.JMenu();
+        menuLend = new javax.swing.JMenuItem();
+        menuReturn = new javax.swing.JMenuItem();
+        menuInsert = new javax.swing.JMenuItem();
+        menuSearch = new javax.swing.JMenuItem();
+        menuAuthors = new javax.swing.JMenu();
+        menuAuthorInsert = new javax.swing.JMenuItem();
+        menuViewAuthor = new javax.swing.JMenuItem();
+        menuUsers = new javax.swing.JMenu();
+        menuUser = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        menuHelp = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dialogAbout.setTitle("About this app");
+        dialogAbout.setBackground(new java.awt.Color(156, 193, 194));
+        dialogAbout.setResizable(false);
+        dialogAbout.setSize(new java.awt.Dimension(439, 242));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("View Log");
+        panelAbout.setBackground(new java.awt.Color(156, 193, 194));
+        panelAbout.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panelAbout.setPreferredSize(new java.awt.Dimension(427, 230));
 
-        backBtn.setText("<< Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
+        buttonOK.setText("OK");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
+                buttonOKActionPerformed(evt);
             }
         });
+
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/libraryAbout.png"))); // NOI18N
+        labelImage.setToolTipText("Library logo");
+
+        jScrollPane2.setHorizontalScrollBar(null);
+
+        textAreaAbout.setEditable(false);
+        textAreaAbout.setBackground(new java.awt.Color(156, 193, 194));
+        textAreaAbout.setColumns(20);
+        textAreaAbout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textAreaAbout.setForeground(new java.awt.Color(140, 112, 104));
+        textAreaAbout.setRows(5);
+        textAreaAbout.setText("Librarian App\n\nCreated by SoftGen Inc.\n\nversion: 1.41\nRelease date: 01/12/2024");
+        textAreaAbout.setToolTipText("About this application");
+        textAreaAbout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 210, 216), 3, true));
+        textAreaAbout.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        textAreaAbout.setSelectedTextColor(new java.awt.Color(201, 210, 216));
+        textAreaAbout.setSelectionColor(new java.awt.Color(140, 112, 104));
+        jScrollPane2.setViewportView(textAreaAbout);
+
+        javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
+        panelAbout.setLayout(panelAboutLayout);
+        panelAboutLayout.setHorizontalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAboutLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelAboutLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(buttonOK)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelAboutLayout.setVerticalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonOK)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialogAboutLayout = new javax.swing.GroupLayout(dialogAbout.getContentPane());
+        dialogAbout.getContentPane().setLayout(dialogAboutLayout);
+        dialogAboutLayout.setHorizontalGroup(
+            dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogAboutLayout.setVerticalGroup(
+            dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(950, 750));
+        setResizable(false);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(950, 750));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(140, 112, 104));
+        jLabel1.setText("View Log");
 
         jTableLog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,37 +187,265 @@ public class ViewLog extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableLog.setSelectionBackground(new java.awt.Color(190, 132, 81));
         jTableLog.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableLog.setShowGrid(true);
         jScrollPane1.setViewportView(jTableLog);
+        if (jTableLog.getColumnModel().getColumnCount() > 0) {
+            jTableLog.getColumnModel().getColumn(0).setMinWidth(50);
+            jTableLog.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTableLog.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTableLog.getColumnModel().getColumn(2).setMinWidth(100);
+            jTableLog.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTableLog.getColumnModel().getColumn(2).setMaxWidth(100);
+        }
+
+        backBtn.setText("<< Back");
+        backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backBtnMouseExited(evt);
+            }
+        });
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(backBtn))
+                        .addContainerGap())))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(backBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        menuFile.setMnemonic('O');
+        menuFile.setText("File");
+        menuFile.setToolTipText("Actions about the Application");
+        menuFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFileActionPerformed(evt);
+            }
+        });
+
+        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewLog.setMnemonic('g');
+        menuViewLog.setText("View Log");
+        menuViewLog.setToolTipText("Examine the application log");
+        menuViewLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewLogActionPerformed(evt);
+            }
+        });
+        menuFile.add(menuViewLog);
+
+        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuLogout.setText("Logout");
+        menuLogout.setToolTipText("Exit safely from the application");
+        menuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLogoutActionPerformed(evt);
+            }
+        });
+        menuFile.add(menuLogout);
+
+        menuBar.add(menuFile);
+
+        menuBooks.setMnemonic('S');
+        menuBooks.setText("Books");
+        menuBooks.setToolTipText("Actions about Books");
+        menuBooks.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                menuBooksMenuSelected(evt);
+            }
+        });
+        menuBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuBooksMouseEntered(evt);
+            }
+        });
+        menuBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBooksActionPerformed(evt);
+            }
+        });
+
+        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuLend.setMnemonic('L');
+        menuLend.setText("Lend a Book");
+        menuLend.setToolTipText("Lend a book to a user");
+        menuLend.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                menuLendStateChanged(evt);
+            }
+        });
+        menuLend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuLendMouseEntered(evt);
+            }
+        });
+        menuLend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLendActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuLend);
+
+        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuReturn.setMnemonic('R');
+        menuReturn.setText("Return Book");
+        menuReturn.setToolTipText("Return a book to the Library");
+        menuReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReturnActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuReturn);
+
+        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuInsert.setMnemonic('I');
+        menuInsert.setText("Register Book");
+        menuInsert.setToolTipText("Register a new book to the Library");
+        menuInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInsertActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuInsert);
+
+        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuSearch.setMnemonic('S');
+        menuSearch.setText("Browse Books");
+        menuSearch.setToolTipText("Find books based on title");
+        menuSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuSearch);
+
+        menuBar.add(menuBooks);
+
+        menuAuthors.setText("Authors");
+        menuAuthors.setToolTipText("Actions about Authors");
+
+        menuAuthorInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuAuthorInsert.setMnemonic('A');
+        menuAuthorInsert.setText("Insert Author");
+        menuAuthorInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAuthorInsertActionPerformed(evt);
+            }
+        });
+        menuAuthors.add(menuAuthorInsert);
+
+        menuViewAuthor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewAuthor.setMnemonic('V');
+        menuViewAuthor.setText("View/Edit Author");
+        menuViewAuthor.setToolTipText("View or Edit Authors");
+        menuViewAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewAuthorActionPerformed(evt);
+            }
+        });
+        menuAuthors.add(menuViewAuthor);
+
+        menuBar.add(menuAuthors);
+
+        menuUsers.setText("Users");
+        menuUsers.setToolTipText("Actions about Users");
+        menuUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUsersActionPerformed(evt);
+            }
+        });
+
+        menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuUser.setMnemonic('U');
+        menuUser.setText("Insert User");
+        menuUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUserActionPerformed(evt);
+            }
+        });
+        menuUsers.add(menuUser);
+
+        jMenuItem1.setText("View/Edit User");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuUsers.add(jMenuItem1);
+
+        menuBar.add(menuUsers);
+
+        menuHelp.setText("Help");
+        menuHelp.setToolTipText("Find help for issues");
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem4.setMnemonic('b');
+        jMenuItem4.setText("About");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        menuHelp.add(jMenuItem4);
+
+        menuBar.add(menuHelp);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(backBtn, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(324, 324, 324)
-                        .addComponent(jLabel1)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backBtn)
-                .addGap(98, 98, 98))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addGap(40, 40, 40))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -122,6 +453,118 @@ public class ViewLog extends javax.swing.JFrame {
         MenuAdmin menuAdmin = new MenuAdmin();
         menuAdmin.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void menuViewLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewLogActionPerformed
+        this.setVisible(false);
+        ViewLog viewLog = new ViewLog();
+        viewLog.setVisible(true);
+    }//GEN-LAST:event_menuViewLogActionPerformed
+
+    private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutActionPerformed
+        try {
+            LogHandler.insertActivityLog("User " + User.getUserid() + " "
+                + User.getName() + " " + User.getSurname() + " has logged off");
+            User.clearValues();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        Initiator init = new Initiator();
+        init.setVisible(true);
+    }//GEN-LAST:event_menuLogoutActionPerformed
+
+    private void menuFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileActionPerformed
+
+    }//GEN-LAST:event_menuFileActionPerformed
+
+    private void menuLendStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuLendStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuLendStateChanged
+
+    private void menuLendMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLendMouseEntered
+
+    }//GEN-LAST:event_menuLendMouseEntered
+
+    private void menuLendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLendActionPerformed
+        this.setVisible(false);
+        LendBook lendBook = new LendBook();
+        lendBook.setVisible(true);
+    }//GEN-LAST:event_menuLendActionPerformed
+
+    private void menuReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReturnActionPerformed
+        this.setVisible(false);
+        ReturnBook returnBook = new ReturnBook();
+        returnBook.setVisible(true);
+    }//GEN-LAST:event_menuReturnActionPerformed
+
+    private void menuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertActionPerformed
+
+    }//GEN-LAST:event_menuInsertActionPerformed
+
+    private void menuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchActionPerformed
+        this.setVisible(false);
+        ViewBooks viewBooks = new ViewBooks();
+        viewBooks.setVisible(true);
+    }//GEN-LAST:event_menuSearchActionPerformed
+
+    private void menuBooksMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_menuBooksMenuSelected
+
+    }//GEN-LAST:event_menuBooksMenuSelected
+
+    private void menuBooksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBooksMouseEntered
+
+    }//GEN-LAST:event_menuBooksMouseEntered
+
+    private void menuBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBooksActionPerformed
+
+    }//GEN-LAST:event_menuBooksActionPerformed
+
+    private void menuAuthorInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAuthorInsertActionPerformed
+        this.setVisible(false);
+        InsertAuthor insAuth = new InsertAuthor();
+        insAuth.setVisible(true);
+    }//GEN-LAST:event_menuAuthorInsertActionPerformed
+
+    private void menuViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewAuthorActionPerformed
+        this.setVisible(false);
+        ViewAuthors viewAuthors = new ViewAuthors();
+        viewAuthors.setVisible(true);
+    }//GEN-LAST:event_menuViewAuthorActionPerformed
+
+    private void menuUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUserActionPerformed
+        this.setVisible(false);
+        InsertUser insUser = new InsertUser();
+        insUser.setVisible(true);
+    }//GEN-LAST:event_menuUserActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.setVisible(false);
+        ViewUsers viewUsers = new ViewUsers();
+        viewUsers.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsersActionPerformed
+
+    }//GEN-LAST:event_menuUsersActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        dialogAbout.setLocationRelativeTo(this);
+        dialogAbout.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
+        backBtn.setBackground(new java.awt.Color(201, 210, 216));
+        backBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_backBtnMouseEntered
+
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        dialogAbout.dispose();
+    }//GEN-LAST:event_buttonOKActionPerformed
+
+    private void backBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseExited
+        backBtn.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_backBtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -167,8 +610,32 @@ public class ViewLog extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton buttonOK;
+    private javax.swing.JDialog dialogAbout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableLog;
+    private javax.swing.JLabel labelImage;
+    private javax.swing.JMenuItem menuAuthorInsert;
+    private javax.swing.JMenu menuAuthors;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuBooks;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JMenu menuHelp;
+    private javax.swing.JMenuItem menuInsert;
+    private javax.swing.JMenuItem menuLend;
+    private javax.swing.JMenuItem menuLogout;
+    private javax.swing.JMenuItem menuReturn;
+    private javax.swing.JMenuItem menuSearch;
+    private javax.swing.JMenuItem menuUser;
+    private javax.swing.JMenu menuUsers;
+    private javax.swing.JMenuItem menuViewAuthor;
+    private javax.swing.JMenuItem menuViewLog;
+    private javax.swing.JPanel panelAbout;
+    private javax.swing.JTextArea textAreaAbout;
     // End of variables declaration//GEN-END:variables
 }

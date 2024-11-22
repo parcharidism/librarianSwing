@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import librarian.handlers.BookHandler;
 import librarian.handlers.LendHandler;
 import librarian.handlers.PublHouseHandler;
@@ -14,53 +15,19 @@ import librarian.handlers.PublHouseHandler;
  */
 public class ViewBook extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewBook
-     */
+    ResultSet rs = null;
+    ResultSet rsCat = null;
+    ResultSet rsPubHouses = null;
+    ResultSet rsLendCat = null;
+
     public ViewBook() {
         // do nothing
     }
 
     public ViewBook(int bookID) {
         initComponents();
-        ResultSet rs = null;
-        ResultSet rsCat = null;
-        ResultSet rsPubHouses = null;
-        ResultSet rsLendCat = null;
 
-        rs = BookHandler.selectBooks(bookID);
-        rsCat = BookHandler.selectBookCategories();
-        rsPubHouses = PublHouseHandler.selectPublHouses();
-        rsLendCat = LendHandler.selectLendCategories();
-
-        try {
-            rs.next();
-
-            titleTxt.setText(rs.getString(2));
-            while (rsCat.next()) {
-                categoryCombo.addItem(rsCat.getString(2));
-            }
-            categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
-            pubDateTxt.setText(rs.getString(5));
-
-            while (rsPubHouses.next()) {
-                pubHouseCombo.addItem(rsPubHouses.getString(2));
-            }
-            pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
-
-            while (rsLendCat.next()) {
-                lendCatCombo.addItem(rsLendCat.getString(2));
-            }
-            lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
-
-            isbnTxt.setText(rs.getString(8));
-
-            if (bookID == 22) {
-                labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/bookImages/" + titleTxt.getText() + ".jpg")));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        fillInFormValues(bookID);
 
     }
 
@@ -84,7 +51,7 @@ public class ViewBook extends javax.swing.JFrame {
         labelCategory = new javax.swing.JLabel();
         isbnTxt = new javax.swing.JTextField();
         pubHouseCombo = new javax.swing.JComboBox<>();
-        resetBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         pubDateTxt = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
@@ -92,17 +59,21 @@ public class ViewBook extends javax.swing.JFrame {
         labelLendCat = new javax.swing.JLabel();
         labelIsbn = new javax.swing.JLabel();
         categoryCombo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        stockTxt = new javax.swing.JTextField();
+        labelbookID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("View Book");
-        setPreferredSize(new java.awt.Dimension(640, 480));
+        setTitle(titleTxt.getText());
+        setPreferredSize(new java.awt.Dimension(950, 750));
         setResizable(false);
-        setSize(new java.awt.Dimension(640, 480));
+        setSize(new java.awt.Dimension(950, 750));
 
         jSplitPane.setDividerLocation(235);
         jSplitPane.setDividerSize(8);
         jSplitPane.setToolTipText("");
         jSplitPane.setPreferredSize(new java.awt.Dimension(630, 470));
+        labelbookID.setVisible(false);
 
         leftPane.setPreferredSize(new java.awt.Dimension(300, 230));
 
@@ -128,7 +99,7 @@ public class ViewBook extends javax.swing.JFrame {
 
         jSplitPane.setLeftComponent(leftPane);
 
-        rightPane.setPreferredSize(new java.awt.Dimension(300, 210));
+        rightPane.setPreferredSize(new java.awt.Dimension(465, 350));
 
         labelTitle.setText("Title");
 
@@ -145,16 +116,23 @@ public class ViewBook extends javax.swing.JFrame {
         isbnTxt.setBorder(null);
         isbnTxt.setEnabled(false);
 
+        pubHouseCombo.setBorder(null);
         pubHouseCombo.setEnabled(false);
-
-        resetBtn.setText("Reset");
-        resetBtn.addActionListener(new java.awt.event.ActionListener() {
+        pubHouseCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetBtnActionPerformed(evt);
+                pubHouseComboActionPerformed(evt);
             }
         });
 
-        updateBtn.setText("Update");
+        cancelBtn.setText("Cancel");
+        cancelBtn.setVisible(false);
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        updateBtn.setText("Edit");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
@@ -164,7 +142,15 @@ public class ViewBook extends javax.swing.JFrame {
         pubDateTxt.setBorder(null);
         pubDateTxt.setEnabled(false);
 
-        backBtn.setText("Back");
+        backBtn.setText("<< Back");
+        backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backBtnMouseExited(evt);
+            }
+        });
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -181,22 +167,27 @@ public class ViewBook extends javax.swing.JFrame {
         categoryCombo.setBorder(null);
         categoryCombo.setEnabled(false);
 
+        jLabel1.setText("Books available:");
+
+        stockTxt.setBorder(null);
+        stockTxt.setEnabled(false);
+        stockTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stockTxtActionPerformed(evt);
+            }
+        });
+
+        labelbookID.setEnabled(false);
+
         javax.swing.GroupLayout rightPaneLayout = new javax.swing.GroupLayout(rightPane);
         rightPane.setLayout(rightPaneLayout);
         rightPaneLayout.setHorizontalGroup(
             rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rightPaneLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPaneLayout.createSequentialGroup()
-                        .addComponent(backBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                        .addComponent(resetBtn)
-                        .addGap(26, 26, 26)
-                        .addComponent(updateBtn)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 43, Short.MAX_VALUE)
                         .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(labelPubHouse)
@@ -204,21 +195,37 @@ public class ViewBook extends javax.swing.JFrame {
                                 .addComponent(labelCategory, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(labelPubDate, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(labelTitle, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(labelIsbn, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(titleTxt)
-                            .addComponent(categoryCombo, 0, 211, Short.MAX_VALUE)
-                            .addComponent(pubDateTxt)
-                            .addComponent(pubHouseCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lendCatCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(isbnTxt))
-                        .addGap(16, 16, 16))))
+                            .addComponent(labelIsbn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(rightPaneLayout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelbookID)
+                    .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(titleTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(categoryCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 211, Short.MAX_VALUE)
+                        .addComponent(pubDateTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(pubHouseCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lendCatCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(isbnTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(rightPaneLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(rightPaneLayout.createSequentialGroup()
+                                    .addComponent(updateBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cancelBtn))))))
+                .addGap(16, 16, 16))
         );
         rightPaneLayout.setVerticalGroup(
             rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPaneLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(28, 28, 28)
+                .addComponent(labelbookID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPaneLayout.createSequentialGroup()
                         .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,12 +251,16 @@ public class ViewBook extends javax.swing.JFrame {
                         .addComponent(labelIsbn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(updateBtn)
-                    .addComponent(resetBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelBtn))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(rightPane);
@@ -272,29 +283,41 @@ public class ViewBook extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
 
-    }//GEN-LAST:event_resetBtnActionPerformed
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        if (updateBtn.getText().equalsIgnoreCase("Edit")) {
+            updateBtn.setText("Update");
+            enDisableAll(true);
+            cancelBtn.setVisible(true);
 
-        /*     boolean updated = UsersHandler.updateUser(userID, isbnTxt.getText(), surnameTxt.getText(),
-                pubHouseCombo.getSelectedIndex() + 1, mailTxt.getText(),
-               lendCatCombo.getSelectedIndex(), pubDateTxt.getText());
-
-        if (updated) {
-            JOptionPane.showMessageDialog(null, "User Updated successfully", "Update User", JOptionPane.INFORMATION_MESSAGE);
-            this.setVisible(false);
         } else {
-            JOptionPane.showMessageDialog(null, "Error While Updating!", "Update User", JOptionPane.WARNING_MESSAGE);
-            this.setVisible(false);
+            updateBtn.setText("Edit");
+            enDisableAll(false);
+            boolean updated = false;
+            int bookID = Integer.parseInt(labelbookID.getText());
+
+            updated = BookHandler.updateBook(bookID, titleTxt.getText(), categoryCombo.getSelectedIndex() + 1,
+                    pubDateTxt.getText(), pubHouseCombo.getSelectedIndex() + 1, lendCatCombo.getSelectedIndex() + 1,
+                    isbnTxt.getText(), Integer.parseInt(stockTxt.getText()));
+
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Book Updated successfully", "Book Update", JOptionPane.INFORMATION_MESSAGE);
+                cancelBtn.setVisible(false);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error Updating Book!", "Book Update", JOptionPane.INFORMATION_MESSAGE);
+                cancelBtn.setVisible(false);
+                this.setVisible(false);
+                fillInFormValues(bookID);
+            }
+
         }
-        this.setVisible(false);
-        ViewUsers viewUsers = new ViewUsers();
-        viewUsers.setVisible(true);
-         */
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -302,6 +325,24 @@ public class ViewBook extends javax.swing.JFrame {
         ViewBooks viewBooks = new ViewBooks();
         viewBooks.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void pubHouseComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pubHouseComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pubHouseComboActionPerformed
+
+    private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
+        backBtn.setBackground(new java.awt.Color(201, 210, 216));
+        backBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_backBtnMouseEntered
+
+    private void backBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseExited
+        backBtn.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_backBtnMouseExited
+
+    private void stockTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stockTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,10 +382,22 @@ public class ViewBook extends javax.swing.JFrame {
         });
     }
 
+    private void enDisableAll(boolean visible) {
+        cancelBtn.setVisible(visible);
+        titleTxt.setEnabled(visible);
+        categoryCombo.setEnabled(visible);
+        pubDateTxt.setEnabled(visible);
+        pubHouseCombo.setEnabled(visible);
+        lendCatCombo.setEnabled(visible);
+        isbnTxt.setEnabled(visible);
+        stockTxt.setEnabled(visible);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> categoryCombo;
     private javax.swing.JTextField isbnTxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JLabel labelCategory;
     private javax.swing.JLabel labelImage;
@@ -353,13 +406,51 @@ public class ViewBook extends javax.swing.JFrame {
     private javax.swing.JLabel labelPubDate;
     private javax.swing.JLabel labelPubHouse;
     private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelbookID;
     private javax.swing.JPanel leftPane;
     private javax.swing.JComboBox<String> lendCatCombo;
     private javax.swing.JTextField pubDateTxt;
     private javax.swing.JComboBox<String> pubHouseCombo;
-    private javax.swing.JButton resetBtn;
     private javax.swing.JPanel rightPane;
+    private javax.swing.JTextField stockTxt;
     private javax.swing.JTextField titleTxt;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void fillInFormValues(int bookID) {
+        rs = BookHandler.selectBooks(bookID);
+        rsCat = BookHandler.selectBookCategories();
+        rsPubHouses = PublHouseHandler.selectPublHouses();
+        rsLendCat = LendHandler.selectLendCategories();
+
+        try {
+            rs.next();
+
+            labelbookID.setText("" + rs.getInt(1));
+            titleTxt.setText(rs.getString(2));
+            while (rsCat.next()) {
+                categoryCombo.addItem(rsCat.getString(2));
+            }
+
+            categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
+            pubDateTxt.setText(rs.getString(5));
+
+            while (rsPubHouses.next()) {
+                pubHouseCombo.addItem(rsPubHouses.getString(2));
+            }
+            pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
+
+            while (rsLendCat.next()) {
+                lendCatCombo.addItem(rsLendCat.getString(2));
+            }
+            lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
+
+            isbnTxt.setText(rs.getString(8));
+
+            stockTxt.setText(rs.getString(11));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
