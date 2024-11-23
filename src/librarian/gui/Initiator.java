@@ -79,6 +79,7 @@ public class Initiator extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to our Library");
         setBackground(new java.awt.Color(242, 182, 128));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(700, 520));
         setResizable(false);
 
@@ -325,6 +326,7 @@ public class Initiator extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBtnMouseEntered
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         ResultSet rs = null;
         try {
             rs = UsersHandler.loginUser(usernameText.getText(), passwordText.getText());
@@ -342,8 +344,8 @@ public class Initiator extends javax.swing.JFrame {
                     LogHandler.insertActivityLog("User " + User.getUserid() + " "
                             + User.getName() + " " + User.getSurname() + " has logged in");
 
-                    //showLoginDialog();
                     if (User.getRole() == 1) {
+                        setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
                         MenuAdmin menuAdmin = new MenuAdmin();
                         menuAdmin.setVisible(true);
                         this.setVisible(false);

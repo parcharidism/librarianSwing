@@ -7,28 +7,30 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import librarian.handlers.BookHandler;
 import librarian.handlers.LendHandler;
+import librarian.handlers.LogHandler;
 import librarian.handlers.PublHouseHandler;
+import librarian.utils.User;
 
 /**
  *
  * @author Miltiadis Parcharidis 011873
  */
 public class ViewBook extends javax.swing.JFrame {
-
+    
     ResultSet rs = null;
     ResultSet rsCat = null;
     ResultSet rsPubHouses = null;
     ResultSet rsLendCat = null;
-
+    
     public ViewBook() {
         // do nothing
     }
-
+    
     public ViewBook(int bookID) {
         initComponents();
-
+        
         fillInFormValues(bookID);
-
+        
     }
 
     /**
@@ -40,6 +42,12 @@ public class ViewBook extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogAbout = new javax.swing.JDialog();
+        panelAbout = new javax.swing.JPanel();
+        buttonOK = new javax.swing.JButton();
+        labelImage1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaAbout = new javax.swing.JTextArea();
         jSplitPane = new javax.swing.JSplitPane();
         leftPane = new javax.swing.JPanel();
         labelImage = new javax.swing.JLabel();
@@ -62,6 +70,110 @@ public class ViewBook extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         stockTxt = new javax.swing.JTextField();
         labelbookID = new javax.swing.JLabel();
+        labelFullname = new javax.swing.JLabel();
+        logOutBtn = new javax.swing.JButton();
+        labelAuthor = new javax.swing.JLabel();
+        authorTxt = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        aboutTxtArea = new javax.swing.JTextArea();
+        menuBar = new javax.swing.JMenuBar();
+        menuFile = new javax.swing.JMenu();
+        menuViewLog = new javax.swing.JMenuItem();
+        menuLogout = new javax.swing.JMenuItem();
+        menuBooks = new javax.swing.JMenu();
+        menuLend = new javax.swing.JMenuItem();
+        menuReturn = new javax.swing.JMenuItem();
+        menuInsert = new javax.swing.JMenuItem();
+        menuSearch = new javax.swing.JMenuItem();
+        menuAuthors = new javax.swing.JMenu();
+        menuAuthorInsert = new javax.swing.JMenuItem();
+        menuViewAuthor = new javax.swing.JMenuItem();
+        menuUsers = new javax.swing.JMenu();
+        menuUser = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        menuHelp = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dialogAbout.setTitle("About this app");
+        dialogAbout.setBackground(new java.awt.Color(156, 193, 194));
+        dialogAbout.setResizable(false);
+        dialogAbout.setSize(new java.awt.Dimension(439, 242));
+
+        panelAbout.setBackground(new java.awt.Color(156, 193, 194));
+        panelAbout.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panelAbout.setPreferredSize(new java.awt.Dimension(427, 230));
+
+        buttonOK.setText("OK");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOKActionPerformed(evt);
+            }
+        });
+
+        labelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/libraryAbout.png"))); // NOI18N
+        labelImage1.setToolTipText("Library logo");
+
+        jScrollPane2.setHorizontalScrollBar(null);
+
+        textAreaAbout.setEditable(false);
+        textAreaAbout.setBackground(new java.awt.Color(156, 193, 194));
+        textAreaAbout.setColumns(20);
+        textAreaAbout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textAreaAbout.setForeground(new java.awt.Color(140, 112, 104));
+        textAreaAbout.setRows(5);
+        textAreaAbout.setText("Librarian App\n\nCreated by SoftGen Inc.\n\nversion: 1.41\nRelease date: 01/12/2024");
+        textAreaAbout.setToolTipText("About this application");
+        textAreaAbout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 210, 216), 3, true));
+        textAreaAbout.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        textAreaAbout.setSelectedTextColor(new java.awt.Color(201, 210, 216));
+        textAreaAbout.setSelectionColor(new java.awt.Color(140, 112, 104));
+        jScrollPane2.setViewportView(textAreaAbout);
+
+        javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
+        panelAbout.setLayout(panelAboutLayout);
+        panelAboutLayout.setHorizontalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAboutLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelAboutLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(buttonOK)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelAboutLayout.setVerticalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonOK)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialogAboutLayout = new javax.swing.GroupLayout(dialogAbout.getContentPane());
+        dialogAbout.getContentPane().setLayout(dialogAboutLayout);
+        dialogAboutLayout.setHorizontalGroup(
+            dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogAboutLayout.setVerticalGroup(
+            dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(titleTxt.getText());
@@ -69,12 +181,16 @@ public class ViewBook extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(950, 750));
 
-        jSplitPane.setDividerLocation(235);
+        jSplitPane.setBackground(new java.awt.Color(156, 193, 194));
+        jSplitPane.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        jSplitPane.setDividerLocation(315);
         jSplitPane.setDividerSize(8);
         jSplitPane.setToolTipText("");
         jSplitPane.setPreferredSize(new java.awt.Dimension(630, 470));
         labelbookID.setVisible(false);
 
+        leftPane.setBackground(new java.awt.Color(156, 193, 194));
+        leftPane.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         leftPane.setPreferredSize(new java.awt.Dimension(300, 230));
 
         labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -84,21 +200,23 @@ public class ViewBook extends javax.swing.JFrame {
         leftPane.setLayout(leftPaneLayout);
         leftPaneLayout.setHorizontalGroup(
             leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPaneLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(leftPaneLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPaneLayout.setVerticalGroup(
             leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(346, Short.MAX_VALUE)
                 .addComponent(labelImage)
-                .addGap(119, 119, 119))
+                .addGap(357, 357, 357))
         );
 
         jSplitPane.setLeftComponent(leftPane);
 
+        rightPane.setBackground(new java.awt.Color(156, 193, 194));
+        rightPane.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         rightPane.setPreferredSize(new java.awt.Dimension(465, 350));
 
         labelTitle.setText("Title");
@@ -141,6 +259,11 @@ public class ViewBook extends javax.swing.JFrame {
 
         pubDateTxt.setBorder(null);
         pubDateTxt.setEnabled(false);
+        pubDateTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pubDateTxtActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("<< Back");
         backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,107 +302,340 @@ public class ViewBook extends javax.swing.JFrame {
 
         labelbookID.setEnabled(false);
 
+        labelFullname.setText(User.getName() + " " + User.getSurname());
+        labelFullname.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFullname.setText(User.getName() + " " + User.getSurname());
+        labelFullname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
+        logOutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        logOutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        logOutBtn.setMnemonic('O');
+        logOutBtn.setText("Log Out");
+        logOutBtn.setBorder(null);
+        logOutBtn.setBorderPainted(false);
+        logOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logOutBtn.setDisplayedMnemonicIndex(4);
+
+        labelAuthor.setText("Author(s)");
+
+        jLabel2.setText("Abstract");
+
+        aboutTxtArea.setColumns(20);
+        aboutTxtArea.setLineWrap(true);
+        aboutTxtArea.setRows(5);
+        jScrollPane1.setViewportView(aboutTxtArea);
+
         javax.swing.GroupLayout rightPaneLayout = new javax.swing.GroupLayout(rightPane);
         rightPane.setLayout(rightPaneLayout);
         rightPaneLayout.setHorizontalGroup(
             rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rightPaneLayout.createSequentialGroup()
-                        .addGap(0, 43, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
                         .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelPubHouse)
-                                .addComponent(labelLendCat, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelCategory, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelPubDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelTitle, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(labelIsbn, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(rightPaneLayout.createSequentialGroup()
-                        .addComponent(backBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                            .addGroup(rightPaneLayout.createSequentialGroup()
+                                .addComponent(updateBtn)
+                                .addGap(67, 67, 67)
+                                .addComponent(cancelBtn))
+                            .addGroup(rightPaneLayout.createSequentialGroup()
+                                .addGap(317, 317, 317)
+                                .addComponent(labelbookID)))
+                        .addGap(160, 160, 160))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(rightPaneLayout.createSequentialGroup()
+                                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelTitle)
+                                    .addComponent(labelAuthor)
+                                    .addComponent(jLabel2)
+                                    .addComponent(labelCategory))
+                                .addGap(73, 73, 73)
+                                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pubDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pubHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(authorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(rightPaneLayout.createSequentialGroup()
+                                .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(logOutBtn)))
+                        .addGap(72, 72, 72))))
+            .addGroup(rightPaneLayout.createSequentialGroup()
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelbookID)
-                    .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(titleTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(categoryCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 211, Short.MAX_VALUE)
-                        .addComponent(pubDateTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(pubHouseCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lendCatCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(isbnTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(rightPaneLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(rightPaneLayout.createSequentialGroup()
-                                    .addComponent(updateBtn)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cancelBtn))))))
-                .addGap(16, 16, 16))
+                    .addGroup(rightPaneLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(backBtn))
+                    .addGroup(rightPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelLendCat)
+                            .addComponent(labelPubHouse)
+                            .addComponent(labelPubDate)
+                            .addComponent(labelIsbn)
+                            .addComponent(jLabel1))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         rightPaneLayout.setVerticalGroup(
             rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rightPaneLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logOutBtn)
+                    .addComponent(labelFullname))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelbookID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAuthor)
+                    .addComponent(authorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rightPaneLayout.createSequentialGroup()
-                        .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pubDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pubHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(rightPaneLayout.createSequentialGroup()
-                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelPubDate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelPubHouse)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelLendCat)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelIsbn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pubDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPubDate))
+                .addGap(33, 33, 33)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPubHouse)
+                    .addComponent(pubHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLendCat)
+                    .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelIsbn)
+                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(54, 54, 54)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(updateBtn)
-                    .addComponent(cancelBtn))
-                .addContainerGap(172, Short.MAX_VALUE))
+                    .addComponent(cancelBtn)
+                    .addComponent(updateBtn))
+                .addGap(20, 20, 20))
         );
 
         jSplitPane.setRightComponent(rightPane);
+
+        menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        menuFile.setMnemonic('O');
+        menuFile.setText("File");
+        menuFile.setToolTipText("Actions about the Application");
+        menuFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFileActionPerformed(evt);
+            }
+        });
+
+        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewLog.setMnemonic('g');
+        menuViewLog.setText("View Log");
+        menuViewLog.setToolTipText("Examine the application log");
+        menuViewLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewLogActionPerformed(evt);
+            }
+        });
+        menuFile.add(menuViewLog);
+
+        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuLogout.setText("Logout");
+        menuLogout.setToolTipText("Exit safely from the application");
+        menuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLogoutActionPerformed(evt);
+            }
+        });
+        menuFile.add(menuLogout);
+
+        menuBar.add(menuFile);
+
+        menuBooks.setMnemonic('S');
+        menuBooks.setText("Books");
+        menuBooks.setToolTipText("Actions about Books");
+        menuBooks.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                menuBooksMenuSelected(evt);
+            }
+        });
+        menuBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuBooksMouseEntered(evt);
+            }
+        });
+        menuBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBooksActionPerformed(evt);
+            }
+        });
+
+        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuLend.setMnemonic('L');
+        menuLend.setText("Lend a Book");
+        menuLend.setToolTipText("Lend a book to a user");
+        menuLend.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                menuLendStateChanged(evt);
+            }
+        });
+        menuLend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuLendMouseEntered(evt);
+            }
+        });
+        menuLend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLendActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuLend);
+
+        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuReturn.setMnemonic('R');
+        menuReturn.setText("Return Book");
+        menuReturn.setToolTipText("Return a book to the Library");
+        menuReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReturnActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuReturn);
+
+        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuInsert.setMnemonic('I');
+        menuInsert.setText("Register Book");
+        menuInsert.setToolTipText("Register a new book to the Library");
+        menuInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInsertActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuInsert);
+
+        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuSearch.setMnemonic('S');
+        menuSearch.setText("Browse Books");
+        menuSearch.setToolTipText("Find books based on title");
+        menuSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchActionPerformed(evt);
+            }
+        });
+        menuBooks.add(menuSearch);
+
+        menuBar.add(menuBooks);
+
+        menuAuthors.setText("Authors");
+        menuAuthors.setToolTipText("Actions about Authors");
+
+        menuAuthorInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuAuthorInsert.setMnemonic('A');
+        menuAuthorInsert.setText("Insert Author");
+        menuAuthorInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAuthorInsertActionPerformed(evt);
+            }
+        });
+        menuAuthors.add(menuAuthorInsert);
+
+        menuViewAuthor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewAuthor.setMnemonic('V');
+        menuViewAuthor.setText("View/Edit Author");
+        menuViewAuthor.setToolTipText("View or Edit Authors");
+        menuViewAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewAuthorActionPerformed(evt);
+            }
+        });
+        menuAuthors.add(menuViewAuthor);
+
+        menuBar.add(menuAuthors);
+
+        menuUsers.setText("Users");
+        menuUsers.setToolTipText("Actions about Users");
+        menuUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUsersActionPerformed(evt);
+            }
+        });
+
+        menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuUser.setMnemonic('U');
+        menuUser.setText("Insert User");
+        menuUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUserActionPerformed(evt);
+            }
+        });
+        menuUsers.add(menuUser);
+
+        jMenuItem1.setText("View/Edit User");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuUsers.add(jMenuItem1);
+
+        menuBar.add(menuUsers);
+
+        menuHelp.setText("Help");
+        menuHelp.setToolTipText("Find help for issues");
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem4.setMnemonic('b');
+        jMenuItem4.setText("About");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        menuHelp.add(jMenuItem4);
+
+        menuBar.add(menuHelp);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -287,7 +643,9 @@ public class ViewBook extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-
+        enDisableAll(false);
+        cancelBtn.setVisible(false);
+        updateBtn.setText("Edit");
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -295,17 +653,17 @@ public class ViewBook extends javax.swing.JFrame {
             updateBtn.setText("Update");
             enDisableAll(true);
             cancelBtn.setVisible(true);
-
+            
         } else {
             updateBtn.setText("Edit");
             enDisableAll(false);
             boolean updated = false;
             int bookID = Integer.parseInt(labelbookID.getText());
-
+            
             updated = BookHandler.updateBook(bookID, titleTxt.getText(), categoryCombo.getSelectedIndex() + 1,
                     pubDateTxt.getText(), pubHouseCombo.getSelectedIndex() + 1, lendCatCombo.getSelectedIndex() + 1,
                     isbnTxt.getText(), Integer.parseInt(stockTxt.getText()));
-
+            
             if (updated) {
                 JOptionPane.showMessageDialog(null, "Book Updated successfully", "Book Update", JOptionPane.INFORMATION_MESSAGE);
                 cancelBtn.setVisible(false);
@@ -316,7 +674,7 @@ public class ViewBook extends javax.swing.JFrame {
                 this.setVisible(false);
                 fillInFormValues(bookID);
             }
-
+            
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
@@ -343,6 +701,112 @@ public class ViewBook extends javax.swing.JFrame {
     private void stockTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_stockTxtActionPerformed
+
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        dialogAbout.dispose();
+    }//GEN-LAST:event_buttonOKActionPerformed
+
+    private void menuViewLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewLogActionPerformed
+        this.setVisible(false);
+        ViewLog viewLog = new ViewLog();
+        viewLog.setVisible(true);
+    }//GEN-LAST:event_menuViewLogActionPerformed
+
+    private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutActionPerformed
+        try {
+            LogHandler.insertActivityLog("User " + User.getUserid() + " "
+                    + User.getName() + " " + User.getSurname() + " has logged off");
+            User.clearValues();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        Initiator init = new Initiator();
+        init.setVisible(true);
+    }//GEN-LAST:event_menuLogoutActionPerformed
+
+    private void menuFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileActionPerformed
+
+    }//GEN-LAST:event_menuFileActionPerformed
+
+    private void menuLendStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuLendStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuLendStateChanged
+
+    private void menuLendMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLendMouseEntered
+
+    }//GEN-LAST:event_menuLendMouseEntered
+
+    private void menuLendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLendActionPerformed
+        this.setVisible(false);
+        LendBook lendBook = new LendBook();
+        lendBook.setVisible(true);
+    }//GEN-LAST:event_menuLendActionPerformed
+
+    private void menuReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReturnActionPerformed
+        this.setVisible(false);
+        ReturnBook returnBook = new ReturnBook();
+        returnBook.setVisible(true);
+    }//GEN-LAST:event_menuReturnActionPerformed
+
+    private void menuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertActionPerformed
+
+    }//GEN-LAST:event_menuInsertActionPerformed
+
+    private void menuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchActionPerformed
+        this.setVisible(false);
+        ViewBooks viewBooks = new ViewBooks();
+        viewBooks.setVisible(true);
+    }//GEN-LAST:event_menuSearchActionPerformed
+
+    private void menuBooksMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_menuBooksMenuSelected
+
+    }//GEN-LAST:event_menuBooksMenuSelected
+
+    private void menuBooksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBooksMouseEntered
+
+    }//GEN-LAST:event_menuBooksMouseEntered
+
+    private void menuBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBooksActionPerformed
+
+    }//GEN-LAST:event_menuBooksActionPerformed
+
+    private void menuAuthorInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAuthorInsertActionPerformed
+        this.setVisible(false);
+        InsertAuthor insAuth = new InsertAuthor();
+        insAuth.setVisible(true);
+    }//GEN-LAST:event_menuAuthorInsertActionPerformed
+
+    private void menuViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewAuthorActionPerformed
+        this.setVisible(false);
+        ViewAuthors viewAuthors = new ViewAuthors();
+        viewAuthors.setVisible(true);
+    }//GEN-LAST:event_menuViewAuthorActionPerformed
+
+    private void menuUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUserActionPerformed
+        this.setVisible(false);
+        InsertUser insUser = new InsertUser();
+        insUser.setVisible(true);
+    }//GEN-LAST:event_menuUserActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.setVisible(false);
+        ViewUsers viewUsers = new ViewUsers();
+        viewUsers.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsersActionPerformed
+
+    }//GEN-LAST:event_menuUsersActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        dialogAbout.setLocationRelativeTo(this);
+        dialogAbout.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void pubDateTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pubDateTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pubDateTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,7 +845,7 @@ public class ViewBook extends javax.swing.JFrame {
             }
         });
     }
-
+    
     private void enDisableAll(boolean visible) {
         cancelBtn.setVisible(visible);
         titleTxt.setEnabled(visible);
@@ -393,14 +857,26 @@ public class ViewBook extends javax.swing.JFrame {
         stockTxt.setEnabled(visible);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea aboutTxtArea;
+    private javax.swing.JLabel authorTxt;
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton buttonOK;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> categoryCombo;
+    private javax.swing.JDialog dialogAbout;
     private javax.swing.JTextField isbnTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane;
+    private javax.swing.JLabel labelAuthor;
     private javax.swing.JLabel labelCategory;
+    private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
+    private javax.swing.JLabel labelImage1;
     private javax.swing.JLabel labelIsbn;
     private javax.swing.JLabel labelLendCat;
     private javax.swing.JLabel labelPubDate;
@@ -409,10 +885,28 @@ public class ViewBook extends javax.swing.JFrame {
     private javax.swing.JLabel labelbookID;
     private javax.swing.JPanel leftPane;
     private javax.swing.JComboBox<String> lendCatCombo;
+    private javax.swing.JButton logOutBtn;
+    private javax.swing.JMenuItem menuAuthorInsert;
+    private javax.swing.JMenu menuAuthors;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuBooks;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JMenu menuHelp;
+    private javax.swing.JMenuItem menuInsert;
+    private javax.swing.JMenuItem menuLend;
+    private javax.swing.JMenuItem menuLogout;
+    private javax.swing.JMenuItem menuReturn;
+    private javax.swing.JMenuItem menuSearch;
+    private javax.swing.JMenuItem menuUser;
+    private javax.swing.JMenu menuUsers;
+    private javax.swing.JMenuItem menuViewAuthor;
+    private javax.swing.JMenuItem menuViewLog;
+    private javax.swing.JPanel panelAbout;
     private javax.swing.JTextField pubDateTxt;
     private javax.swing.JComboBox<String> pubHouseCombo;
     private javax.swing.JPanel rightPane;
     private javax.swing.JTextField stockTxt;
+    private javax.swing.JTextArea textAreaAbout;
     private javax.swing.JTextField titleTxt;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
@@ -422,33 +916,34 @@ public class ViewBook extends javax.swing.JFrame {
         rsCat = BookHandler.selectBookCategories();
         rsPubHouses = PublHouseHandler.selectPublHouses();
         rsLendCat = LendHandler.selectLendCategories();
-
+        
         try {
             rs.next();
-
+            
             labelbookID.setText("" + rs.getInt(1));
             titleTxt.setText(rs.getString(2));
             while (rsCat.next()) {
                 categoryCombo.addItem(rsCat.getString(2));
             }
-
+            
             categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
             pubDateTxt.setText(rs.getString(5));
-
+            
             while (rsPubHouses.next()) {
                 pubHouseCombo.addItem(rsPubHouses.getString(2));
             }
             pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
-
+            
             while (rsLendCat.next()) {
                 lendCatCombo.addItem(rsLendCat.getString(2));
             }
             lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
-
+            
             isbnTxt.setText(rs.getString(8));
-
+            
             stockTxt.setText(rs.getString(11));
-
+            authorTxt.setText(rs.getString(12));
+            aboutTxtArea.setText(rs.getString(13));
         } catch (SQLException ex) {
             Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
         }
