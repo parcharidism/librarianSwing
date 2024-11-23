@@ -45,13 +45,13 @@ public class InsertBook extends javax.swing.JFrame {
             while (rsB.next()) {
                 bookCatiDs.add(rsB.getString(1));
                 bookCatCombo.addItem(rsB.getString(2));
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
         }
         bookCatCombo.setSelectedIndex(0);
-        
+
         ResultSet rsA = AuthorsHandler.selectAuthors(0, -1, null); // δείξτους όλους
         int row = 0;
 
@@ -394,6 +394,11 @@ public class InsertBook extends javax.swing.JFrame {
         isbnTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 isbnTxtFocusLost(evt);
+            }
+        });
+        isbnTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isbnTxtActionPerformed(evt);
             }
         });
 
@@ -748,6 +753,14 @@ public class InsertBook extends javax.swing.JFrame {
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBtnActionPerformed
         if (titleTxt.getText().equalsIgnoreCase("")) {
             browseNotify.setText("Please type the book title first");
+            
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            titleTxt.setBackground(new java.awt.Color(255,255,255));
+            titleTxt.requestFocus();
             return;
         }
         JFileChooser chooser = new JFileChooser();
@@ -787,9 +800,11 @@ public class InsertBook extends javax.swing.JFrame {
             String digits = isbnTxt.getText().replaceAll("[^0-9]", "");
 
             if (!isbnTxt.getText().equalsIgnoreCase(digits)) {
-                isbnNotify.setText("> ISBN contains only numbers, please adjust accordingly");
+                isbnNotify.setText("ISBN should contain only numbers, please adjust accordingly");
+                isbnTxt.setBackground(new java.awt.Color(193, 81, 135));
             } else {
                 isbnNotify.setText("");
+                isbnTxt.setBackground(new java.awt.Color(255, 255, 255));
             }
         }
     }//GEN-LAST:event_isbnTxtFocusLost
@@ -846,6 +861,8 @@ public class InsertBook extends javax.swing.JFrame {
         isbnTxt.setText("");
         stockTxt.setText("");
         jTableAuthors.clearSelection();
+        isbnNotify.setText("");
+        browseNotify.setText("");
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
@@ -983,7 +1000,7 @@ public class InsertBook extends javax.swing.JFrame {
 
     private void resetBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetBtnMouseEntered
         resetBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
-        resetBtn.setForeground(new java.awt.Color(255,255,255));
+        resetBtn.setForeground(new java.awt.Color(255, 255, 255));
         resetBtn.setBackground(new java.awt.Color(193, 81, 135));
     }//GEN-LAST:event_resetBtnMouseEntered
 
@@ -1010,7 +1027,7 @@ public class InsertBook extends javax.swing.JFrame {
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         try {
             LogHandler.insertActivityLog("User " + User.getUserid() + " "
-                + User.getName() + " " + User.getSurname() + " has logged off");
+                    + User.getName() + " " + User.getSurname() + " has logged off");
             User.clearValues();
         } catch (SQLException ex) {
             Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
@@ -1020,11 +1037,15 @@ public class InsertBook extends javax.swing.JFrame {
         init.setVisible(true);
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    private void isbnTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isbnTxtActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         FlatLightLaf.setup();
         UIManager.put("Component.hideMnemonics", false);
 
