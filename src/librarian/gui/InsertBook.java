@@ -1,7 +1,6 @@
 package librarian.gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -9,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -116,6 +114,7 @@ public class InsertBook extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaAbout = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
+        UIManager.put("ComboBox.selectionBackground", new java.awt.Color(201,210,216));
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -282,7 +281,11 @@ public class InsertBook extends javax.swing.JFrame {
         jLabel7.setText("Lend Category:");
 
         titleTxt.setToolTipText("Please type the title of the book");
+        titleTxt.setSelectionColor(new java.awt.Color(190, 132, 81));
         titleTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                titleTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 titleTxtFocusLost(evt);
             }
@@ -290,6 +293,7 @@ public class InsertBook extends javax.swing.JFrame {
 
         publDateTxt.setText("dd/mm/yyyy");
         publDateTxt.setToolTipText("Enter the publishing date");
+        publDateTxt.setSelectionColor(new java.awt.Color(190, 132, 81));
         publDateTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 publDateTxtFocusGained(evt);
@@ -300,9 +304,12 @@ public class InsertBook extends javax.swing.JFrame {
         });
 
         bookCatCombo.setToolTipText("Choose Book category based on its content");
-        bookCatCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookCatComboActionPerformed(evt);
+        bookCatCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bookCatComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bookCatComboFocusLost(evt);
             }
         });
 
@@ -322,7 +329,7 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
 
-        insertBtn.setText("Register");
+        insertBtn.setText("Register Book");
         insertBtn.setToolTipText("Register the new book to the library");
         insertBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -355,6 +362,14 @@ public class InsertBook extends javax.swing.JFrame {
         });
 
         lendCatCombo.setToolTipText("Choose lending category for the book");
+        lendCatCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lendCatComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lendCatComboFocusLost(evt);
+            }
+        });
 
         jTableAuthors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -388,6 +403,11 @@ public class InsertBook extends javax.swing.JFrame {
         });
         jTableAuthors.setToolTipText("Select authors (max 3)");
         jTableAuthors.setSelectionBackground(new java.awt.Color(201, 210, 216));
+        jTableAuthors.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAuthorsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableAuthors);
         if (jTableAuthors.getColumnModel().getColumnCount() > 0) {
             jTableAuthors.getColumnModel().getColumn(0).setMinWidth(40);
@@ -399,6 +419,14 @@ public class InsertBook extends javax.swing.JFrame {
         }
 
         publHouseCombo.setToolTipText("Choose the publishing house of the book");
+        publHouseCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                publHouseComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                publHouseComboFocusLost(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(140, 112, 104));
@@ -411,7 +439,11 @@ public class InsertBook extends javax.swing.JFrame {
         jLabel9.setText("Stock:");
 
         isbnTxt.setToolTipText("10 or 13 ISBN of Book, numbers only");
+        isbnTxt.setSelectionColor(new java.awt.Color(190, 132, 81));
         isbnTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                isbnTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 isbnTxtFocusLost(evt);
             }
@@ -428,6 +460,14 @@ public class InsertBook extends javax.swing.JFrame {
 
         browseBtn.setText("Browse Image");
         browseBtn.setToolTipText("Browse for a book cover");
+        browseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                browseBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                browseBtnMouseExited(evt);
+            }
+        });
         browseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseBtnActionPerformed(evt);
@@ -470,6 +510,11 @@ public class InsertBook extends javax.swing.JFrame {
 
         stockSpinner.setToolTipText("Enter stock quantity");
         stockSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(stockSpinner, ""));
+        stockSpinner.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                stockSpinnerFocusGained(evt);
+            }
+        });
 
         stockNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         stockNotify.setForeground(new java.awt.Color(193, 81, 135));
@@ -508,22 +553,25 @@ public class InsertBook extends javax.swing.JFrame {
                                 .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(browseBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(browseNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(publHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bookCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(insertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(78, 78, 78)
-                                .addComponent(resetBtn))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(stockNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(insertBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(browseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(browseNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(74, 74, 74)
+                                        .addComponent(resetBtn)))))
                         .addContainerGap(215, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -846,6 +894,10 @@ public class InsertBook extends javax.swing.JFrame {
                 
             }
         }
+        else if (isbnTxt.getText().equalsIgnoreCase("") && isbnNotify.getText().equalsIgnoreCase("")) {
+            isbnTxt.setBackground(new java.awt.Color(255,255,255));
+        }
+        
     }//GEN-LAST:event_isbnTxtFocusLost
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -917,6 +969,7 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
+        publDateTxt.setBackground(new java.awt.Color(255,255,255));
         if (publDateTxt.getText().equalsIgnoreCase("")) {
             publDateTxt.setFont(new java.awt.Font("Segoe UI", 2, 12));
             publDateTxt.setText("dd/mm/yyyy");
@@ -924,6 +977,7 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_publDateTxtFocusLost
 
     private void publDateTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusGained
+        publDateTxt.setBackground(new java.awt.Color(201, 210, 216));
         if (publDateTxt.getText().equalsIgnoreCase("dd/mm/yyyy")) {
             publDateTxt.setText("");
             publDateTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
@@ -935,6 +989,7 @@ public class InsertBook extends javax.swing.JFrame {
         if (!titleTxt.getText().equalsIgnoreCase("")) {
             browseNotify.setText("");
         }
+        titleTxt.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_titleTxtFocusLost
 
     private void menuViewLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewLogActionPerformed
@@ -1069,10 +1124,6 @@ public class InsertBook extends javax.swing.JFrame {
         backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_backBtnMouseExited
 
-    private void bookCatComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookCatComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookCatComboActionPerformed
-
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         try {
             LogHandler.insertActivityLog("User " + User.getUserid() + " "
@@ -1097,6 +1148,61 @@ public class InsertBook extends javax.swing.JFrame {
     private void logOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseExited
         logOutBtn.setBackground(new java.awt.Color(156,193,194));
     }//GEN-LAST:event_logOutBtnMouseExited
+
+    private void bookCatComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bookCatComboFocusGained
+        bookCatCombo.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_bookCatComboFocusGained
+
+    private void bookCatComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bookCatComboFocusLost
+        bookCatCombo.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_bookCatComboFocusLost
+
+    private void publHouseComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publHouseComboFocusGained
+        publHouseCombo.setBackground(new java.awt.Color(201,210,216));
+    }//GEN-LAST:event_publHouseComboFocusGained
+
+    private void publHouseComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publHouseComboFocusLost
+        publHouseCombo.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_publHouseComboFocusLost
+
+    private void lendCatComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusGained
+        lendCatCombo.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_lendCatComboFocusGained
+
+    private void lendCatComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusLost
+        lendCatCombo.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_lendCatComboFocusLost
+
+    private void isbnTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusGained
+        if(isbnNotify.getText().equalsIgnoreCase("")){
+            isbnTxt.setBackground(new java.awt.Color(201, 210, 216));
+        }
+    }//GEN-LAST:event_isbnTxtFocusGained
+
+    private void titleTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTxtFocusGained
+        titleTxt.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_titleTxtFocusGained
+
+    private void browseBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browseBtnMouseEntered
+        browseBtn.setBackground(new java.awt.Color(201, 210, 216));
+        browseBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_browseBtnMouseEntered
+
+    private void browseBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browseBtnMouseExited
+        browseBtn.setBackground(new java.awt.Color(255, 255, 255));
+        browseBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_browseBtnMouseExited
+
+    private void jTableAuthorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAuthorsMouseClicked
+        if (jTableAuthors.getSelectedRow() != -1) {
+            jTableAuthors.setSelectionForeground(new java.awt.Color(255,255,255));
+         
+        }
+    }//GEN-LAST:event_jTableAuthorsMouseClicked
+
+    private void stockSpinnerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stockSpinnerFocusGained
+       
+    }//GEN-LAST:event_stockSpinnerFocusGained
 
     /**
      * @param args the command line arguments

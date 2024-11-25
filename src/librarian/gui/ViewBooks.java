@@ -44,16 +44,18 @@ public class ViewBooks extends javax.swing.JFrame {
         textAreaAbout = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        selectBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBooks = new javax.swing.JTable();
+        jTableBooks.getTableHeader().setOpaque(false);
+        jTableBooks.getTableHeader().setBackground(new java.awt.Color(201,210,216));
         searchTermTxt = new javax.swing.JTextField();
         jComboBoxFilter = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         searchBtn = new javax.swing.JButton();
         labelFullname = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
+        selectBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -166,23 +168,6 @@ public class ViewBooks extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(140, 112, 104));
         jLabel1.setText("Browse Books");
 
-        selectBtn.setBackground(new java.awt.Color(140, 112, 104));
-        selectBtn.setText("Select Book");
-        selectBtn.setToolTipText("Shows the selected book in details");
-        selectBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                selectBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                selectBtnMouseExited(evt);
-            }
-        });
-        selectBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectBtnActionPerformed(evt);
-            }
-        });
-
         backBtn.setText("<< Back");
         backBtn.setToolTipText("Return to main menu");
         backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -199,8 +184,6 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        jTableBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTableBooks.setForeground(new java.awt.Color(140, 112, 104));
         jTableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -221,7 +204,6 @@ public class ViewBooks extends javax.swing.JFrame {
         jTableBooks.setPreferredSize(new java.awt.Dimension(900, 700));
         jTableBooks.setRequestFocusEnabled(false);
         jTableBooks.setSelectionBackground(new java.awt.Color(201, 210, 216));
-        jTableBooks.setSelectionForeground(new java.awt.Color(140, 112, 104));
         jTableBooks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableBooks.setShowGrid(true);
         jTableBooks.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -277,9 +259,17 @@ public class ViewBooks extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(140, 112, 104));
         jLabel2.setText("Filter your results");
 
-        searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/searchLens.png"))); // NOI18N
-        searchBtn.setToolTipText("Clear the search terms entered");
+        searchBtn.setToolTipText("Search with the given terms");
+        searchBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                searchBtnMouseExited(evt);
+            }
+        });
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
@@ -314,6 +304,22 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
+        selectBtn.setText("Select Book");
+        selectBtn.setToolTipText("Shows the selected book in details");
+        selectBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                selectBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                selectBtnMouseExited(evt);
+            }
+        });
+        selectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -321,32 +327,29 @@ public class ViewBooks extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logOutBtn)
+                        .addGap(17, 17, 17))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(logOutBtn)
-                                .addGap(17, 17, 17))
+                            .addComponent(jLabel2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1))
-                                .addGap(0, 558, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchBtn))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(backBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectBtn)
-                        .addGap(14, 14, 14))))
+                        .addComponent(selectBtn)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,9 +360,9 @@ public class ViewBooks extends javax.swing.JFrame {
                     .addComponent(labelFullname))
                 .addGap(5, 5, 5)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,7 +373,7 @@ public class ViewBooks extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(selectBtn))
-                .addGap(30, 30, 30))
+                .addGap(58, 58, 58))
         );
 
         menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -734,12 +737,12 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxFilterActionPerformed
 
     private void selectBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectBtnMouseEntered
-        selectBtn.setBackground(new java.awt.Color(190, 132, 81));
+        selectBtn.setBackground(new java.awt.Color(201, 210, 216));
         selectBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
     }//GEN-LAST:event_selectBtnMouseEntered
 
     private void selectBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectBtnMouseExited
-        selectBtn.setBackground(new java.awt.Color(140, 112, 104));
+        selectBtn.setBackground(new java.awt.Color(255, 255, 255));
         selectBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_selectBtnMouseExited
 
@@ -760,6 +763,16 @@ public class ViewBooks extends javax.swing.JFrame {
     private void logOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseExited
         logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
     }//GEN-LAST:event_logOutBtnMouseExited
+
+    private void searchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseEntered
+        searchBtn.setBackground(new java.awt.Color(201, 210, 216));
+        searchBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_searchBtnMouseEntered
+
+    private void searchBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseExited
+        searchBtn.setBackground(new java.awt.Color(255, 255, 255));
+        searchBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_searchBtnMouseExited
 
     /**
      * @param args the command line arguments

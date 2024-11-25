@@ -556,6 +556,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_lendBookBtnActionPerformed
 
     private void insertBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBookBtnActionPerformed
+        setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         this.setVisible(false);
         InsertBook insertBook = new InsertBook();
         insertBook.setVisible(true);

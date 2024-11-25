@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import librarian.handlers.BookHandler;
 import librarian.handlers.LendHandler;
 import librarian.handlers.LogHandler;
@@ -52,6 +53,7 @@ public class ViewBook extends javax.swing.JFrame {
         leftPane = new javax.swing.JPanel();
         labelImage = new javax.swing.JLabel();
         rightPane = new javax.swing.JPanel();
+        UIManager.put("ComboBox.selectionBackground", new java.awt.Color(201,210,216));
         labelTitle = new javax.swing.JLabel();
         lendCatCombo = new javax.swing.JComboBox<>();
         titleTxt = new javax.swing.JTextField();
@@ -78,6 +80,7 @@ public class ViewBook extends javax.swing.JFrame {
         aboutTxtArea = new javax.swing.JTextArea();
         stockSpinner = new javax.swing.JSpinner();
         stockNotify = new javax.swing.JLabel();
+        isbnNotify = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -225,10 +228,26 @@ public class ViewBook extends javax.swing.JFrame {
 
         lendCatCombo.setBorder(null);
         lendCatCombo.setEnabled(false);
+        lendCatCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lendCatComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lendCatComboFocusLost(evt);
+            }
+        });
 
-        titleTxt.setEditable(false);
         titleTxt.setBorder(null);
+        titleTxt.setEnabled(false);
         titleTxt.setSelectionColor(new java.awt.Color(190, 132, 81));
+        titleTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                titleTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                titleTxtFocusLost(evt);
+            }
+        });
 
         labelPubHouse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelPubHouse.setForeground(new java.awt.Color(140, 112, 104));
@@ -241,9 +260,33 @@ public class ViewBook extends javax.swing.JFrame {
         isbnTxt.setBorder(null);
         isbnTxt.setEnabled(false);
         isbnTxt.setSelectionColor(new java.awt.Color(190, 132, 81));
+        isbnTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                isbnTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                isbnTxtFocusLost(evt);
+            }
+        });
+        isbnTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                isbnTxtMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                isbnTxtMouseExited(evt);
+            }
+        });
 
         pubHouseCombo.setBorder(null);
         pubHouseCombo.setEnabled(false);
+        pubHouseCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pubHouseComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pubHouseComboFocusLost(evt);
+            }
+        });
         pubHouseCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pubHouseComboActionPerformed(evt);
@@ -283,6 +326,23 @@ public class ViewBook extends javax.swing.JFrame {
 
         pubDateTxt.setBorder(null);
         pubDateTxt.setEnabled(false);
+        pubDateTxt.setSelectionColor(new java.awt.Color(190, 132, 81));
+        pubDateTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pubDateTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pubDateTxtFocusLost(evt);
+            }
+        });
+        pubDateTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pubDateTxtMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pubDateTxtMouseExited(evt);
+            }
+        });
         pubDateTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pubDateTxtActionPerformed(evt);
@@ -319,6 +379,14 @@ public class ViewBook extends javax.swing.JFrame {
         categoryCombo.setAutoscrolls(true);
         categoryCombo.setBorder(null);
         categoryCombo.setEnabled(false);
+        categoryCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                categoryComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                categoryComboFocusLost(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(140, 112, 104));
@@ -348,6 +416,11 @@ public class ViewBook extends javax.swing.JFrame {
                 logOutBtnMouseExited(evt);
             }
         });
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBtnActionPerformed(evt);
+            }
+        });
 
         labelAuthor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelAuthor.setForeground(new java.awt.Color(140, 112, 104));
@@ -360,13 +433,33 @@ public class ViewBook extends javax.swing.JFrame {
         aboutTxtArea.setColumns(20);
         aboutTxtArea.setLineWrap(true);
         aboutTxtArea.setRows(5);
+        aboutTxtArea.setEnabled(false);
         aboutTxtArea.setSelectionColor(new java.awt.Color(190, 132, 81));
+        aboutTxtArea.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aboutTxtAreaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                aboutTxtAreaFocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(aboutTxtArea);
 
         stockSpinner.setEnabled(false);
+        stockSpinner.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                stockSpinnerFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                stockSpinnerFocusLost(evt);
+            }
+        });
 
         stockNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         stockNotify.setForeground(new java.awt.Color(193, 81, 135));
+
+        isbnNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        isbnNotify.setForeground(new java.awt.Color(193, 81, 135));
 
         javax.swing.GroupLayout rightPaneLayout = new javax.swing.GroupLayout(rightPane);
         rightPane.setLayout(rightPaneLayout);
@@ -401,7 +494,10 @@ public class ViewBook extends javax.swing.JFrame {
                                     .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pubHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(rightPaneLayout.createSequentialGroup()
+                                        .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(authorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(rightPaneLayout.createSequentialGroup()
@@ -467,7 +563,8 @@ public class ViewBook extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelIsbn)
-                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(isbnNotify))
                 .addGap(18, 18, 18)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -689,12 +786,17 @@ public class ViewBook extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        isbnTxt.setForeground(new java.awt.Color(0,0,0));
+        isbnTxt.setBackground(UIManager.getColor("TextField.background"));
+        isbnNotify.setText("");
+        isbnTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
         enabledAll(false);
         cancelBtn.setVisible(false);
         updateBtn.setText("Edit");
         updateBtn.setBackground(new java.awt.Color(255, 255, 255));
         updateBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
         stockNotify.setText("");
+        
         fillInFormValues(Integer.parseInt(labelbookID.getText()));
     }//GEN-LAST:event_cancelBtnActionPerformed
 
@@ -910,6 +1012,117 @@ public class ViewBook extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateBtnMouseExited
 
+    private void pubDateTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pubDateTxtMouseEntered
+        
+    }//GEN-LAST:event_pubDateTxtMouseEntered
+
+    private void pubDateTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pubDateTxtMouseExited
+        
+    }//GEN-LAST:event_pubDateTxtMouseExited
+
+    private void isbnTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isbnTxtMouseEntered
+        
+    }//GEN-LAST:event_isbnTxtMouseEntered
+
+    private void isbnTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isbnTxtMouseExited
+        
+    }//GEN-LAST:event_isbnTxtMouseExited
+
+    private void isbnTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusLost
+        if (!isbnTxt.getText().equalsIgnoreCase("")) {
+            String digits = isbnTxt.getText().replaceAll("[^0-9]", "");
+
+            if (!isbnTxt.getText().equalsIgnoreCase(digits)) {
+                isbnNotify.setText("ISBN should contain only numbers, please adjust accordingly");
+                isbnTxt.setFont(new java.awt.Font("Segoe UI", 1, 12));
+                isbnTxt.setBackground(new java.awt.Color(193, 81, 135));
+                isbnTxt.setForeground(new java.awt.Color(255, 255, 255));
+                
+            } else {
+                isbnNotify.setText("");
+                isbnTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
+                isbnTxt.setBackground(new java.awt.Color(255, 255, 255));
+                isbnTxt.setForeground(new java.awt.Color(0, 0, 0));
+                
+            }
+        }
+    }//GEN-LAST:event_isbnTxtFocusLost
+
+    private void isbnTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusGained
+        if(isbnNotify.getText().equalsIgnoreCase("")){
+            isbnTxt.setBackground(new java.awt.Color(201, 210, 216));
+        }
+    }//GEN-LAST:event_isbnTxtFocusGained
+
+    private void pubDateTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubDateTxtFocusGained
+        pubDateTxt.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_pubDateTxtFocusGained
+
+    private void pubDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubDateTxtFocusLost
+        pubDateTxt.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_pubDateTxtFocusLost
+
+    private void stockSpinnerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stockSpinnerFocusGained
+        stockSpinner.getEditor().getComponent(0).setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_stockSpinnerFocusGained
+
+    private void stockSpinnerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stockSpinnerFocusLost
+        stockSpinner.getEditor().getComponent(0).setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_stockSpinnerFocusLost
+
+    private void lendCatComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusGained
+        lendCatCombo.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_lendCatComboFocusGained
+
+    private void lendCatComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusLost
+        lendCatCombo.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_lendCatComboFocusLost
+
+    private void categoryComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_categoryComboFocusGained
+        categoryCombo.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_categoryComboFocusGained
+
+    private void categoryComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_categoryComboFocusLost
+        categoryCombo.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_categoryComboFocusLost
+
+    private void pubHouseComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubHouseComboFocusGained
+        pubHouseCombo.setBackground(new java.awt.Color(201,210,216));
+    }//GEN-LAST:event_pubHouseComboFocusGained
+
+    private void pubHouseComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubHouseComboFocusLost
+       pubHouseCombo.setBackground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_pubHouseComboFocusLost
+
+    private void titleTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTxtFocusGained
+        titleTxt.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_titleTxtFocusGained
+
+    private void titleTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTxtFocusLost
+        titleTxt.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_titleTxtFocusLost
+
+    private void aboutTxtAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aboutTxtAreaFocusGained
+        aboutTxtArea.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_aboutTxtAreaFocusGained
+
+    private void aboutTxtAreaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aboutTxtAreaFocusLost
+        aboutTxtArea.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_aboutTxtAreaFocusLost
+
+    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
+        try {
+            LogHandler.insertActivityLog("User " + User.getUserid() + " "
+                    + User.getName() + " " + User.getSurname() + " has logged off");
+            User.clearValues();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        Initiator init = new Initiator();
+        init.setVisible(true);
+    }//GEN-LAST:event_logOutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -951,6 +1164,7 @@ public class ViewBook extends javax.swing.JFrame {
     private void enabledAll(boolean visible) {
         cancelBtn.setVisible(visible);
         titleTxt.setEnabled(visible);
+        aboutTxtArea.setEnabled(visible);
         categoryCombo.setEnabled(visible);
         pubDateTxt.setEnabled(visible);
         pubHouseCombo.setEnabled(visible);
@@ -966,6 +1180,7 @@ public class ViewBook extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> categoryCombo;
     private javax.swing.JDialog dialogAbout;
+    private javax.swing.JLabel isbnNotify;
     private javax.swing.JTextField isbnTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

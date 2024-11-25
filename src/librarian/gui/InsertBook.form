@@ -411,6 +411,9 @@
           <Dimension value="[950, 750]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="UIManager.put(&quot;ComboBox.selectionBackground&quot;, new java.awt.Color(201,210,216));"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -448,25 +451,31 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="isbnNotify" min="-2" pref="476" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="browseBtn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="browseNotify" min="-2" pref="209" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="publHouseCombo" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
                               <Component id="bookCatCombo" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                               <Component id="lendCatCombo" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="insertBtn" min="-2" pref="85" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                                  <Component id="resetBtn" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
                                   <Component id="stockSpinner" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="stockNotify" min="-2" pref="230" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="560" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="insertBtn" max="32767" attributes="0"/>
+                                      <Component id="browseBtn" pref="113" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="browseNotify" min="-2" pref="209" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="resetBtn" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace pref="215" max="32767" attributes="0"/>
                       </Group>
@@ -630,8 +639,12 @@
         <Component class="javax.swing.JTextField" name="titleTxt">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Please type the title of the book"/>
+            <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="51" green="84" red="be" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="titleTxtFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="titleTxtFocusLost"/>
           </Events>
         </Component>
@@ -639,6 +652,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
             <Property name="toolTipText" type="java.lang.String" value="Enter the publishing date"/>
+            <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="51" green="84" red="be" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="publDateTxtFocusGained"/>
@@ -653,7 +669,8 @@
             <Property name="toolTipText" type="java.lang.String" value="Choose Book category based on its content"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookCatComboActionPerformed"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bookCatComboFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bookCatComboFocusLost"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -672,7 +689,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="insertBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Register"/>
+            <Property name="text" type="java.lang.String" value="Register Book"/>
             <Property name="toolTipText" type="java.lang.String" value="Register the new book to the library"/>
           </Properties>
           <Events>
@@ -699,6 +716,10 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Choose lending category for the book"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lendCatComboFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lendCatComboFocusLost"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -752,6 +773,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableAuthorsMouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jTableAuthors.getTableHeader().setOpaque(false);&#xd;&#xa;jTableAuthors.getTableHeader().setBackground(new java.awt.Color(201,210,216));"/>
               </AuxValues>
@@ -765,6 +789,10 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Choose the publishing house of the book"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="publHouseComboFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="publHouseComboFocusLost"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -796,8 +824,12 @@
         <Component class="javax.swing.JTextField" name="isbnTxt">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="10 or 13 ISBN of Book, numbers only"/>
+            <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="51" green="84" red="be" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="isbnTxtFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="isbnTxtFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="isbnTxtActionPerformed"/>
           </Events>
@@ -819,6 +851,8 @@
             <Property name="toolTipText" type="java.lang.String" value="Browse for a book cover"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="browseBtnMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="browseBtnMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseBtnActionPerformed"/>
           </Events>
         </Component>
@@ -889,6 +923,9 @@
               <SpinnerEditor format="" type="3"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="stockSpinnerFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="stockNotify">
           <Properties>
