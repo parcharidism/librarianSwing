@@ -77,6 +77,7 @@ public class ViewBook extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         aboutTxtArea = new javax.swing.JTextArea();
         stockSpinner = new javax.swing.JSpinner();
+        stockNotify = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -364,6 +365,9 @@ public class ViewBook extends javax.swing.JFrame {
 
         stockSpinner.setEnabled(false);
 
+        stockNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        stockNotify.setForeground(new java.awt.Color(193, 81, 135));
+
         javax.swing.GroupLayout rightPaneLayout = new javax.swing.GroupLayout(rightPane);
         rightPane.setLayout(rightPaneLayout);
         rightPaneLayout.setHorizontalGroup(
@@ -400,7 +404,10 @@ public class ViewBook extends javax.swing.JFrame {
                                     .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(authorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(rightPaneLayout.createSequentialGroup()
+                                        .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(stockNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(rightPaneLayout.createSequentialGroup()
                                 .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -464,7 +471,8 @@ public class ViewBook extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stockNotify))
                 .addGap(51, 51, 51)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
@@ -686,6 +694,8 @@ public class ViewBook extends javax.swing.JFrame {
         updateBtn.setText("Edit");
         updateBtn.setBackground(new java.awt.Color(255, 255, 255));
         updateBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+        stockNotify.setText("");
+        fillInFormValues(Integer.parseInt(labelbookID.getText()));
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -696,6 +706,21 @@ public class ViewBook extends javax.swing.JFrame {
             updateBtn.setBackground(new java.awt.Color(193, 81, 135));
             backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
         } else {
+            if ((Integer) stockSpinner.getValue() < 1) {
+            stockNotify.setText("Stock is expected to be greater than 1");
+            stockSpinner.setFont(new java.awt.Font("Segoe UI", 1, 12));
+            stockSpinner.setForeground(new java.awt.Color(255, 255, 255));
+            stockSpinner.requestFocus();
+            stockSpinner.setBackground(new java.awt.Color(193, 81, 135));
+            return;
+        } else {
+            stockSpinner.setFont(new java.awt.Font("Segoe UI", 0, 12));
+            stockSpinner.setForeground(new java.awt.Color(0, 0, 0));
+            stockSpinner.setBackground(new java.awt.Color(255, 255, 255));
+            stockNotify.setText("");
+        }
+            
+            
             updateBtn.setText("Edit");
             enabledAll(false);
             cancelBtn.setVisible(true);
@@ -982,6 +1007,7 @@ public class ViewBook extends javax.swing.JFrame {
     private javax.swing.JTextField pubDateTxt;
     private javax.swing.JComboBox<String> pubHouseCombo;
     private javax.swing.JPanel rightPane;
+    private javax.swing.JLabel stockNotify;
     private javax.swing.JSpinner stockSpinner;
     private javax.swing.JTextArea textAreaAbout;
     private javax.swing.JTextField titleTxt;

@@ -50,9 +50,8 @@ public class ViewBooks extends javax.swing.JFrame {
         jTableBooks = new javax.swing.JTable();
         searchTermTxt = new javax.swing.JTextField();
         jComboBoxFilter = new javax.swing.JComboBox<>();
-        searchBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        clearFilterBtn = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
         labelFullname = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
@@ -274,34 +273,16 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        searchBtn.setBackground(new java.awt.Color(140, 112, 104));
-        searchBtn.setText("Search");
-        searchBtn.setToolTipText("Search with given terms");
-        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                searchBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                searchBtnMouseExited(evt);
-            }
-        });
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(140, 112, 104));
         jLabel2.setText("Filter your results");
 
-        clearFilterBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        clearFilterBtn.setForeground(new java.awt.Color(193, 81, 135));
-        clearFilterBtn.setText("X");
-        clearFilterBtn.setToolTipText("Clear the search terms entered");
-        clearFilterBtn.addActionListener(new java.awt.event.ActionListener() {
+        searchBtn.setForeground(new java.awt.Color(255, 255, 255));
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/searchLens.png"))); // NOI18N
+        searchBtn.setToolTipText("Clear the search terms entered");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearFilterBtnActionPerformed(evt);
+                searchBtnActionPerformed(evt);
             }
         });
 
@@ -357,11 +338,9 @@ public class ViewBooks extends javax.swing.JFrame {
                                         .addGap(20, 20, 20)
                                         .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(clearFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(searchBtn))
+                                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel1))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 558, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(backBtn)
@@ -384,8 +363,7 @@ public class ViewBooks extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn)
-                    .addComponent(clearFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -616,15 +594,6 @@ public class ViewBooks extends javax.swing.JFrame {
         menuAdmin.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        ResultSet rs = null;
-        int searchCat = jComboBoxFilter.getSelectedIndex() + 1;
-        String searchTerm = searchTermTxt.getText();
-        rs = BookHandler.selectBooksDetail(searchCat, searchTerm);
-        showBooks(rs);
-
-    }//GEN-LAST:event_searchBtnActionPerformed
-
     private void searchTermTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTermTxtActionPerformed
         searchBtnActionPerformed(evt);
     }//GEN-LAST:event_searchTermTxtActionPerformed
@@ -635,10 +604,13 @@ public class ViewBooks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableBooksMouseClicked
 
-    private void clearFilterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFilterBtnActionPerformed
-        searchTermTxt.setText("");
-        searchBtnActionPerformed(evt);
-    }//GEN-LAST:event_clearFilterBtnActionPerformed
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        ResultSet rs = null;
+        int searchCat = jComboBoxFilter.getSelectedIndex() + 1;
+        String searchTerm = searchTermTxt.getText();
+        rs = BookHandler.selectBooksDetail(searchCat, searchTerm);
+        showBooks(rs);
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     private void menuViewLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewLogActionPerformed
         this.setVisible(false);
@@ -781,16 +753,6 @@ public class ViewBooks extends javax.swing.JFrame {
         backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_backBtnMouseExited
 
-    private void searchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseEntered
-        searchBtn.setBackground(new java.awt.Color(190, 132, 81));
-        searchBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
-    }//GEN-LAST:event_searchBtnMouseEntered
-
-    private void searchBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseExited
-        searchBtn.setBackground(new java.awt.Color(140, 112, 104));
-        searchBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
-    }//GEN-LAST:event_searchBtnMouseExited
-
     private void logOutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseEntered
         logOutBtn.setBackground(new java.awt.Color(193, 81, 135));
     }//GEN-LAST:event_logOutBtnMouseEntered
@@ -844,7 +806,6 @@ public class ViewBooks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton buttonOK;
-    private javax.swing.JButton clearFilterBtn;
     private javax.swing.JDialog dialogAbout;
     private javax.swing.JComboBox<String> jComboBoxFilter;
     private javax.swing.JLabel jLabel1;
