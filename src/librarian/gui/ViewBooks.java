@@ -156,7 +156,6 @@ public class ViewBooks extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Browse Library Books");
         setBackground(new java.awt.Color(156, 193, 194));
-        setPreferredSize(new java.awt.Dimension(950, 703));
         setResizable(false);
         setSize(new java.awt.Dimension(950, 750));
 
@@ -201,6 +200,8 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
+        jTableBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTableBooks.setForeground(new java.awt.Color(140, 112, 104));
         jTableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -220,7 +221,8 @@ public class ViewBooks extends javax.swing.JFrame {
         jTableBooks.setToolTipText("Available books with the given search terms");
         jTableBooks.setPreferredSize(new java.awt.Dimension(900, 700));
         jTableBooks.setRequestFocusEnabled(false);
-        jTableBooks.setSelectionBackground(new java.awt.Color(190, 132, 81));
+        jTableBooks.setSelectionBackground(new java.awt.Color(201, 210, 216));
+        jTableBooks.setSelectionForeground(new java.awt.Color(140, 112, 104));
         jTableBooks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableBooks.setShowGrid(true);
         jTableBooks.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -317,6 +319,14 @@ public class ViewBooks extends javax.swing.JFrame {
         logOutBtn.setBorderPainted(false);
         logOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logOutBtn.setDisplayedMnemonicIndex(4);
+        logOutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logOutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logOutBtnMouseExited(evt);
+            }
+        });
         logOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutBtnActionPerformed(evt);
@@ -674,7 +684,9 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_menuReturnActionPerformed
 
     private void menuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertActionPerformed
-
+        this.setVisible(false);
+        InsertBook insertBook = new InsertBook();
+        insertBook.setVisible(true);
     }//GEN-LAST:event_menuInsertActionPerformed
 
     private void menuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchActionPerformed
@@ -778,6 +790,14 @@ public class ViewBooks extends javax.swing.JFrame {
         searchBtn.setBackground(new java.awt.Color(140, 112, 104));
         searchBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_searchBtnMouseExited
+
+    private void logOutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseEntered
+        logOutBtn.setBackground(new java.awt.Color(193, 81, 135));
+    }//GEN-LAST:event_logOutBtnMouseEntered
+
+    private void logOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseExited
+        logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
+    }//GEN-LAST:event_logOutBtnMouseExited
 
     /**
      * @param args the command line arguments

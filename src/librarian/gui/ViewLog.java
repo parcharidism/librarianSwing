@@ -222,14 +222,10 @@ public class ViewLog extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(backBtn))
-                        .addContainerGap())))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(backBtn))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,7 +459,7 @@ public class ViewLog extends javax.swing.JFrame {
     private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutActionPerformed
         try {
             LogHandler.insertActivityLog("User " + User.getUserid() + " "
-                + User.getName() + " " + User.getSurname() + " has logged off");
+                    + User.getName() + " " + User.getSurname() + " has logged off");
             User.clearValues();
         } catch (SQLException ex) {
             Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
@@ -498,7 +494,9 @@ public class ViewLog extends javax.swing.JFrame {
     }//GEN-LAST:event_menuReturnActionPerformed
 
     private void menuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertActionPerformed
-
+        this.setVisible(false);
+        InsertBook insertBook = new InsertBook();
+        insertBook.setVisible(true);
     }//GEN-LAST:event_menuInsertActionPerformed
 
     private void menuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchActionPerformed

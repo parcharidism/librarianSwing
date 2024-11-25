@@ -1,6 +1,7 @@
 package librarian.gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -130,9 +132,10 @@ public class InsertBook extends javax.swing.JFrame {
         lendCatCombo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAuthors = new javax.swing.JTable();
+        jTableAuthors.getTableHeader().setOpaque(false);
+        jTableAuthors.getTableHeader().setBackground(new java.awt.Color(201,210,216));
         publHouseCombo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        stockTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         isbnTxt = new javax.swing.JTextField();
         labelBrowse = new javax.swing.JLabel();
@@ -141,6 +144,8 @@ public class InsertBook extends javax.swing.JFrame {
         browseNotify = new javax.swing.JLabel();
         labelFullname = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
+        stockSpinner = new javax.swing.JSpinner();
+        stockNotify = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -252,16 +257,28 @@ public class InsertBook extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(140, 112, 104));
         jLabel1.setText("Register New Book");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(140, 112, 104));
         jLabel2.setText("Title:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(140, 112, 104));
         jLabel3.setText("Category:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(140, 112, 104));
         jLabel4.setText("Authors:");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(140, 112, 104));
         jLabel5.setText("Publish Date:");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(140, 112, 104));
         jLabel6.setText("Publishing House:");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(140, 112, 104));
         jLabel7.setText("Lend Category:");
 
         titleTxt.setToolTipText("Please type the title of the book");
@@ -305,8 +322,6 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
 
-        insertBtn.setBackground(new java.awt.Color(140, 112, 104));
-        insertBtn.setForeground(new java.awt.Color(255, 255, 255));
         insertBtn.setText("Register");
         insertBtn.setToolTipText("Register the new book to the library");
         insertBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -372,21 +387,26 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
         jTableAuthors.setToolTipText("Select authors (max 3)");
-        jTableAuthors.setSelectionBackground(new java.awt.Color(190, 132, 81));
+        jTableAuthors.setSelectionBackground(new java.awt.Color(201, 210, 216));
         jScrollPane1.setViewportView(jTableAuthors);
         if (jTableAuthors.getColumnModel().getColumnCount() > 0) {
-            jTableAuthors.getColumnModel().getColumn(0).setMinWidth(50);
-            jTableAuthors.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTableAuthors.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTableAuthors.getColumnModel().getColumn(0).setMinWidth(40);
+            jTableAuthors.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jTableAuthors.getColumnModel().getColumn(0).setMaxWidth(40);
+            jTableAuthors.getColumnModel().getColumn(3).setMinWidth(80);
+            jTableAuthors.getColumnModel().getColumn(3).setPreferredWidth(80);
+            jTableAuthors.getColumnModel().getColumn(3).setMaxWidth(80);
         }
 
         publHouseCombo.setToolTipText("Choose the publishing house of the book");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(140, 112, 104));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("ISBN 10-13:");
 
-        stockTxt.setToolTipText("Stock quantity to register");
-
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(140, 112, 104));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Stock:");
 
@@ -402,6 +422,8 @@ public class InsertBook extends javax.swing.JFrame {
             }
         });
 
+        labelBrowse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelBrowse.setForeground(new java.awt.Color(140, 112, 104));
         labelBrowse.setText("Image Cover:");
 
         browseBtn.setText("Browse Image");
@@ -432,11 +454,25 @@ public class InsertBook extends javax.swing.JFrame {
         logOutBtn.setBorderPainted(false);
         logOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logOutBtn.setDisplayedMnemonicIndex(4);
+        logOutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logOutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logOutBtnMouseExited(evt);
+            }
+        });
         logOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutBtnActionPerformed(evt);
             }
         });
+
+        stockSpinner.setToolTipText("Enter stock quantity");
+        stockSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(stockSpinner, ""));
+
+        stockNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        stockNotify.setForeground(new java.awt.Color(193, 81, 135));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -455,18 +491,23 @@ public class InsertBook extends javax.swing.JFrame {
                     .addComponent(labelBrowse, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(39, 39, 39)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(logOutBtn)
+                        .addGap(28, 28, 28))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(publDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(browseBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -477,15 +518,13 @@ public class InsertBook extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(insertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(78, 78, 78)
-                                .addComponent(resetBtn)))
-                        .addContainerGap(194, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(logOutBtn)
-                        .addGap(28, 28, 28))))
+                                .addComponent(resetBtn))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(stockNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(215, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,8 +569,9 @@ public class InsertBook extends javax.swing.JFrame {
                     .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stockTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stockNotify))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(browseBtn)
@@ -753,13 +793,6 @@ public class InsertBook extends javax.swing.JFrame {
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBtnActionPerformed
         if (titleTxt.getText().equalsIgnoreCase("")) {
             browseNotify.setText("Please type the book title first");
-            
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            titleTxt.setBackground(new java.awt.Color(255,255,255));
             titleTxt.requestFocus();
             return;
         }
@@ -801,10 +834,16 @@ public class InsertBook extends javax.swing.JFrame {
 
             if (!isbnTxt.getText().equalsIgnoreCase(digits)) {
                 isbnNotify.setText("ISBN should contain only numbers, please adjust accordingly");
+                isbnTxt.setFont(new java.awt.Font("Segoe UI", 1, 12));
                 isbnTxt.setBackground(new java.awt.Color(193, 81, 135));
+                isbnTxt.setForeground(new java.awt.Color(255, 255, 255));
+                
             } else {
                 isbnNotify.setText("");
+                isbnTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
                 isbnTxt.setBackground(new java.awt.Color(255, 255, 255));
+                isbnTxt.setForeground(new java.awt.Color(0, 0, 0));
+                
             }
         }
     }//GEN-LAST:event_isbnTxtFocusLost
@@ -816,6 +855,19 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
+        if ((Integer) stockSpinner.getValue() < 1) {
+            stockNotify.setText("Stock is expected to be greater than 1");
+            stockSpinner.setFont(new java.awt.Font("Segoe UI", 1, 12));
+            stockSpinner.setForeground(new java.awt.Color(255, 255, 255));
+            stockSpinner.requestFocus();
+            stockSpinner.setBackground(new java.awt.Color(193, 81, 135));
+            return;
+        } else {
+            stockSpinner.setFont(new java.awt.Font("Segoe UI", 0, 12));
+            stockSpinner.setForeground(new java.awt.Color(0, 0, 0));
+            stockSpinner.setBackground(new java.awt.Color(255, 255, 255));
+            stockNotify.setText("");
+        }
         /**
          * bookCatiDs publiDs IMPLEMENTATION lendiDs
          */
@@ -833,7 +885,7 @@ public class InsertBook extends javax.swing.JFrame {
         int publisher = publHouseCombo.getSelectedIndex();
         int lendcat = lendCatCombo.getSelectedIndex();
         String isbn = isbnTxt.getText();
-        int stock = Integer.parseInt(stockTxt.getText());
+        int stock = (Integer) stockSpinner.getValue();
 
         // Execute
         boolean inserted = BookHandler.insertBook(title,
@@ -843,13 +895,12 @@ public class InsertBook extends javax.swing.JFrame {
         if (inserted) {
             JOptionPane.showMessageDialog(null, "Book Inserted successfully", "Register New Book", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
+            MenuAdmin menuAdmin = new MenuAdmin();
+        menuAdmin.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Error While Inserting Book!", "Register New Book", JOptionPane.WARNING_MESSAGE);
             this.setVisible(false);
         }
-
-        MenuAdmin menuAdmin = new MenuAdmin();
-        menuAdmin.setVisible(true);
     }//GEN-LAST:event_insertBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -859,7 +910,7 @@ public class InsertBook extends javax.swing.JFrame {
         publHouseCombo.setSelectedIndex(0);
         lendCatCombo.setSelectedIndex(0);
         isbnTxt.setText("");
-        stockTxt.setText("");
+        stockSpinner.setValue(1);
         jTableAuthors.clearSelection();
         isbnNotify.setText("");
         browseNotify.setText("");
@@ -989,24 +1040,22 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonOKActionPerformed
 
     private void insertBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBtnMouseEntered
-        insertBtn.setBackground(new java.awt.Color(190, 132, 81));
+        insertBtn.setBackground(new java.awt.Color(193, 81, 135));
         insertBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
     }//GEN-LAST:event_insertBtnMouseEntered
 
     private void insertBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBtnMouseExited
-        insertBtn.setBackground(new java.awt.Color(140, 112, 104));
+        insertBtn.setBackground(new java.awt.Color(255, 255, 255));
         insertBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_insertBtnMouseExited
 
     private void resetBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetBtnMouseEntered
         resetBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
-        resetBtn.setForeground(new java.awt.Color(255, 255, 255));
-        resetBtn.setBackground(new java.awt.Color(193, 81, 135));
+        resetBtn.setBackground(new java.awt.Color(201, 210, 216));
     }//GEN-LAST:event_resetBtnMouseEntered
 
     private void resetBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetBtnMouseExited
         resetBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
-        resetBtn.setForeground(new java.awt.Color(0, 0, 0));
         resetBtn.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_resetBtnMouseExited
 
@@ -1040,6 +1089,14 @@ public class InsertBook extends javax.swing.JFrame {
     private void isbnTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_isbnTxtActionPerformed
+
+    private void logOutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseEntered
+        logOutBtn.setBackground(new java.awt.Color(193, 81, 135));
+    }//GEN-LAST:event_logOutBtnMouseEntered
+
+    private void logOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseExited
+        logOutBtn.setBackground(new java.awt.Color(156,193,194));
+    }//GEN-LAST:event_logOutBtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -1106,7 +1163,8 @@ public class InsertBook extends javax.swing.JFrame {
     private javax.swing.JTextField publDateTxt;
     private javax.swing.JComboBox<String> publHouseCombo;
     private javax.swing.JButton resetBtn;
-    private javax.swing.JTextField stockTxt;
+    private javax.swing.JLabel stockNotify;
+    private javax.swing.JSpinner stockSpinner;
     private javax.swing.JTextArea textAreaAbout;
     private javax.swing.JTextField titleTxt;
     // End of variables declaration//GEN-END:variables
