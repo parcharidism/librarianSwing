@@ -156,7 +156,9 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(156, 193, 194));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
+        returnBookBtn.setMnemonic('R');
         returnBookBtn.setText("Return Book");
         returnBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -172,6 +174,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        insertBookBtn.setMnemonic('I');
         insertBookBtn.setText("Register Book");
         insertBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -258,6 +261,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        searchBooksBtn.setMnemonic('B');
         searchBooksBtn.setText("Browse Books");
         searchBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -290,6 +294,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        lendBookBtn.setMnemonic('Q');
         lendBookBtn.setText("Quick Lend");
         lendBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -310,7 +315,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         labelFullname.setText(User.getName() + " " + User.getSurname());
         labelFullname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        logBtn.setMnemonic('L');
+        logBtn.setMnemonic('G');
         logBtn.setText("View Log");
         logBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -353,7 +358,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                                         .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 11, Short.MAX_VALUE))
+                        .addGap(0, 7, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,7 +404,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, 0));
         menuViewLog.setMnemonic('g');
         menuViewLog.setText("View Log");
         menuViewLog.setToolTipText("Examine the application log");
@@ -410,7 +415,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuFile.add(menuViewLog);
 
-        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, 0));
         menuLogout.setText("Logout");
         menuLogout.setToolTipText("Exit safely from the application");
         menuLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -445,9 +450,9 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        menuLend.setMnemonic('L');
-        menuLend.setText("Lend a Book");
+        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, 0));
+        menuLend.setMnemonic('Q');
+        menuLend.setText("Quick Lend");
         menuLend.setToolTipText("Lend a book to a user");
         menuLend.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -466,7 +471,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuBooks.add(menuLend);
 
-        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
         menuReturn.setMnemonic('R');
         menuReturn.setText("Return Book");
         menuReturn.setToolTipText("Return a book to the Library");
@@ -477,7 +482,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuBooks.add(menuReturn);
 
-        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, 0));
         menuInsert.setMnemonic('I');
         menuInsert.setText("Register Book");
         menuInsert.setToolTipText("Register a new book to the Library");
@@ -488,7 +493,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuBooks.add(menuInsert);
 
-        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, 0));
         menuSearch.setMnemonic('S');
         menuSearch.setText("Browse Books");
         menuSearch.setToolTipText("Find books based on title");

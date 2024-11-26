@@ -172,7 +172,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuViewLog">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+G"/>
+                  <KeyStroke key="G"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="103"/>
                 <Property name="text" type="java.lang.String" value="View Log"/>
@@ -185,7 +185,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuLogout">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+O"/>
+                  <KeyStroke key="L"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
                 <Property name="toolTipText" type="java.lang.String" value="Exit safely from the application"/>
@@ -211,10 +211,10 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuLend">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+L"/>
+                  <KeyStroke key="Q"/>
                 </Property>
-                <Property name="mnemonic" type="int" value="76"/>
-                <Property name="text" type="java.lang.String" value="Lend a Book"/>
+                <Property name="mnemonic" type="int" value="81"/>
+                <Property name="text" type="java.lang.String" value="Quick Lend"/>
                 <Property name="toolTipText" type="java.lang.String" value="Lend a book to a user"/>
               </Properties>
               <Events>
@@ -226,7 +226,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuReturn">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+R"/>
+                  <KeyStroke key="R"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="82"/>
                 <Property name="text" type="java.lang.String" value="Return Book"/>
@@ -239,7 +239,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuInsert">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+I"/>
+                  <KeyStroke key="I"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Register Book"/>
@@ -252,7 +252,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuSearch">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+S"/>
+                  <KeyStroke key="B"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" value="Browse Books"/>
@@ -403,6 +403,11 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c2" green="c1" red="9c" type="rgb"/>
         </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder bevelType="0"/>
+          </Border>
+        </Property>
       </Properties>
 
       <Layout>
@@ -437,7 +442,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -486,6 +491,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="returnBookBtn">
           <Properties>
+            <Property name="mnemonic" type="int" value="82"/>
             <Property name="text" type="java.lang.String" value="Return Book"/>
           </Properties>
           <Events>
@@ -496,6 +502,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="insertBookBtn">
           <Properties>
+            <Property name="mnemonic" type="int" value="73"/>
             <Property name="text" type="java.lang.String" value="Register Book"/>
           </Properties>
           <Events>
@@ -565,6 +572,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="searchBooksBtn">
           <Properties>
+            <Property name="mnemonic" type="int" value="66"/>
             <Property name="text" type="java.lang.String" value="Browse Books"/>
           </Properties>
           <Events>
@@ -587,6 +595,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="lendBookBtn">
           <Properties>
+            <Property name="mnemonic" type="int" value="81"/>
             <Property name="text" type="java.lang.String" value="Quick Lend"/>
           </Properties>
           <Events>
@@ -612,7 +621,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="logBtn">
           <Properties>
-            <Property name="mnemonic" type="int" value="76"/>
+            <Property name="mnemonic" type="int" value="71"/>
             <Property name="text" type="java.lang.String" value="View Log"/>
           </Properties>
           <Events>

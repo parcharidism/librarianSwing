@@ -165,6 +165,8 @@ public class ViewLog extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(950, 750));
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(156, 193, 194));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 750));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -187,7 +189,7 @@ public class ViewLog extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTableLog.setSelectionBackground(new java.awt.Color(190, 132, 81));
+        jTableLog.setSelectionBackground(new java.awt.Color(201, 210, 216));
         jTableLog.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableLog.setShowGrid(true);
         jScrollPane1.setViewportView(jTableLog);
@@ -222,7 +224,7 @@ public class ViewLog extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(backBtn))
                 .addContainerGap())

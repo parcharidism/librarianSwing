@@ -503,8 +503,8 @@ public class LendBook extends javax.swing.JFrame {
             }
         });
 
-        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        menuLend.setMnemonic('L');
+        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, 0));
+        menuLend.setMnemonic('Q');
         menuLend.setText("Lend a Book");
         menuLend.setToolTipText("Lend a book to a user");
         menuLend.addChangeListener(new javax.swing.event.ChangeListener() {
