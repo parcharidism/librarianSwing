@@ -36,18 +36,23 @@ public class MenuAdmin extends javax.swing.JFrame {
         labelImage = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaAbout = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelBooks = new javax.swing.JPanel();
         returnBookBtn = new javax.swing.JButton();
         insertBookBtn = new javax.swing.JButton();
-        insertAuthorBtn = new javax.swing.JButton();
-        newUserBtn = new javax.swing.JButton();
-        editUserBtn = new javax.swing.JButton();
-        logOutBtn = new javax.swing.JButton();
         searchBooksBtn = new javax.swing.JButton();
-        editAuthorBtn = new javax.swing.JButton();
         lendBookBtn = new javax.swing.JButton();
-        labelFullname = new javax.swing.JLabel();
+        panelAuthors = new javax.swing.JPanel();
+        insertAuthorBtn = new javax.swing.JButton();
+        editAuthorBtn = new javax.swing.JButton();
+        panelUsers = new javax.swing.JPanel();
+        editUserBtn = new javax.swing.JButton();
+        newUserBtn = new javax.swing.JButton();
+        panelSystem = new javax.swing.JPanel();
         logBtn = new javax.swing.JButton();
+        aboutBtn = new javax.swing.JButton();
+        logOutBtn = new javax.swing.JButton();
+        labelFullname = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -155,8 +160,10 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(156, 193, 194));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        jTabbedPane1.setBackground(new java.awt.Color(156, 193, 194));
+
+        panelBooks.setBackground(new java.awt.Color(156, 193, 194));
+        panelBooks.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         returnBookBtn.setMnemonic('R');
         returnBookBtn.setText("Return Book");
@@ -193,6 +200,75 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        searchBooksBtn.setMnemonic('B');
+        searchBooksBtn.setText("Browse Books");
+        searchBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchBooksBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                searchBooksBtnMouseExited(evt);
+            }
+        });
+        searchBooksBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBooksBtnActionPerformed(evt);
+            }
+        });
+
+        lendBookBtn.setMnemonic('Q');
+        lendBookBtn.setText("Quick Lend");
+        lendBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lendBookBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lendBookBtnMouseExited(evt);
+            }
+        });
+        lendBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lendBookBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBooksLayout = new javax.swing.GroupLayout(panelBooks);
+        panelBooks.setLayout(panelBooksLayout);
+        panelBooksLayout.setHorizontalGroup(
+            panelBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBooksLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBooksLayout.createSequentialGroup()
+                        .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelBooksLayout.createSequentialGroup()
+                        .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(407, Short.MAX_VALUE))
+                    .addGroup(panelBooksLayout.createSequentialGroup()
+                        .addGroup(panelBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lendBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        panelBooksLayout.setVerticalGroup(
+            panelBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBooksLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(lendBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(235, 235, 235))
+        );
+
+        jTabbedPane1.addTab("Books", panelBooks);
+
+        panelAuthors.setBackground(new java.awt.Color(156, 193, 194));
+
         insertAuthorBtn.setText("Insert Author");
         insertAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -205,6 +281,63 @@ public class MenuAdmin extends javax.swing.JFrame {
         insertAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertAuthorBtnActionPerformed(evt);
+            }
+        });
+
+        editAuthorBtn.setMnemonic('v');
+        editAuthorBtn.setText("View/Edit Author");
+        editAuthorBtn.setToolTipText("View or Edit Authors");
+        editAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editAuthorBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editAuthorBtnMouseExited(evt);
+            }
+        });
+        editAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editAuthorBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelAuthorsLayout = new javax.swing.GroupLayout(panelAuthors);
+        panelAuthors.setLayout(panelAuthorsLayout);
+        panelAuthorsLayout.setHorizontalGroup(
+            panelAuthorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAuthorsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAuthorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(insertAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(411, Short.MAX_VALUE))
+        );
+        panelAuthorsLayout.setVerticalGroup(
+            panelAuthorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAuthorsLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(insertAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(301, 301, 301))
+        );
+
+        jTabbedPane1.addTab("Authors", panelAuthors);
+
+        panelUsers.setBackground(new java.awt.Color(156, 193, 194));
+
+        editUserBtn.setText("View/Edit User");
+        editUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editUserBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editUserBtnMouseExited(evt);
+            }
+        });
+        editUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUserBtnActionPerformed(evt);
             }
         });
 
@@ -223,20 +356,91 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        editUserBtn.setText("View/Edit User");
-        editUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        javax.swing.GroupLayout panelUsersLayout = new javax.swing.GroupLayout(panelUsers);
+        panelUsers.setLayout(panelUsersLayout);
+        panelUsersLayout.setHorizontalGroup(
+            panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUsersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(411, Short.MAX_VALUE))
+        );
+        panelUsersLayout.setVerticalGroup(
+            panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUsersLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(301, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Users", panelUsers);
+
+        panelSystem.setBackground(new java.awt.Color(156, 193, 194));
+
+        logBtn.setMnemonic('G');
+        logBtn.setText("View Log");
+        logBtn.setMaximumSize(new java.awt.Dimension(98, 23));
+        logBtn.setMinimumSize(new java.awt.Dimension(98, 23));
+        logBtn.setPreferredSize(new java.awt.Dimension(98, 23));
+        logBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editUserBtnMouseEntered(evt);
+                logBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                editUserBtnMouseExited(evt);
+                logBtnMouseExited(evt);
             }
         });
-        editUserBtn.addActionListener(new java.awt.event.ActionListener() {
+        logBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editUserBtnActionPerformed(evt);
+                logBtnActionPerformed(evt);
             }
         });
+
+        aboutBtn.setMnemonic('G');
+        aboutBtn.setText("About");
+        aboutBtn.setMaximumSize(new java.awt.Dimension(98, 23));
+        aboutBtn.setMinimumSize(new java.awt.Dimension(98, 23));
+        aboutBtn.setPreferredSize(new java.awt.Dimension(98, 23));
+        aboutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseExited(evt);
+            }
+        });
+        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelSystemLayout = new javax.swing.GroupLayout(panelSystem);
+        panelSystem.setLayout(panelSystemLayout);
+        panelSystemLayout.setHorizontalGroup(
+            panelSystemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSystemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelSystemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aboutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(logBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(411, 411, 411))
+        );
+        panelSystemLayout.setVerticalGroup(
+            panelSystemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSystemLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(301, 301, 301))
+        );
+
+        jTabbedPane1.addTab("System", panelSystem);
 
         logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
         logOutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -261,140 +465,14 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        searchBooksBtn.setMnemonic('B');
-        searchBooksBtn.setText("Browse Books");
-        searchBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                searchBooksBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                searchBooksBtnMouseExited(evt);
-            }
-        });
-        searchBooksBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBooksBtnActionPerformed(evt);
-            }
-        });
-
-        editAuthorBtn.setMnemonic('v');
-        editAuthorBtn.setText("View/Edit Author");
-        editAuthorBtn.setToolTipText("View or Edit Authors");
-        editAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editAuthorBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                editAuthorBtnMouseExited(evt);
-            }
-        });
-        editAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editAuthorBtnActionPerformed(evt);
-            }
-        });
-
-        lendBookBtn.setMnemonic('Q');
-        lendBookBtn.setText("Quick Lend");
-        lendBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lendBookBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lendBookBtnMouseExited(evt);
-            }
-        });
-        lendBookBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lendBookBtnActionPerformed(evt);
-            }
-        });
-
         labelFullname.setText(User.getName() + " " + User.getSurname());
         labelFullname.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelFullname.setText(User.getName() + " " + User.getSurname());
         labelFullname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        logBtn.setMnemonic('G');
-        logBtn.setText("View Log");
-        logBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logBtnMouseExited(evt);
-            }
-        });
-        logBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lendBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(insertAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 7, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(logOutBtn)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logOutBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lendBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(insertAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(199, 199, 199))
-        );
-
         menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        menuFile.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menuFile.setMnemonic('O');
         menuFile.setText("File");
         menuFile.setToolTipText("Actions about the Application");
@@ -581,16 +659,24 @@ public class MenuAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logOutBtn)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logOutBtn)
+                    .addComponent(labelFullname))
+                .addGap(0, 0, 0)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -856,6 +942,18 @@ public class MenuAdmin extends javax.swing.JFrame {
         logBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_logBtnMouseExited
 
+    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aboutBtnMouseEntered
+
+    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aboutBtnMouseExited
+
+    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
+        jMenuItem4ActionPerformed(evt);
+    }//GEN-LAST:event_aboutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -872,6 +970,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aboutBtn;
     private javax.swing.JButton buttonOK;
     private javax.swing.JDialog dialogAbout;
     private javax.swing.JButton editAuthorBtn;
@@ -880,8 +979,8 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton insertBookBtn;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
     private javax.swing.JButton lendBookBtn;
@@ -904,6 +1003,10 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuViewLog;
     private javax.swing.JButton newUserBtn;
     private javax.swing.JPanel panelAbout;
+    private javax.swing.JPanel panelAuthors;
+    private javax.swing.JPanel panelBooks;
+    private javax.swing.JPanel panelSystem;
+    private javax.swing.JPanel panelUsers;
     private javax.swing.JButton returnBookBtn;
     private javax.swing.JButton searchBooksBtn;
     private javax.swing.JTextArea textAreaAbout;
