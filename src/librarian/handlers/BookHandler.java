@@ -155,7 +155,29 @@ public class BookHandler {
 
         return rs;
     }
-    
+
+    /*
+    @ Only shows books that have available stock to lend
+    Used mainly in Quick Lend
+     */
+    public static ResultSet selectBooksWithStock(int searchCat, String searchTerm) {
+        CallableStatement cstmt = null;
+        ResultSet rs = null;
+
+        try {
+            cstmt = DBconnect.getConnection().prepareCall("{call selectbookswithstock(?,?,?)}");
+            cstmt.setInt(1, searchCat);
+            cstmt.setString(2, searchTerm);
+            cstmt.registerOutParameter(3, OracleTypes.CURSOR);
+            cstmt.execute();
+            rs = (ResultSet) cstmt.getObject(3);
+        } catch (SQLException ex) {
+            Logger.getLogger(BookHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rs;
+    }
+
     public static boolean updateBook(int bookID, String titleTxt, int bookCatCombo,
             String publDateTxt, int publHouseCombo, int lendCatCombo,
             String isbnTxt, int stockTxt) {

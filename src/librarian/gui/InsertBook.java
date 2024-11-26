@@ -885,19 +885,18 @@ public class InsertBook extends javax.swing.JFrame {
                 isbnTxt.setFont(new java.awt.Font("Segoe UI", 1, 12));
                 isbnTxt.setBackground(new java.awt.Color(193, 81, 135));
                 isbnTxt.setForeground(new java.awt.Color(255, 255, 255));
-                
+
             } else {
                 isbnNotify.setText("");
                 isbnTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
                 isbnTxt.setBackground(new java.awt.Color(255, 255, 255));
                 isbnTxt.setForeground(new java.awt.Color(0, 0, 0));
-                
+
             }
+        } else if (isbnTxt.getText().equalsIgnoreCase("") && isbnNotify.getText().equalsIgnoreCase("")) {
+            isbnTxt.setBackground(new java.awt.Color(255, 255, 255));
         }
-        else if (isbnTxt.getText().equalsIgnoreCase("") && isbnNotify.getText().equalsIgnoreCase("")) {
-            isbnTxt.setBackground(new java.awt.Color(255,255,255));
-        }
-        
+
     }//GEN-LAST:event_isbnTxtFocusLost
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -945,12 +944,12 @@ public class InsertBook extends javax.swing.JFrame {
                 publisher, lendcat, isbn, stock);
 
         if (inserted) {
-            JOptionPane.showMessageDialog(null, "Book Inserted successfully", "Register New Book", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(jPanel1, "Book Inserted successfully", "Register New Book", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
             MenuAdmin menuAdmin = new MenuAdmin();
-        menuAdmin.setVisible(true);
+            menuAdmin.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Error While Inserting Book!", "Register New Book", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(jPanel1, "Error While Inserting Book!", "Register New Book", JOptionPane.WARNING_MESSAGE);
             this.setVisible(false);
         }
     }//GEN-LAST:event_insertBtnActionPerformed
@@ -969,7 +968,7 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
-        publDateTxt.setBackground(new java.awt.Color(255,255,255));
+        publDateTxt.setBackground(new java.awt.Color(255, 255, 255));
         if (publDateTxt.getText().equalsIgnoreCase("")) {
             publDateTxt.setFont(new java.awt.Font("Segoe UI", 2, 12));
             publDateTxt.setText("dd/mm/yyyy");
@@ -1146,7 +1145,7 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutBtnMouseEntered
 
     private void logOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseExited
-        logOutBtn.setBackground(new java.awt.Color(156,193,194));
+        logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
     }//GEN-LAST:event_logOutBtnMouseExited
 
     private void bookCatComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bookCatComboFocusGained
@@ -1154,15 +1153,15 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_bookCatComboFocusGained
 
     private void bookCatComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bookCatComboFocusLost
-        bookCatCombo.setBackground(new java.awt.Color(255,255,255));
+        bookCatCombo.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_bookCatComboFocusLost
 
     private void publHouseComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publHouseComboFocusGained
-        publHouseCombo.setBackground(new java.awt.Color(201,210,216));
+        publHouseCombo.setBackground(new java.awt.Color(201, 210, 216));
     }//GEN-LAST:event_publHouseComboFocusGained
 
     private void publHouseComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publHouseComboFocusLost
-        publHouseCombo.setBackground(new java.awt.Color(255,255,255));
+        publHouseCombo.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_publHouseComboFocusLost
 
     private void lendCatComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusGained
@@ -1170,11 +1169,11 @@ public class InsertBook extends javax.swing.JFrame {
     }//GEN-LAST:event_lendCatComboFocusGained
 
     private void lendCatComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusLost
-        lendCatCombo.setBackground(new java.awt.Color(255,255,255));
+        lendCatCombo.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_lendCatComboFocusLost
 
     private void isbnTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusGained
-        if(isbnNotify.getText().equalsIgnoreCase("")){
+        if (isbnNotify.getText().equalsIgnoreCase("")) {
             isbnTxt.setBackground(new java.awt.Color(201, 210, 216));
         }
     }//GEN-LAST:event_isbnTxtFocusGained
@@ -1195,13 +1194,12 @@ public class InsertBook extends javax.swing.JFrame {
 
     private void jTableAuthorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAuthorsMouseClicked
         if (jTableAuthors.getSelectedRow() != -1) {
-            jTableAuthors.setSelectionForeground(new java.awt.Color(255,255,255));
-         
+            jTableAuthors.setSelectionForeground(new java.awt.Color(255, 255, 255));
         }
     }//GEN-LAST:event_jTableAuthorsMouseClicked
 
     private void stockSpinnerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stockSpinnerFocusGained
-       
+
     }//GEN-LAST:event_stockSpinnerFocusGained
 
     /**

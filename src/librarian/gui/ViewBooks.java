@@ -1,8 +1,5 @@
 package librarian.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Frame;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -10,11 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import librarian.handlers.BookHandler;
 import librarian.handlers.LendHandler;
@@ -362,6 +355,14 @@ public class ViewBooks extends javax.swing.JFrame {
 
         searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         searchTermTxt.setToolTipText("Enter terms for searching");
+        searchTermTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTermTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchTermTxtFocusLost(evt);
+            }
+        });
         searchTermTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTermTxtActionPerformed(evt);
@@ -370,6 +371,14 @@ public class ViewBooks extends javax.swing.JFrame {
 
         jComboBoxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Title", "Category", "Publishing House", "ISBN" }));
         jComboBoxFilter.setToolTipText("Select your filter");
+        jComboBoxFilter.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxFilterFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jComboBoxFilterFocusLost(evt);
+            }
+        });
         jComboBoxFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxFilterActionPerformed(evt);
@@ -378,7 +387,7 @@ public class ViewBooks extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(140, 112, 104));
-        jLabel2.setText("Filter your results");
+        jLabel2.setText("Filter");
 
         searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/searchLens.png"))); // NOI18N
         searchBtn.setToolTipText("Search with the given terms");
@@ -498,9 +507,9 @@ public class ViewBooks extends javax.swing.JFrame {
                     .addComponent(labelFullname))
                 .addGap(5, 5, 5)
                 .addComponent(jLabel1)
-                .addGap(11, 11, 11)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -927,8 +936,8 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_lendBtnMouseExited
 
     private void lendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lendBtnActionPerformed
-        if(jTableBooks.getSelectedRow()<0) {
-            
+        if (jTableBooks.getSelectedRow() < 0) {
+
         }
         lendToDialog.setLocationRelativeTo(this);
         lendToDialog.setVisible(true);
@@ -989,7 +998,7 @@ public class ViewBooks extends javax.swing.JFrame {
         if (customerCombo.getSelectedIndex() == 0) {
             labelNoCustomer.setText("Please select a customer");
         }
-        
+
         int bookID = 0, userID = 0;
         int row = jTableBooks.getSelectedRow();
         bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
@@ -1010,6 +1019,22 @@ public class ViewBooks extends javax.swing.JFrame {
             showBooks(null);
         }
     }//GEN-LAST:event_selectCustomerBtnActionPerformed
+
+    private void searchTermTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusGained
+        searchTermTxt.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_searchTermTxtFocusGained
+
+    private void jComboBoxFilterFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxFilterFocusGained
+        jComboBoxFilter.setBackground(new java.awt.Color(201, 210, 216));
+    }//GEN-LAST:event_jComboBoxFilterFocusGained
+
+    private void searchTermTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusLost
+        searchTermTxt.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_searchTermTxtFocusLost
+
+    private void jComboBoxFilterFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxFilterFocusLost
+        jComboBoxFilter.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_jComboBoxFilterFocusLost
 
     /**
      * @param args the command line arguments

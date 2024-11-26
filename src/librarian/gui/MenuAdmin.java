@@ -158,6 +158,14 @@ public class MenuAdmin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(156, 193, 194));
 
         returnBookBtn.setText("Return Book");
+        returnBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                returnBookBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                returnBookBtnMouseExited(evt);
+            }
+        });
         returnBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnBookBtnActionPerformed(evt);
@@ -165,6 +173,17 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         insertBookBtn.setText("Register Book");
+        insertBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                insertBookBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                insertBookBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                insertBookBtnMouseExited(evt);
+            }
+        });
         insertBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertBookBtnActionPerformed(evt);
@@ -172,6 +191,14 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         insertAuthorBtn.setText("Insert Author");
+        insertAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                insertAuthorBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                insertAuthorBtnMouseExited(evt);
+            }
+        });
         insertAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertAuthorBtnActionPerformed(evt);
@@ -179,6 +206,14 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         newUserBtn.setText("Insert User");
+        newUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                newUserBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                newUserBtnMouseExited(evt);
+            }
+        });
         newUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newUserBtnActionPerformed(evt);
@@ -186,6 +221,14 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         editUserBtn.setText("View/Edit User");
+        editUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editUserBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editUserBtnMouseExited(evt);
+            }
+        });
         editUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editUserBtnActionPerformed(evt);
@@ -216,6 +259,14 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         searchBooksBtn.setText("Browse Books");
+        searchBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchBooksBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                searchBooksBtnMouseExited(evt);
+            }
+        });
         searchBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBooksBtnActionPerformed(evt);
@@ -225,13 +276,29 @@ public class MenuAdmin extends javax.swing.JFrame {
         editAuthorBtn.setMnemonic('v');
         editAuthorBtn.setText("View/Edit Author");
         editAuthorBtn.setToolTipText("View or Edit Authors");
+        editAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editAuthorBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editAuthorBtnMouseExited(evt);
+            }
+        });
         editAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editAuthorBtnActionPerformed(evt);
             }
         });
 
-        lendBookBtn.setText("Lend a Book");
+        lendBookBtn.setText("Quick Lend");
+        lendBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lendBookBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lendBookBtnMouseExited(evt);
+            }
+        });
         lendBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lendBookBtnActionPerformed(evt);
@@ -245,6 +312,14 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         logBtn.setMnemonic('L');
         logBtn.setText("View Log");
+        logBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logBtnMouseExited(evt);
+            }
+        });
         logBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logBtnActionPerformed(evt);
@@ -679,8 +754,102 @@ public class MenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutBtnMouseEntered
 
     private void logOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutBtnMouseExited
-        logOutBtn.setBackground(new java.awt.Color(156,193,194));
+        logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
     }//GEN-LAST:event_logOutBtnMouseExited
+
+    private void lendBookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lendBookBtnMouseEntered
+        lendBookBtn.setBackground(new java.awt.Color(201, 210, 216));
+        lendBookBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_lendBookBtnMouseEntered
+
+    private void returnBookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnBookBtnMouseEntered
+        returnBookBtn.setBackground(new java.awt.Color(201, 210, 216));
+        returnBookBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_returnBookBtnMouseEntered
+
+    private void insertBookBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBookBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_insertBookBtnMouseClicked
+
+    private void insertBookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBookBtnMouseEntered
+        insertBookBtn.setBackground(new java.awt.Color(201, 210, 216));
+        insertBookBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_insertBookBtnMouseEntered
+
+    private void searchBooksBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBooksBtnMouseEntered
+        searchBooksBtn.setBackground(new java.awt.Color(201, 210, 216));
+        searchBooksBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_searchBooksBtnMouseEntered
+
+    private void insertAuthorBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertAuthorBtnMouseEntered
+        insertAuthorBtn.setBackground(new java.awt.Color(201, 210, 216));
+        insertAuthorBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_insertAuthorBtnMouseEntered
+
+    private void editAuthorBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editAuthorBtnMouseEntered
+        editAuthorBtn.setBackground(new java.awt.Color(201, 210, 216));
+        editAuthorBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_editAuthorBtnMouseEntered
+
+    private void newUserBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserBtnMouseEntered
+        newUserBtn.setBackground(new java.awt.Color(201, 210, 216));
+        newUserBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_newUserBtnMouseEntered
+
+    private void editUserBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editUserBtnMouseEntered
+        editUserBtn.setBackground(new java.awt.Color(201, 210, 216));
+        editUserBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_editUserBtnMouseEntered
+
+    private void logBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logBtnMouseEntered
+        logBtn.setBackground(new java.awt.Color(201, 210, 216));
+        logBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_logBtnMouseEntered
+
+    private void lendBookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lendBookBtnMouseExited
+        lendBookBtn.setBackground(new java.awt.Color(255, 255, 255));
+        lendBookBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_lendBookBtnMouseExited
+
+    private void returnBookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnBookBtnMouseExited
+        returnBookBtn.setBackground(new java.awt.Color(255, 255, 255));
+        returnBookBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_returnBookBtnMouseExited
+
+    private void insertBookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBookBtnMouseExited
+        insertBookBtn.setBackground(new java.awt.Color(255, 255, 255));
+        insertBookBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_insertBookBtnMouseExited
+
+    private void searchBooksBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBooksBtnMouseExited
+        searchBooksBtn.setBackground(new java.awt.Color(255, 255, 255));
+        searchBooksBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_searchBooksBtnMouseExited
+
+    private void insertAuthorBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertAuthorBtnMouseExited
+        insertAuthorBtn.setBackground(new java.awt.Color(255, 255, 255));
+        insertAuthorBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_insertAuthorBtnMouseExited
+
+    private void editAuthorBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editAuthorBtnMouseExited
+        editAuthorBtn.setBackground(new java.awt.Color(255, 255, 255));
+        editAuthorBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_editAuthorBtnMouseExited
+
+    private void newUserBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserBtnMouseExited
+        newUserBtn.setBackground(new java.awt.Color(255, 255, 255));
+        newUserBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_newUserBtnMouseExited
+
+    private void editUserBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editUserBtnMouseExited
+        editUserBtn.setBackground(new java.awt.Color(255, 255, 255));
+        editUserBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_editUserBtnMouseExited
+
+    private void logBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logBtnMouseExited
+        logBtn.setBackground(new java.awt.Color(255, 255, 255));
+        logBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_logBtnMouseExited
 
     /**
      * @param args the command line arguments
