@@ -515,40 +515,31 @@
                               <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jScrollPane1" min="-2" pref="445" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelAuthor" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelCategory" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="pubDateTxt" min="-2" pref="211" max="-2" attributes="0"/>
-                                          <Component id="categoryCombo" min="-2" pref="211" max="-2" attributes="0"/>
-                                          <Component id="pubHouseCombo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lendCatCombo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="isbnTxt" min="-2" pref="99" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="isbnNotify" min="-2" pref="334" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="titleTxt" min="-2" pref="445" max="-2" attributes="0"/>
-                                          <Component id="authorTxt" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="stockSpinner" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="stockNotify" min="-2" pref="216" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="labelFullname" min="-2" pref="182" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="logOutBtn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="pubDateTxt" min="-2" pref="211" max="-2" attributes="0"/>
+                                      <Component id="categoryCombo" min="-2" pref="211" max="-2" attributes="0"/>
+                                      <Component id="pubHouseCombo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lendCatCombo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="isbnTxt" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="isbnNotify" min="-2" pref="334" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="titleTxt" min="-2" pref="445" max="-2" attributes="0"/>
+                                      <Component id="authorTxt" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="stockSpinner" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="stockNotify" min="-2" pref="216" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
@@ -569,6 +560,10 @@
                                   <Component id="labelPubDate" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelIsbn" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelAbstract" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelCategory" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelAuthor" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTitle" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -586,59 +581,67 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelbookID" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="titleTxt" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelTitle" min="-2" pref="28" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="authorTxt" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="titleTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTitle" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Component id="authorTxt" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="labelAuthor" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="277" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="251" max="-2" attributes="0"/>
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="categoryCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelCategory" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="pubDateTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelPubDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelPubHouse" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pubHouseCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelLendCat" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lendCatCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelIsbn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="isbnTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="isbnNotify" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stockSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stockNotify" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cancelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="updateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labelAbstract" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="categoryCombo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelCategory" min="-2" pref="26" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="pubDateTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelPubDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPubHouse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="pubHouseCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelLendCat" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lendCatCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelIsbn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="isbnTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="isbnNotify" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="stockSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="stockNotify" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cancelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="updateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -918,7 +921,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="authorTxt">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="labelAbstract">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>

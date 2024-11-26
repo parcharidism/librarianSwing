@@ -1,14 +1,25 @@
 package librarian.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Frame;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import librarian.handlers.BookHandler;
+import librarian.handlers.LendHandler;
 import librarian.handlers.LogHandler;
+import librarian.handlers.UsersHandler;
 import librarian.utils.User;
 
 /**
@@ -20,6 +31,8 @@ public class ViewBooks extends javax.swing.JFrame {
     /**
      * Creates new form ViewUsers
      */
+    private ArrayList userIds = new ArrayList();
+
     public ViewBooks() {
         initComponents();
 
@@ -42,6 +55,12 @@ public class ViewBooks extends javax.swing.JFrame {
         labelImage = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaAbout = new javax.swing.JTextArea();
+        lendToDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        customerCombo = new javax.swing.JComboBox<>();
+        selectCustomerBtn = new javax.swing.JButton();
+        cancelCustomerBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
@@ -56,6 +75,7 @@ public class ViewBooks extends javax.swing.JFrame {
         labelFullname = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
         selectBtn = new javax.swing.JButton();
+        lendBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -77,6 +97,7 @@ public class ViewBooks extends javax.swing.JFrame {
         dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogAbout.setTitle("About this app");
         dialogAbout.setBackground(new java.awt.Color(156, 193, 194));
+        dialogAbout.setUndecorated(true);
         dialogAbout.setResizable(false);
         dialogAbout.setSize(new java.awt.Dimension(439, 242));
 
@@ -152,6 +173,101 @@ public class ViewBooks extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        lendToDialog.setTitle("Choose customer");
+        lendToDialog.setBackground(new java.awt.Color(156, 193, 194));
+        lendToDialog.setUndecorated(true);
+        lendToDialog.setResizable(false);
+        lendToDialog.setSize(new java.awt.Dimension(458, 119));
+
+        jPanel1.setBackground(new java.awt.Color(156, 193, 194));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(140, 112, 104));
+        jLabel3.setText("Customer name");
+
+        selectCustomerBtn.setText("Lend Book");
+        selectCustomerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                selectCustomerBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                selectCustomerBtnMouseExited(evt);
+            }
+        });
+        selectCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectCustomerBtnActionPerformed(evt);
+            }
+        });
+
+        cancelCustomerBtn.setText("Cancel");
+        cancelCustomerBtn.setPreferredSize(new java.awt.Dimension(95, 23));
+        cancelCustomerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelCustomerBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelCustomerBtnMouseExited(evt);
+            }
+        });
+        cancelCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelCustomerBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(selectCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addComponent(cancelCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectCustomerBtn))
+                .addGap(26, 26, 26))
+        );
+
+        javax.swing.GroupLayout lendToDialogLayout = new javax.swing.GroupLayout(lendToDialog.getContentPane());
+        lendToDialog.getContentPane().setLayout(lendToDialogLayout);
+        lendToDialogLayout.setHorizontalGroup(
+            lendToDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 458, Short.MAX_VALUE)
+            .addGroup(lendToDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(lendToDialogLayout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        lendToDialogLayout.setVerticalGroup(
+            lendToDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 119, Short.MAX_VALUE)
+            .addGroup(lendToDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(lendToDialogLayout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -304,7 +420,7 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        selectBtn.setText("Select Book");
+        selectBtn.setText("View Book");
         selectBtn.setToolTipText("Shows the selected book in details");
         selectBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -317,6 +433,22 @@ public class ViewBooks extends javax.swing.JFrame {
         selectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBtnActionPerformed(evt);
+            }
+        });
+
+        lendBtn.setText("Lend to");
+        lendBtn.setPreferredSize(new java.awt.Dimension(86, 23));
+        lendBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lendBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lendBtnMouseExited(evt);
+            }
+        });
+        lendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lendBtnActionPerformed(evt);
             }
         });
 
@@ -337,18 +469,19 @@ public class ViewBooks extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(backBtn)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchBtn))
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(backBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectBtn)))
+                                .addComponent(searchBtn)
+                                .addGap(53, 53, 53)
+                                .addComponent(lendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -363,16 +496,19 @@ public class ViewBooks extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(selectBtn))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(backBtn))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(selectBtn)
+                        .addComponent(lendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(58, 58, 58))
         );
 
@@ -582,6 +718,7 @@ public class ViewBooks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         int bookID = 0;
         int row = jTableBooks.getSelectedRow();
         bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
@@ -774,6 +911,91 @@ public class ViewBooks extends javax.swing.JFrame {
         searchBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_searchBtnMouseExited
 
+    private void lendBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lendBtnMouseEntered
+        lendBtn.setBackground(new java.awt.Color(201, 210, 216));
+        lendBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_lendBtnMouseEntered
+
+    private void lendBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lendBtnMouseExited
+        lendBtn.setBackground(new java.awt.Color(255, 255, 255));
+        lendBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_lendBtnMouseExited
+
+    private void lendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lendBtnActionPerformed
+        lendToDialog.setLocationRelativeTo(this);
+        lendToDialog.setVisible(true);
+        int bookID = 0;
+        int row = jTableBooks.getSelectedRow();
+        bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
+
+        userIds.add(""); // for consistency between this list and the combobox list which starts from 0 index
+        ResultSet rsU = UsersHandler.selectUser(0, -1, null);
+
+        customerCombo.removeAllItems();
+        customerCombo.addItem("- Select Customer - ");
+        String userData = "";
+        try {
+
+            while (rsU.next()) {
+                if (rsU.getInt(8) != 0) { // disabled user
+                    userIds.add(rsU.getString(1));
+                    userData = "ID: " + rsU.getString(1) + " " + rsU.getString(2) + " " + rsU.getString(3);
+                    customerCombo.addItem(userData);
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(LendBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        customerCombo.setSelectedIndex(0);
+        lendToDialog.setLocationRelativeTo(this);
+
+    }//GEN-LAST:event_lendBtnActionPerformed
+
+    private void cancelCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerBtnActionPerformed
+        lendToDialog.setVisible(false);
+    }//GEN-LAST:event_cancelCustomerBtnActionPerformed
+
+    private void selectCustomerBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectCustomerBtnMouseEntered
+        selectCustomerBtn.setBackground(new java.awt.Color(201, 210, 216));
+        selectCustomerBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_selectCustomerBtnMouseEntered
+
+    private void selectCustomerBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectCustomerBtnMouseExited
+        selectCustomerBtn.setBackground(new java.awt.Color(255, 255, 255));
+        selectCustomerBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_selectCustomerBtnMouseExited
+
+    private void cancelCustomerBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelCustomerBtnMouseEntered
+        cancelCustomerBtn.setBackground(new java.awt.Color(201, 210, 216));
+        cancelCustomerBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
+    }//GEN-LAST:event_cancelCustomerBtnMouseEntered
+
+    private void cancelCustomerBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelCustomerBtnMouseExited
+        cancelCustomerBtn.setBackground(new java.awt.Color(255, 255, 255));
+        cancelCustomerBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+    }//GEN-LAST:event_cancelCustomerBtnMouseExited
+
+    private void selectCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerBtnActionPerformed
+        int bookID = 0, userID = 0;
+        int row = jTableBooks.getSelectedRow();
+        bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
+
+        int customerComboIndex = customerCombo.getSelectedIndex();
+        userID = Integer.parseInt(userIds.get(customerComboIndex).toString());
+
+        boolean inserted = LendHandler.insertBookLending(userID, bookID);
+        if (inserted) {
+            JOptionPane.showMessageDialog(null, "The Book(s) is now lend to " + customerCombo.getItemAt(customerComboIndex), "Success", JOptionPane.INFORMATION_MESSAGE);
+            lendToDialog.setVisible(false);
+            showBooks(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error While Lending the book!", "Error", JOptionPane.WARNING_MESSAGE);
+            lendToDialog.setVisible(false);
+            showBooks(null);
+        }
+    }//GEN-LAST:event_selectCustomerBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -819,18 +1041,24 @@ public class ViewBooks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton cancelCustomerBtn;
+    private javax.swing.JComboBox<String> customerCombo;
     private javax.swing.JDialog dialogAbout;
     private javax.swing.JComboBox<String> jComboBoxFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableBooks;
     private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
+    private javax.swing.JButton lendBtn;
+    private javax.swing.JDialog lendToDialog;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JMenuItem menuAuthorInsert;
     private javax.swing.JMenu menuAuthors;
@@ -851,6 +1079,7 @@ public class ViewBooks extends javax.swing.JFrame {
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTermTxt;
     private javax.swing.JButton selectBtn;
+    private javax.swing.JButton selectCustomerBtn;
     private javax.swing.JTextArea textAreaAbout;
     // End of variables declaration//GEN-END:variables
 

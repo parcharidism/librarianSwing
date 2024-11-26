@@ -575,6 +575,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_returnBookBtnActionPerformed
 
     private void searchBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBooksBtnActionPerformed
+        setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         this.setVisible(false);
         ViewBooks viewBooks = new ViewBooks();
         viewBooks.setVisible(true);
