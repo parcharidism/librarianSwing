@@ -33,7 +33,7 @@ public class LendBook extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(LendBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ResultSet rsU = UsersHandler.selectUser(0,-1,null);
+        ResultSet rsU = UsersHandler.selectUser(0, -1, null);
         customerCombo.addItem("- Select Customer - ");
         String userData = "";
         try {

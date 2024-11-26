@@ -61,6 +61,7 @@ public class ViewBooks extends javax.swing.JFrame {
         customerCombo = new javax.swing.JComboBox<>();
         selectCustomerBtn = new javax.swing.JButton();
         cancelCustomerBtn = new javax.swing.JButton();
+        labelNoCustomer = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
@@ -219,6 +220,9 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
+        labelNoCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelNoCustomer.setForeground(new java.awt.Color(193, 81, 135));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -230,25 +234,26 @@ public class ViewBooks extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(selectCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(cancelCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(43, 43, 43)
+                        .addComponent(cancelCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNoCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(16, 16, 16)
+                .addComponent(labelNoCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectCustomerBtn))
-                .addGap(26, 26, 26))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout lendToDialogLayout = new javax.swing.GroupLayout(lendToDialog.getContentPane());
@@ -922,6 +927,9 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_lendBtnMouseExited
 
     private void lendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lendBtnActionPerformed
+        if(jTableBooks.getSelectedRow()<0) {
+            
+        }
         lendToDialog.setLocationRelativeTo(this);
         lendToDialog.setVisible(true);
         int bookID = 0;
@@ -954,6 +962,7 @@ public class ViewBooks extends javax.swing.JFrame {
 
     private void cancelCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerBtnActionPerformed
         lendToDialog.setVisible(false);
+        labelNoCustomer.setText("");
     }//GEN-LAST:event_cancelCustomerBtnActionPerformed
 
     private void selectCustomerBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectCustomerBtnMouseEntered
@@ -977,6 +986,10 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelCustomerBtnMouseExited
 
     private void selectCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerBtnActionPerformed
+        if (customerCombo.getSelectedIndex() == 0) {
+            labelNoCustomer.setText("Please select a customer");
+        }
+        
         int bookID = 0, userID = 0;
         int row = jTableBooks.getSelectedRow();
         bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
@@ -988,10 +1001,12 @@ public class ViewBooks extends javax.swing.JFrame {
         if (inserted) {
             JOptionPane.showMessageDialog(null, "The Book(s) is now lend to " + customerCombo.getItemAt(customerComboIndex), "Success", JOptionPane.INFORMATION_MESSAGE);
             lendToDialog.setVisible(false);
+            labelNoCustomer.setText("");
             showBooks(null);
         } else {
             JOptionPane.showMessageDialog(null, "Error While Lending the book!", "Error", JOptionPane.WARNING_MESSAGE);
             lendToDialog.setVisible(false);
+            labelNoCustomer.setText("");
             showBooks(null);
         }
     }//GEN-LAST:event_selectCustomerBtnActionPerformed
@@ -1057,6 +1072,7 @@ public class ViewBooks extends javax.swing.JFrame {
     private javax.swing.JTable jTableBooks;
     private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
+    private javax.swing.JLabel labelNoCustomer;
     private javax.swing.JButton lendBtn;
     private javax.swing.JDialog lendToDialog;
     private javax.swing.JButton logOutBtn;
