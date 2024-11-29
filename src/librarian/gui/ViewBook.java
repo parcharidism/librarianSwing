@@ -1,9 +1,13 @@
 package librarian.gui;
 
+import java.awt.Color;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import librarian.handlers.BookHandler;
@@ -17,21 +21,21 @@ import librarian.utils.User;
  * @author Miltiadis Parcharidis 011873
  */
 public class ViewBook extends javax.swing.JFrame {
-
+    
     ResultSet rs = null;
     ResultSet rsCat = null;
     ResultSet rsPubHouses = null;
     ResultSet rsLendCat = null;
-
+    
     public ViewBook() {
         // do nothing
     }
-
+    
     public ViewBook(int bookID) {
         initComponents();
-
+        
         fillInFormValues(bookID);
-
+        
     }
 
     /**
@@ -197,23 +201,24 @@ public class ViewBook extends javax.swing.JFrame {
         leftPane.setPreferredSize(new java.awt.Dimension(300, 230));
 
         labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelImage.setText("jLabel1");
+        labelImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        labelImage.setPreferredSize(new java.awt.Dimension(300, 230));
 
         javax.swing.GroupLayout leftPaneLayout = new javax.swing.GroupLayout(leftPane);
         leftPane.setLayout(leftPaneLayout);
         leftPaneLayout.setHorizontalGroup(
             leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPaneLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPaneLayout.setVerticalGroup(
             leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPaneLayout.createSequentialGroup()
-                .addContainerGap(346, Short.MAX_VALUE)
-                .addComponent(labelImage)
-                .addGap(357, 357, 357))
+                .addContainerGap()
+                .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jSplitPane.setLeftComponent(leftPane);
@@ -466,20 +471,12 @@ public class ViewBook extends javax.swing.JFrame {
         rightPaneLayout.setHorizontalGroup(
             rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(163, Short.MAX_VALUE)
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
-                        .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(rightPaneLayout.createSequentialGroup()
-                                .addComponent(updateBtn)
-                                .addGap(67, 67, 67)
-                                .addComponent(cancelBtn))
-                            .addGroup(rightPaneLayout.createSequentialGroup()
-                                .addGap(317, 317, 317)
-                                .addComponent(labelbookID)))
+                        .addComponent(labelbookID)
                         .addGap(160, 160, 160))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPaneLayout.createSequentialGroup()
-                        .addGap(128, 128, 128)
                         .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rightPaneLayout.createSequentialGroup()
@@ -500,7 +497,11 @@ public class ViewBook extends javax.swing.JFrame {
                                 .addGroup(rightPaneLayout.createSequentialGroup()
                                     .addComponent(stockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(stockNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(stockNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(rightPaneLayout.createSequentialGroup()
+                                    .addComponent(updateBtn)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cancelBtn))))
                         .addGap(72, 72, 72))))
             .addGroup(rightPaneLayout.createSequentialGroup()
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -772,7 +773,7 @@ public class ViewBook extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -788,7 +789,7 @@ public class ViewBook extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        isbnTxt.setForeground(new java.awt.Color(0,0,0));
+        isbnTxt.setForeground(new java.awt.Color(0, 0, 0));
         isbnTxt.setBackground(UIManager.getColor("TextField.background"));
         isbnNotify.setText("");
         isbnTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
@@ -811,19 +812,18 @@ public class ViewBook extends javax.swing.JFrame {
             backBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
         } else {
             if ((Integer) stockSpinner.getValue() < 1) {
-            stockNotify.setText("Stock is expected to be greater than 1");
-            stockSpinner.setFont(new java.awt.Font("Segoe UI", 1, 12));
-            stockSpinner.setForeground(new java.awt.Color(255, 255, 255));
-            stockSpinner.requestFocus();
-            stockSpinner.setBackground(new java.awt.Color(193, 81, 135));
-            return;
-        } else {
-            stockSpinner.setFont(new java.awt.Font("Segoe UI", 0, 12));
-            stockSpinner.setForeground(new java.awt.Color(0, 0, 0));
-            stockSpinner.setBackground(new java.awt.Color(255, 255, 255));
-            stockNotify.setText("");
-        }
-            
+                stockNotify.setText("Stock is expected to be greater than 1");
+                stockSpinner.setFont(new java.awt.Font("Segoe UI", 1, 12));
+                stockSpinner.setForeground(new java.awt.Color(255, 255, 255));
+                stockSpinner.requestFocus();
+                stockSpinner.setBackground(new java.awt.Color(193, 81, 135));
+                return;
+            } else {
+                stockSpinner.setFont(new java.awt.Font("Segoe UI", 0, 12));
+                stockSpinner.setForeground(new java.awt.Color(0, 0, 0));
+                stockSpinner.setBackground(new java.awt.Color(255, 255, 255));
+                stockNotify.setText("");
+            }
             
             updateBtn.setText("Edit");
             enabledAll(false);
@@ -831,11 +831,11 @@ public class ViewBook extends javax.swing.JFrame {
             updateBtn.setBackground(new java.awt.Color(255, 255, 255));
             boolean updated = false;
             int bookID = Integer.parseInt(labelbookID.getText());
-
+            
             updated = BookHandler.updateBook(bookID, titleTxt.getText(), categoryCombo.getSelectedIndex() + 1,
                     pubDateTxt.getText(), pubHouseCombo.getSelectedIndex() + 1, lendCatCombo.getSelectedIndex() + 1,
-                    isbnTxt.getText(), (Integer)stockSpinner.getValue());
-
+                    isbnTxt.getText(), (Integer) stockSpinner.getValue());
+            
             if (updated) {
                 JOptionPane.showMessageDialog(null, "Book Updated successfully", "Book Update", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
@@ -844,7 +844,7 @@ public class ViewBook extends javax.swing.JFrame {
                 this.setVisible(false);
                 fillInFormValues(bookID);
             }
-
+            
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
@@ -996,10 +996,9 @@ public class ViewBook extends javax.swing.JFrame {
         if (updateBtn.getText().equalsIgnoreCase("Edit")) {
             updateBtn.setBackground(new java.awt.Color(201, 210, 216));
             updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
-        }
-        else if (updateBtn.getText().equalsIgnoreCase("Update")) {
+        } else if (updateBtn.getText().equalsIgnoreCase("Update")) {
             updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
-            updateBtn.setForeground(new java.awt.Color(255,255,255));
+            updateBtn.setForeground(new java.awt.Color(255, 255, 255));
         }
     }//GEN-LAST:event_updateBtnMouseEntered
 
@@ -1007,33 +1006,32 @@ public class ViewBook extends javax.swing.JFrame {
         if (updateBtn.getText().equalsIgnoreCase("Edit")) {
             updateBtn.setBackground(new java.awt.Color(255, 255, 255));
             updateBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
-        }
-        else if (updateBtn.getText().equalsIgnoreCase("Update")) {
+        } else if (updateBtn.getText().equalsIgnoreCase("Update")) {
             updateBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
-            updateBtn.setForeground(new java.awt.Color(0,0,0));
+            updateBtn.setForeground(new java.awt.Color(0, 0, 0));
         }
     }//GEN-LAST:event_updateBtnMouseExited
 
     private void pubDateTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pubDateTxtMouseEntered
-        
+
     }//GEN-LAST:event_pubDateTxtMouseEntered
 
     private void pubDateTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pubDateTxtMouseExited
-        
+
     }//GEN-LAST:event_pubDateTxtMouseExited
 
     private void isbnTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isbnTxtMouseEntered
-        
+
     }//GEN-LAST:event_isbnTxtMouseEntered
 
     private void isbnTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isbnTxtMouseExited
-        
+
     }//GEN-LAST:event_isbnTxtMouseExited
 
     private void isbnTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusLost
         if (!isbnTxt.getText().equalsIgnoreCase("")) {
             String digits = isbnTxt.getText().replaceAll("[^0-9]", "");
-
+            
             if (!isbnTxt.getText().equalsIgnoreCase(digits)) {
                 isbnNotify.setText("ISBN should contain only numbers, please adjust accordingly");
                 isbnTxt.setFont(new java.awt.Font("Segoe UI", 1, 12));
@@ -1051,7 +1049,7 @@ public class ViewBook extends javax.swing.JFrame {
     }//GEN-LAST:event_isbnTxtFocusLost
 
     private void isbnTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusGained
-        if(isbnNotify.getText().equalsIgnoreCase("")){
+        if (isbnNotify.getText().equalsIgnoreCase("")) {
             isbnTxt.setBackground(new java.awt.Color(201, 210, 216));
         }
     }//GEN-LAST:event_isbnTxtFocusGained
@@ -1061,7 +1059,7 @@ public class ViewBook extends javax.swing.JFrame {
     }//GEN-LAST:event_pubDateTxtFocusGained
 
     private void pubDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubDateTxtFocusLost
-        pubDateTxt.setBackground(new java.awt.Color(255,255,255));
+        pubDateTxt.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_pubDateTxtFocusLost
 
     private void stockSpinnerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stockSpinnerFocusGained
@@ -1069,7 +1067,7 @@ public class ViewBook extends javax.swing.JFrame {
     }//GEN-LAST:event_stockSpinnerFocusGained
 
     private void stockSpinnerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stockSpinnerFocusLost
-        stockSpinner.getEditor().getComponent(0).setBackground(new java.awt.Color(255,255,255));
+        stockSpinner.getEditor().getComponent(0).setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_stockSpinnerFocusLost
 
     private void lendCatComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusGained
@@ -1077,7 +1075,7 @@ public class ViewBook extends javax.swing.JFrame {
     }//GEN-LAST:event_lendCatComboFocusGained
 
     private void lendCatComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lendCatComboFocusLost
-        lendCatCombo.setBackground(new java.awt.Color(255,255,255));
+        lendCatCombo.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_lendCatComboFocusLost
 
     private void categoryComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_categoryComboFocusGained
@@ -1085,15 +1083,15 @@ public class ViewBook extends javax.swing.JFrame {
     }//GEN-LAST:event_categoryComboFocusGained
 
     private void categoryComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_categoryComboFocusLost
-        categoryCombo.setBackground(new java.awt.Color(255,255,255));
+        categoryCombo.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_categoryComboFocusLost
 
     private void pubHouseComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubHouseComboFocusGained
-        pubHouseCombo.setBackground(new java.awt.Color(201,210,216));
+        pubHouseCombo.setBackground(new java.awt.Color(201, 210, 216));
     }//GEN-LAST:event_pubHouseComboFocusGained
 
     private void pubHouseComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubHouseComboFocusLost
-       pubHouseCombo.setBackground(new java.awt.Color(255,255,255));
+        pubHouseCombo.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_pubHouseComboFocusLost
 
     private void titleTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTxtFocusGained
@@ -1162,7 +1160,7 @@ public class ViewBook extends javax.swing.JFrame {
             }
         });
     }
-
+    
     private void enabledAll(boolean visible) {
         cancelBtn.setVisible(visible);
         titleTxt.setEnabled(visible);
@@ -1232,41 +1230,75 @@ public class ViewBook extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fillInFormValues(int bookID) {
+        rs = null;
+        rsCat = null;
+        rsPubHouses = null;
+        rsLendCat = null;
         rs = BookHandler.selectBooks(bookID);
         rsCat = BookHandler.selectBookCategories();
         rsPubHouses = PublHouseHandler.selectPublHouses();
         rsLendCat = LendHandler.selectLendCategories();
-
+        
         try {
-            rs.next();
-
-            labelbookID.setText("" + rs.getInt(1));
-            titleTxt.setText(rs.getString(2));
-            while (rsCat.next()) {
-                categoryCombo.addItem(rsCat.getString(2));
+            if (rs.next()) {
+                
+                labelbookID.setText("" + rs.getInt(1));
+                titleTxt.setText(rs.getString(2));
+                while (rsCat.next()) {
+                    categoryCombo.addItem(rsCat.getString(2));
+                }
+                
+                categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
+                pubDateTxt.setText(rs.getString(5));
+                
+                while (rsPubHouses.next()) {
+                    pubHouseCombo.addItem(rsPubHouses.getString(2));
+                }
+                pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
+                
+                while (rsLendCat.next()) {
+                    lendCatCombo.addItem(rsLendCat.getString(2));
+                }
+                lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
+                
+                isbnTxt.setText(rs.getString(8));
+                
+                stockSpinner.setValue(Integer.parseInt(rs.getString(11)));
+                //stockTxt.setText(rs.getString(11));
+                authorTxt.setText(rs.getString(12));
+                aboutTxtArea.setText(rs.getString(13));
+                
+                String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9\\s]", "") + ".jpg";
+                String iconPath = "/external/images/bookImages/" + titleImage;
+                
+                URL bookCover = getClass().getResource(iconPath);
+                if (bookCover != null) {
+                    labelImage.setIcon(new javax.swing.ImageIcon(bookCover));
+                } else {
+                    labelImage.setText("Image not available");
+                    labelImage.setFont(new java.awt.Font("Segoe UI", 1, 18));
+                    labelImage.setForeground(new java.awt.Color(193, 81, 135));
+                    /**
+                    JLabel imagePrompt = new javax.swing.JLabel();
+                    imagePrompt.setText("Upload one now?");
+                    imagePrompt.setFont(new java.awt.Font("Segoe UI", 0, 12));
+                    leftPane.getLayout().addLayoutComponent("imagePrompt", imagePrompt);
+                    
+                    JButton browseImage = new javax.swing.JButton();
+                    browseImage.setText("Browse Image");
+                    leftPane.add(browseImage);
+                    * 
+                    **/
+                }
+            } else {
+                JOptionPane.showMessageDialog(jSplitPane, "Book not found!", "Error While Viewing Book", JOptionPane.WARNING_MESSAGE);
+                this.setVisible(false);
+                ViewBooks viewBooks = new ViewBooks();
+                viewBooks.setVisible(true);
             }
-
-            categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
-            pubDateTxt.setText(rs.getString(5));
-
-            while (rsPubHouses.next()) {
-                pubHouseCombo.addItem(rsPubHouses.getString(2));
-            }
-            pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
-
-            while (rsLendCat.next()) {
-                lendCatCombo.addItem(rsLendCat.getString(2));
-            }
-            lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
-
-            isbnTxt.setText(rs.getString(8));
-
-            stockSpinner.setValue(Integer.parseInt(rs.getString(11)));
-            //stockTxt.setText(rs.getString(11));
-            authorTxt.setText(rs.getString(12));
-            aboutTxtArea.setText(rs.getString(13));
         } catch (SQLException ex) {
             Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 }

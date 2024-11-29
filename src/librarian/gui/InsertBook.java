@@ -1,11 +1,8 @@
 package librarian.gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Color;
 import java.io.File;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,11 +11,13 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import librarian.handlers.AuthorsHandler;
 import librarian.handlers.BookHandler;
 import librarian.handlers.PublHouseHandler;
 import librarian.handlers.LendHandler;
 import librarian.handlers.LogHandler;
+import librarian.utils.FileSystemAccess;
 import librarian.utils.User;
 
 /**
@@ -31,6 +30,7 @@ public class InsertBook extends javax.swing.JFrame {
     private ArrayList publiDs = new ArrayList();
     private ArrayList lendiDs = new ArrayList();
     private ArrayList authoriDs = new ArrayList();
+    File srcFile = null;
 
     /**
      * Creates new form InsertUser
@@ -845,35 +845,17 @@ public class InsertBook extends javax.swing.JFrame {
             return;
         }
         JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File src = chooser.getSelectedFile();
-
-        String path = InsertBook.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        try {
-            String decodedPath = URLDecoder.decode(path, "UTF-8");
-            int countslash = decodedPath.length() - decodedPath.replace("/", "").length();
-            countslash -= 2;
-
-            String finalPath = "";
-            int counting = 0;
-            for (int i = 0; i < decodedPath.length(); i++) {
-                finalPath += decodedPath.charAt(i);
-                if (decodedPath.charAt(i) == '/') {
-                    counting++;
-                }
-                if (counting == 6) {
-                    break;
-                }
-            }
-            String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9\\s]", "");
-            finalPath += "src/external/images/bookImages/" + titleImage + ".jpg";
-            File dest = new File(finalPath);
-            System.out.println(dest.getPath());
-            Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-        } catch (IOException ex) {
-            Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
+        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter(
+                "Image Files (JPG, PNG, GIF)", "jpg", "jpeg", "png", "gif");
+        chooser.setFileFilter(imageFilter);
+        
+        int result = chooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            srcFile = chooser.getSelectedFile();
+            browseNotify.setForeground(Color.white);
+            browseNotify.setText(srcFile.getName());
         }
+
     }//GEN-LAST:event_browseBtnActionPerformed
 
     private void isbnTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusLost
@@ -919,6 +901,13 @@ public class InsertBook extends javax.swing.JFrame {
             stockSpinner.setBackground(new java.awt.Color(255, 255, 255));
             stockNotify.setText("");
         }
+
+        // Book image file copy
+        // Prepare file path
+        String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9\\s]", "") + ".jpg";
+        String finalPath = FileSystemAccess.getApplicationPath() + "src/external/images/bookImages/" + titleImage;
+        File destFile = new File(finalPath);
+        FileSystemAccess.resizeAndCopy(srcFile, destFile);
         /**
          * bookCatiDs publiDs IMPLEMENTATION lendiDs
          */
@@ -965,6 +954,8 @@ public class InsertBook extends javax.swing.JFrame {
         jTableAuthors.clearSelection();
         isbnNotify.setText("");
         browseNotify.setText("");
+        browseNotify.setForeground(new java.awt.Color(193, 81, 135));
+        srcFile = null;
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost
