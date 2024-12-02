@@ -354,6 +354,7 @@ public class ViewBooks extends javax.swing.JFrame {
         }
 
         searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        searchTermTxt.setText("search here");
         searchTermTxt.setToolTipText("Enter terms for searching");
         searchTermTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -450,7 +451,7 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        lendBtn.setText("Lend to");
+        lendBtn.setText("Lend to...");
         lendBtn.setPreferredSize(new java.awt.Dimension(86, 23));
         lendBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -732,6 +733,14 @@ public class ViewBooks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        if (jTableBooks.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Please select a Book first",
+                    "Action needed",
+                    JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         int bookID = 0;
         int row = jTableBooks.getSelectedRow();
@@ -936,7 +945,11 @@ public class ViewBooks extends javax.swing.JFrame {
 
     private void lendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lendBtnActionPerformed
         if (jTableBooks.getSelectedRow() < 0) {
-
+            JOptionPane.showMessageDialog(null,
+                    "Please select a Book first",
+                    "Action needed",
+                    JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         lendToDialog.setLocationRelativeTo(this);
         lendToDialog.setVisible(true);
@@ -1020,6 +1033,10 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_selectCustomerBtnActionPerformed
 
     private void searchTermTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusGained
+        if (searchTermTxt.getText().equals("search here")) {
+            searchTermTxt.setText("");
+             searchTermTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
+        }
         searchTermTxt.setBackground(new java.awt.Color(201, 210, 216));
     }//GEN-LAST:event_searchTermTxtFocusGained
 
@@ -1028,6 +1045,10 @@ public class ViewBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxFilterFocusGained
 
     private void searchTermTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusLost
+        if (searchTermTxt.getText().equals("")) {
+            searchTermTxt.setText("search here");
+            searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12));
+        }
         searchTermTxt.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_searchTermTxtFocusLost
 

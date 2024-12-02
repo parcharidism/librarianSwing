@@ -848,8 +848,8 @@ public class InsertBook extends javax.swing.JFrame {
         FileNameExtensionFilter imageFilter = new FileNameExtensionFilter(
                 "Image Files (JPG, PNG, GIF)", "jpg", "jpeg", "png", "gif");
         chooser.setFileFilter(imageFilter);
-        
-        int result = chooser.showOpenDialog(null);
+
+        int result = chooser.showOpenDialog(jPanel1);
         if (result == JFileChooser.APPROVE_OPTION) {
             srcFile = chooser.getSelectedFile();
             browseNotify.setForeground(Color.white);
@@ -933,12 +933,12 @@ public class InsertBook extends javax.swing.JFrame {
                 publisher, lendcat, isbn, stock);
 
         if (inserted) {
-            JOptionPane.showMessageDialog(jPanel1, "Book Inserted successfully", "Register New Book", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(jPanel1, "Book Registered successfully", "Register New Book", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
             MenuAdmin menuAdmin = new MenuAdmin();
             menuAdmin.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(jPanel1, "Error While Inserting Book!", "Register New Book", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(jPanel1, "Error While Registering Book!", "Register New Book", JOptionPane.WARNING_MESSAGE);
             this.setVisible(false);
         }
     }//GEN-LAST:event_insertBtnActionPerformed
@@ -950,12 +950,16 @@ public class InsertBook extends javax.swing.JFrame {
         publHouseCombo.setSelectedIndex(0);
         lendCatCombo.setSelectedIndex(0);
         isbnTxt.setText("");
+        isbnTxt.setBackground(Color.white);
         stockSpinner.setValue(1);
+        stockSpinner.setBackground(Color.white);
+        stockNotify.setText("");
         jTableAuthors.clearSelection();
         isbnNotify.setText("");
         browseNotify.setText("");
         browseNotify.setForeground(new java.awt.Color(193, 81, 135));
         srcFile = null;
+        titleTxt.requestFocus();
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void publDateTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_publDateTxtFocusLost

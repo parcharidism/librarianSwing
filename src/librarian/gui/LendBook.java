@@ -23,16 +23,16 @@ public class LendBook extends javax.swing.JFrame {
      * Creates new form ViewUsers
      */
     private ArrayList userIds = new ArrayList();
-    
+
     public LendBook() {
         initComponents();
-        
+
         userIds.add(""); // for consistency between this list and the combobox list which starts from 0 index
         ResultSet rsU = UsersHandler.selectUser(0, -1, null);
         customerCombo.addItem("- Select Customer -");
         String userData = "";
         try {
-            
+
             while (rsU.next()) {
                 if (rsU.getInt(8) != 0) { // disabled user
                     userIds.add(rsU.getString(1));
@@ -40,14 +40,14 @@ public class LendBook extends javax.swing.JFrame {
                     customerCombo.addItem(userData);
                 }
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(LendBook.class.getName()).log(Level.SEVERE, null, ex);
         }
         customerCombo.setSelectedIndex(0);
-        
+
         showBooks(null);
-        
+
     }
 
     /**
@@ -81,7 +81,7 @@ public class LendBook extends javax.swing.JFrame {
         customerCombo = new javax.swing.JComboBox<>();
         lendBtn = new javax.swing.JButton();
         labelCustomer = new javax.swing.JLabel();
-        labelBooksError = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -213,7 +213,16 @@ public class LendBook extends javax.swing.JFrame {
 
         jTableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "ID", "Title", "Category", "Publishing House", "ISBN"
@@ -258,6 +267,7 @@ public class LendBook extends javax.swing.JFrame {
         }
 
         searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        searchTermTxt.setText("search here");
         searchTermTxt.setToolTipText("Enter terms for searching");
         searchTermTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -370,80 +380,83 @@ public class LendBook extends javax.swing.JFrame {
         labelCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelCustomer.setForeground(new java.awt.Color(193, 81, 135));
 
-        labelBooksError.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelBooksError.setForeground(new java.awt.Color(193, 81, 135));
-        labelBooksError.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(140, 112, 104));
+        jLabel3.setText("Customer");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logOutBtn)
                         .addGap(23, 23, 23))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addComponent(backBtn)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelBooksError, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(searchBtn))
                             .addComponent(jLabel2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lendBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lendBtn)
+                                .addGap(284, 284, 284)
+                                .addComponent(labelCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logOutBtn)
-                    .addComponent(labelFullname))
-                .addGap(5, 5, 5)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCustomer))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(backBtn)
-                            .addComponent(lendBtn)))
+                            .addComponent(logOutBtn)
+                            .addComponent(labelFullname)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelBooksError)))
-                .addGap(18, 18, 18))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)))
+                .addGap(6, 6, 6)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchTermTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lendBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(backBtn)
+                .addGap(15, 15, 15))
         );
 
         menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -635,16 +648,13 @@ public class LendBook extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
         );
 
         pack();
@@ -664,8 +674,6 @@ public class LendBook extends javax.swing.JFrame {
     private void jTableBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBooksMouseClicked
         if (evt.getClickCount() == 2 && jTableBooks.getSelectedRow() != -1) {
             lendBtnActionPerformed(null);
-        } else {
-            labelBooksError.setText("");
         }
     }//GEN-LAST:event_jTableBooksMouseClicked
 
@@ -834,17 +842,19 @@ public class LendBook extends javax.swing.JFrame {
     }//GEN-LAST:event_customerComboActionPerformed
 
     private void lendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lendBtnActionPerformed
-        
+
         int bookID = 0, userID = 0;
         int row = jTableBooks.getSelectedRow();
         if (row < 0) {
-            labelBooksError.setText("Please select a book");
+            JOptionPane.showMessageDialog(null,
+                    "Please select a Book first",
+                    "Action needed",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         } else {
             bookID = Integer.parseInt(jTableBooks.getModel().getValueAt(row, 0).toString());
-            labelBooksError.setText("");
         }
-        
+
         int customerComboIndex = customerCombo.getSelectedIndex();
         if (customerComboIndex < 1) {
             labelCustomer.setText("Please select a customer");
@@ -856,20 +866,19 @@ public class LendBook extends javax.swing.JFrame {
             customerCombo.setBackground(new java.awt.Color(255, 255, 255));
         }
         userID = Integer.parseInt(userIds.get(customerComboIndex).toString());
-        
+
         boolean inserted = LendHandler.insertBookLending(userID, bookID);
         if (inserted) {
             labelCustomer.setText("");
-            labelBooksError.setText("");
             JOptionPane.showMessageDialog(jPanel2, "The Book(s) is now lend to " + customerCombo.getItemAt(customerComboIndex), "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             labelCustomer.setText("");
-            labelBooksError.setText("");
             JOptionPane.showMessageDialog(jPanel2, "Error While Lending the book!", "Error", JOptionPane.WARNING_MESSAGE);
         }
         jTableBooks.clearSelection();
         customerCombo.setSelectedIndex(0);
-        searchTermTxt.setText("");
+        searchTermTxt.setText("search here");
+        searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12));
         showBooks(null);
     }//GEN-LAST:event_lendBtnActionPerformed
 
@@ -884,6 +893,10 @@ public class LendBook extends javax.swing.JFrame {
     }//GEN-LAST:event_lendBtnMouseExited
 
     private void searchTermTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusGained
+        if (searchTermTxt.getText().equals("search here")) {
+            searchTermTxt.setText("");
+            searchTermTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
+        }
         searchTermTxt.setBackground(new java.awt.Color(201, 210, 216));
     }//GEN-LAST:event_searchTermTxtFocusGained
 
@@ -892,6 +905,10 @@ public class LendBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxFilterFocusGained
 
     private void searchTermTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusLost
+        if (searchTermTxt.getText().equals("")) {
+            searchTermTxt.setText("search here");
+            searchTermTxt.setFont(new java.awt.Font("Segoe UI", 2, 12));
+        }
         searchTermTxt.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_searchTermTxtFocusLost
 
@@ -960,13 +977,13 @@ public class LendBook extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableBooks;
-    private javax.swing.JLabel labelBooksError;
     private javax.swing.JLabel labelCustomer;
     private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
@@ -994,14 +1011,14 @@ public class LendBook extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showBooks(ResultSet rs) {
-        
+
         DefaultTableModel model = (DefaultTableModel) jTableBooks.getModel();
         model.setRowCount(0);
-        
+
         if (rs == null) {
             rs = BookHandler.selectBooksWithStock(0, null);
         }
-        
+
         try {
             while (rs.next()) {
                 Object data[] = {rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)};

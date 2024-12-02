@@ -1,13 +1,10 @@
 package librarian.gui;
 
-import java.awt.Color;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import librarian.handlers.BookHandler;
@@ -21,21 +18,21 @@ import librarian.utils.User;
  * @author Miltiadis Parcharidis 011873
  */
 public class ViewBook extends javax.swing.JFrame {
-    
+
     ResultSet rs = null;
     ResultSet rsCat = null;
     ResultSet rsPubHouses = null;
     ResultSet rsLendCat = null;
-    
+
     public ViewBook() {
         // do nothing
     }
-    
+
     public ViewBook(int bookID) {
         initComponents();
-        
+
         fillInFormValues(bookID);
-        
+
     }
 
     /**
@@ -799,7 +796,7 @@ public class ViewBook extends javax.swing.JFrame {
         updateBtn.setBackground(new java.awt.Color(255, 255, 255));
         updateBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
         stockNotify.setText("");
-        
+
         fillInFormValues(Integer.parseInt(labelbookID.getText()));
     }//GEN-LAST:event_cancelBtnActionPerformed
 
@@ -824,18 +821,18 @@ public class ViewBook extends javax.swing.JFrame {
                 stockSpinner.setBackground(new java.awt.Color(255, 255, 255));
                 stockNotify.setText("");
             }
-            
+
             updateBtn.setText("Edit");
             enabledAll(false);
             cancelBtn.setVisible(true);
             updateBtn.setBackground(new java.awt.Color(255, 255, 255));
             boolean updated = false;
             int bookID = Integer.parseInt(labelbookID.getText());
-            
+
             updated = BookHandler.updateBook(bookID, titleTxt.getText(), categoryCombo.getSelectedIndex() + 1,
                     pubDateTxt.getText(), pubHouseCombo.getSelectedIndex() + 1, lendCatCombo.getSelectedIndex() + 1,
                     isbnTxt.getText(), (Integer) stockSpinner.getValue());
-            
+
             if (updated) {
                 JOptionPane.showMessageDialog(null, "Book Updated successfully", "Book Update", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
@@ -844,7 +841,7 @@ public class ViewBook extends javax.swing.JFrame {
                 this.setVisible(false);
                 fillInFormValues(bookID);
             }
-            
+
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
@@ -1031,19 +1028,19 @@ public class ViewBook extends javax.swing.JFrame {
     private void isbnTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_isbnTxtFocusLost
         if (!isbnTxt.getText().equalsIgnoreCase("")) {
             String digits = isbnTxt.getText().replaceAll("[^0-9]", "");
-            
+
             if (!isbnTxt.getText().equalsIgnoreCase(digits)) {
                 isbnNotify.setText("ISBN should contain only numbers, please adjust accordingly");
                 isbnTxt.setFont(new java.awt.Font("Segoe UI", 1, 12));
                 isbnTxt.setBackground(new java.awt.Color(193, 81, 135));
                 isbnTxt.setForeground(new java.awt.Color(255, 255, 255));
-                
+
             } else {
                 isbnNotify.setText("");
                 isbnTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
                 isbnTxt.setBackground(new java.awt.Color(255, 255, 255));
                 isbnTxt.setForeground(new java.awt.Color(0, 0, 0));
-                
+
             }
         }
     }//GEN-LAST:event_isbnTxtFocusLost
@@ -1160,7 +1157,7 @@ public class ViewBook extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void enabledAll(boolean visible) {
         cancelBtn.setVisible(visible);
         titleTxt.setEnabled(visible);
@@ -1238,39 +1235,39 @@ public class ViewBook extends javax.swing.JFrame {
         rsCat = BookHandler.selectBookCategories();
         rsPubHouses = PublHouseHandler.selectPublHouses();
         rsLendCat = LendHandler.selectLendCategories();
-        
+
         try {
             if (rs.next()) {
-                
+
                 labelbookID.setText("" + rs.getInt(1));
                 titleTxt.setText(rs.getString(2));
                 while (rsCat.next()) {
                     categoryCombo.addItem(rsCat.getString(2));
                 }
-                
+
                 categoryCombo.setSelectedIndex(rs.getInt(3) - 1);
                 pubDateTxt.setText(rs.getString(5));
-                
+
                 while (rsPubHouses.next()) {
                     pubHouseCombo.addItem(rsPubHouses.getString(2));
                 }
                 pubHouseCombo.setSelectedIndex(rs.getInt(7) - 1);
-                
+
                 while (rsLendCat.next()) {
                     lendCatCombo.addItem(rsLendCat.getString(2));
                 }
                 lendCatCombo.setSelectedIndex(rs.getInt(10) - 1);
-                
+
                 isbnTxt.setText(rs.getString(8));
-                
+
                 stockSpinner.setValue(Integer.parseInt(rs.getString(11)));
                 //stockTxt.setText(rs.getString(11));
                 authorTxt.setText(rs.getString(12));
                 aboutTxtArea.setText(rs.getString(13));
-                
+
                 String titleImage = titleTxt.getText().replaceAll("[^A-Za-z0-9\\s]", "") + ".jpg";
                 String iconPath = "/external/images/bookImages/" + titleImage;
-                
+
                 URL bookCover = getClass().getResource(iconPath);
                 if (bookCover != null) {
                     labelImage.setIcon(new javax.swing.ImageIcon(bookCover));
@@ -1279,16 +1276,19 @@ public class ViewBook extends javax.swing.JFrame {
                     labelImage.setFont(new java.awt.Font("Segoe UI", 1, 18));
                     labelImage.setForeground(new java.awt.Color(193, 81, 135));
                     /**
-                    JLabel imagePrompt = new javax.swing.JLabel();
-                    imagePrompt.setText("Upload one now?");
-                    imagePrompt.setFont(new java.awt.Font("Segoe UI", 0, 12));
-                    leftPane.getLayout().addLayoutComponent("imagePrompt", imagePrompt);
-                    
-                    JButton browseImage = new javax.swing.JButton();
-                    browseImage.setText("Browse Image");
-                    leftPane.add(browseImage);
-                    * 
-                    **/
+                     * JLabel imagePrompt = new javax.swing.JLabel();
+                     * imagePrompt.setText("Upload one now?");
+                     * imagePrompt.setFont(new java.awt.Font("Segoe UI", 0,
+                     * 12));
+                     * leftPane.getLayout().addLayoutComponent("imagePrompt",
+                     * imagePrompt);
+                     *
+                     * JButton browseImage = new javax.swing.JButton();
+                     * browseImage.setText("Browse Image");
+                     * leftPane.add(browseImage);
+                     *
+                     *
+                     */
                 }
             } else {
                 JOptionPane.showMessageDialog(jSplitPane, "Book not found!", "Error While Viewing Book", JOptionPane.WARNING_MESSAGE);
@@ -1299,6 +1299,6 @@ public class ViewBook extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(ViewBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }
