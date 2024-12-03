@@ -53,6 +53,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         aboutBtn = new javax.swing.JButton();
         logOutBtn = new javax.swing.JButton();
         labelFullname = new javax.swing.JLabel();
+        jPanelFooter = new javax.swing.JPanel();
         musicBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
@@ -259,12 +260,13 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Books", panelBooks);
 
         panelAuthors.setBackground(new java.awt.Color(156, 193, 194));
+        panelAuthors.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         insertAuthorBtn.setText("Insert Author");
         insertAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -307,7 +309,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addGroup(panelAuthorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(insertAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editAuthorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
         panelAuthorsLayout.setVerticalGroup(
             panelAuthorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,6 +324,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jTabbedPane1.addTab("Authors", panelAuthors);
 
         panelUsers.setBackground(new java.awt.Color(156, 193, 194));
+        panelUsers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         editUserBtn.setText("View/Edit User");
         editUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -362,7 +365,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addGroup(panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
         panelUsersLayout.setVerticalGroup(
             panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,12 +374,13 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(newUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(editUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Users", panelUsers);
 
         panelSystem.setBackground(new java.awt.Color(156, 193, 194));
+        panelSystem.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         logBtn.setMnemonic('G');
         logBtn.setText("View Log");
@@ -423,7 +427,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSystemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSystemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(aboutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(aboutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addComponent(logBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(411, 411, 411))
         );
@@ -434,7 +438,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(301, 301, 301))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("System", panelSystem);
@@ -467,6 +471,8 @@ public class MenuAdmin extends javax.swing.JFrame {
         labelFullname.setText(User.getName() + " " + User.getSurname());
         labelFullname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        jPanelFooter.setBackground(new java.awt.Color(156, 193, 194));
+
         musicBtn.setText("\u25A0");
         if (User.isMusicPlaying()) {
             musicBtn.setText("\u25A0");
@@ -487,6 +493,23 @@ public class MenuAdmin extends javax.swing.JFrame {
                 musicBtnActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanelFooterLayout = new javax.swing.GroupLayout(jPanelFooter);
+        jPanelFooter.setLayout(jPanelFooterLayout);
+        jPanelFooterLayout.setHorizontalGroup(
+            jPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFooterLayout.createSequentialGroup()
+                .addContainerGap(537, Short.MAX_VALUE)
+                .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelFooterLayout.setVerticalGroup(
+            jPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(musicBtn)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
 
         menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -683,21 +706,24 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logOutBtn)
-                .addGap(23, 23, 23)
-                .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(64, 64, 64))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logOutBtn)
-                    .addComponent(labelFullname)
-                    .addComponent(musicBtn))
-                .addGap(4, 4, 4)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                    .addComponent(labelFullname))
+                .addGap(8, 8, 8)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 479, Short.MAX_VALUE)
+                    .addComponent(jPanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -1024,6 +1050,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton insertBookBtn;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanelFooter;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelFullname;
