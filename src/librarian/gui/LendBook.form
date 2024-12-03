@@ -433,7 +433,6 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="backBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jComboBoxFilter" min="-2" pref="138" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -457,6 +456,12 @@
                               <Component id="customerCombo" min="-2" pref="288" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="backBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="musicBtn" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -500,13 +505,31 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelCustomer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
-                  <Component id="backBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="musicBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JButton" name="musicBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;\u25A0&quot;" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="musicBtnMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="musicBtnMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="musicBtnActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if (User.isMusicPlaying()) {&#xa;musicBtn.setText(&quot;\u25A0&quot;);&#xa;}&#xa;else {&#xa;musicBtn.setText(&quot;\u25B6&quot;);&#xa;}"/>
+          </AuxValues>
+        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

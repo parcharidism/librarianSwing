@@ -70,6 +70,7 @@ public class ViewBooks extends javax.swing.JFrame {
         logOutBtn = new javax.swing.JButton();
         selectBtn = new javax.swing.JButton();
         lendBtn = new javax.swing.JButton();
+        musicBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -467,6 +468,27 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
+        musicBtn.setText("\u25A0");
+        if (User.isMusicPlaying()) {
+            musicBtn.setText("\u25A0");
+        }
+        else {
+            musicBtn.setText("\u25B6");
+        }
+        musicBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                musicBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                musicBtnMouseExited(evt);
+            }
+        });
+        musicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -485,7 +507,6 @@ public class ViewBooks extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(backBtn)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
@@ -496,7 +517,11 @@ public class ViewBooks extends javax.swing.JFrame {
                                 .addComponent(lendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -520,7 +545,9 @@ public class ViewBooks extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backBtn))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(backBtn)
+                            .addComponent(musicBtn)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(selectBtn)
                         .addComponent(lendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1056,6 +1083,29 @@ public class ViewBooks extends javax.swing.JFrame {
         jComboBoxFilter.setBackground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_jComboBoxFilterFocusLost
 
+    private void musicBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseEntered
+        musicBtn.setBackground(new java.awt.Color(201, 210, 216));
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            musicBtn.setToolTipText("Start the music");
+        } else {
+            musicBtn.setToolTipText("Stop the music");
+        }
+    }//GEN-LAST:event_musicBtnMouseEntered
+
+    private void musicBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseExited
+        musicBtn.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_musicBtnMouseExited
+
+    private void musicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicBtnActionPerformed
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            User.playMusic();
+            musicBtn.setText("\u25A0");
+        } else {
+            User.stopMusic();
+            musicBtn.setText("\u25B6");
+        }
+    }//GEN-LAST:event_musicBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1136,6 +1186,7 @@ public class ViewBooks extends javax.swing.JFrame {
     private javax.swing.JMenu menuUsers;
     private javax.swing.JMenuItem menuViewAuthor;
     private javax.swing.JMenuItem menuViewLog;
+    private javax.swing.JButton musicBtn;
     private javax.swing.JPanel panelAbout;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTermTxt;

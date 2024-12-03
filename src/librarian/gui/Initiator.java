@@ -2,12 +2,23 @@ package librarian.gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import librarian.handlers.UsersHandler;
 import librarian.utils.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.UIManager;
 import librarian.handlers.LogHandler;
 
@@ -16,6 +27,43 @@ import librarian.handlers.LogHandler;
  * @author Miltiadis Parcharidis 011873
  */
 public class Initiator extends javax.swing.JFrame {
+
+    static Clip clip = null;
+
+    private static void initializeAudio() {
+        URI uri = null;
+        try {
+            uri = Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Path path = Paths.get(uri).getParent().getParent().resolve("src/external/audio/relaxingPiano.wav");
+
+        File audioFile = new File(path.toUri());
+
+        AudioInputStream audioStream = null;
+        try {
+            audioStream = AudioSystem.getAudioInputStream(audioFile);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            clip = AudioSystem.getClip();
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            clip.open(audioStream);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        User.setClip(clip);
+    }
 
     /**
      * Creates new form initiator
@@ -49,6 +97,7 @@ public class Initiator extends javax.swing.JFrame {
         labelError = new javax.swing.JLabel();
         labelForgot = new javax.swing.JLabel();
         labelResolution = new javax.swing.JLabel();
+        musicBtn = new javax.swing.JButton();
 
         dialogWelcome.setTitle("Successful login");
         dialogWelcome.setBackground(new java.awt.Color(156, 193, 194));
@@ -209,6 +258,21 @@ public class Initiator extends javax.swing.JFrame {
         labelResolution.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
         labelResolution.setText("Suggested Resolution: 1024x768");
 
+        musicBtn.setText("\u25A0");
+        musicBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                musicBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                musicBtnMouseExited(evt);
+            }
+        });
+        musicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
@@ -237,13 +301,17 @@ public class Initiator extends javax.swing.JFrame {
                     .addComponent(labelLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelResolution)))
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelResolution, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(musicBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                .addContainerGap()
+                .addComponent(musicBtn)
+                .addGap(96, 96, 96)
                 .addComponent(labelLogin)
                 .addGap(48, 48, 48)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -384,11 +452,38 @@ public class Initiator extends javax.swing.JFrame {
         loginBtnActionPerformed(evt);
     }//GEN-LAST:event_passwordTextActionPerformed
 
+    private void musicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicBtnActionPerformed
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            User.playMusic();
+            musicBtn.setText("\u25A0");
+
+        } else {
+            User.stopMusic();
+            musicBtn.setText("\u25B6");
+        }
+    }//GEN-LAST:event_musicBtnActionPerformed
+
+    private void musicBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseExited
+        musicBtn.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_musicBtnMouseExited
+
+    private void musicBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseEntered
+        musicBtn.setBackground(new java.awt.Color(201, 210, 216));
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            musicBtn.setToolTipText("Start the music");
+        } else {
+            musicBtn.setToolTipText("Stop the music");
+        }
+    }//GEN-LAST:event_musicBtnMouseEntered
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         FlatLightLaf.setup();
+        initializeAudio();
+        User.playMusic();
+
         UIManager.put("Component.hideMnemonics", false);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -411,24 +506,14 @@ public class Initiator extends javax.swing.JFrame {
     private javax.swing.JLabel labelWelcome;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton loginBtn;
+    private javax.swing.JButton musicBtn;
     private javax.swing.JPasswordField passwordText;
     private javax.swing.JButton resetBtn;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 
-    private void showLoginDialog() {
-
-        labelWelcome.setText("Glad you are back " + User.getName());
-        dialogWelcome.setLocationRelativeTo(this);
-        dialogWelcome.pack();
-        dialogWelcome.setVisible(true);
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dialogWelcome.setVisible(false);
+    private void stopMusic() {
+        clip.stop();
     }
 }

@@ -82,6 +82,7 @@ public class ViewBook extends javax.swing.JFrame {
         stockSpinner = new javax.swing.JSpinner();
         stockNotify = new javax.swing.JLabel();
         isbnNotify = new javax.swing.JLabel();
+        musicBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -463,6 +464,27 @@ public class ViewBook extends javax.swing.JFrame {
         isbnNotify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         isbnNotify.setForeground(new java.awt.Color(193, 81, 135));
 
+        musicBtn.setText("\u25A0");
+        if (User.isMusicPlaying()) {
+            musicBtn.setText("\u25A0");
+        }
+        else {
+            musicBtn.setText("\u25B6");
+        }
+        musicBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                musicBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                musicBtnMouseExited(evt);
+            }
+        });
+        musicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout rightPaneLayout = new javax.swing.GroupLayout(rightPane);
         rightPane.setLayout(rightPaneLayout);
         rightPaneLayout.setHorizontalGroup(
@@ -485,10 +507,6 @@ public class ViewBook extends javax.swing.JFrame {
                                 .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(pubHouseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lendCatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(rightPaneLayout.createSequentialGroup()
-                                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(authorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(rightPaneLayout.createSequentialGroup()
@@ -498,8 +516,14 @@ public class ViewBook extends javax.swing.JFrame {
                                 .addGroup(rightPaneLayout.createSequentialGroup()
                                     .addComponent(updateBtn)
                                     .addGap(18, 18, 18)
-                                    .addComponent(cancelBtn))))
-                        .addGap(72, 72, 72))))
+                                    .addComponent(cancelBtn))
+                                .addGroup(rightPaneLayout.createSequentialGroup()
+                                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(isbnNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(31, 31, 31)
+                        .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(rightPaneLayout.createSequentialGroup()
                 .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPaneLayout.createSequentialGroup()
@@ -571,7 +595,8 @@ public class ViewBook extends javax.swing.JFrame {
                         .addGroup(rightPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(backBtn)
                             .addComponent(cancelBtn)
-                            .addComponent(updateBtn))
+                            .addComponent(updateBtn)
+                            .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(rightPaneLayout.createSequentialGroup()
                         .addComponent(labelAbstract)
@@ -1120,6 +1145,29 @@ public class ViewBook extends javax.swing.JFrame {
         init.setVisible(true);
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    private void musicBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseEntered
+        musicBtn.setBackground(new java.awt.Color(201, 210, 216));
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            musicBtn.setToolTipText("Start the music");
+        } else {
+            musicBtn.setToolTipText("Stop the music");
+        }
+    }//GEN-LAST:event_musicBtnMouseEntered
+
+    private void musicBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseExited
+        musicBtn.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_musicBtnMouseExited
+
+    private void musicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicBtnActionPerformed
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            User.playMusic();
+            musicBtn.setText("\u25A0");
+        } else {
+            User.stopMusic();
+            musicBtn.setText("\u25B6");
+        }
+    }//GEN-LAST:event_musicBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1215,6 +1263,7 @@ public class ViewBook extends javax.swing.JFrame {
     private javax.swing.JMenu menuUsers;
     private javax.swing.JMenuItem menuViewAuthor;
     private javax.swing.JMenuItem menuViewLog;
+    private javax.swing.JButton musicBtn;
     private javax.swing.JPanel panelAbout;
     private javax.swing.JTextField pubDateTxt;
     private javax.swing.JComboBox<String> pubHouseCombo;

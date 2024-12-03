@@ -66,6 +66,7 @@ public class LendBook extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaAbout = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
+        musicBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -190,6 +191,27 @@ public class LendBook extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(156, 193, 194));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         jPanel2.setPreferredSize(new java.awt.Dimension(950, 750));
+
+        musicBtn.setText("\u25A0");
+        if (User.isMusicPlaying()) {
+            musicBtn.setText("\u25A0");
+        }
+        else {
+            musicBtn.setText("\u25B6");
+        }
+        musicBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                musicBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                musicBtnMouseExited(evt);
+            }
+        });
+        musicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(140, 112, 104));
@@ -404,7 +426,6 @@ public class LendBook extends javax.swing.JFrame {
                         .addGap(23, 23, 23))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backBtn)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
@@ -422,7 +443,12 @@ public class LendBook extends javax.swing.JFrame {
                                 .addGap(284, 284, 284)
                                 .addComponent(labelCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(customerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,7 +481,9 @@ public class LendBook extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(backBtn)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(musicBtn))
                 .addGap(15, 15, 15))
         );
 
@@ -927,6 +955,29 @@ public class LendBook extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_customerComboFocusLost
 
+    private void musicBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseEntered
+        musicBtn.setBackground(new java.awt.Color(201, 210, 216));
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            musicBtn.setToolTipText("Start the music");
+        } else {
+            musicBtn.setToolTipText("Stop the music");
+        }
+    }//GEN-LAST:event_musicBtnMouseEntered
+
+    private void musicBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseExited
+        musicBtn.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_musicBtnMouseExited
+
+    private void musicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicBtnActionPerformed
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            User.playMusic();
+            musicBtn.setText("\u25A0");
+        } else {
+            User.stopMusic();
+            musicBtn.setText("\u25B6");
+        }
+    }//GEN-LAST:event_musicBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1004,6 +1055,7 @@ public class LendBook extends javax.swing.JFrame {
     private javax.swing.JMenu menuUsers;
     private javax.swing.JMenuItem menuViewAuthor;
     private javax.swing.JMenuItem menuViewLog;
+    private javax.swing.JButton musicBtn;
     private javax.swing.JPanel panelAbout;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTermTxt;

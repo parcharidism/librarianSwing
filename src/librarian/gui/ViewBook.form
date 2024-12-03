@@ -520,11 +520,6 @@
                                       <Component id="categoryCombo" min="-2" pref="211" max="-2" attributes="0"/>
                                       <Component id="pubHouseCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lendCatCombo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="isbnTxt" min="-2" pref="99" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="isbnNotify" min="-2" pref="334" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="titleTxt" min="-2" pref="445" max="-2" attributes="0"/>
                                       <Component id="authorTxt" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
@@ -537,9 +532,16 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="cancelBtn" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="isbnTxt" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="isbnNotify" min="-2" pref="334" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="musicBtn" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -631,6 +633,7 @@
                                   <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cancelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="updateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="musicBtn" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
@@ -981,6 +984,21 @@
                   <Color blue="87" green="51" red="c1" type="rgb"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="musicBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="&quot;\u25A0&quot;" type="code"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="musicBtnMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="musicBtnMouseExited"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="musicBtnActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if (User.isMusicPlaying()) {&#xa;musicBtn.setText(&quot;\u25A0&quot;);&#xa;}&#xa;else {&#xa;musicBtn.setText(&quot;\u25B6&quot;);&#xa;}"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

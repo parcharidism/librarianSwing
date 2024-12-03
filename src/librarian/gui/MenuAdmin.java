@@ -53,6 +53,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         aboutBtn = new javax.swing.JButton();
         logOutBtn = new javax.swing.JButton();
         labelFullname = new javax.swing.JLabel();
+        musicBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuViewLog = new javax.swing.JMenuItem();
@@ -74,7 +75,6 @@ public class MenuAdmin extends javax.swing.JFrame {
         dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dialogAbout.setTitle("About this app");
         dialogAbout.setBackground(new java.awt.Color(156, 193, 194));
-        dialogAbout.setPreferredSize(new java.awt.Dimension(439, 242));
         dialogAbout.setResizable(false);
         dialogAbout.setSize(new java.awt.Dimension(439, 242));
 
@@ -146,7 +146,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             dialogAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogAboutLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -246,7 +246,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                             .addComponent(returnBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lendBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(407, Short.MAX_VALUE))))
         );
         panelBooksLayout.setVerticalGroup(
             panelBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +259,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(insertBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(searchBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(235, 235, 235))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Books", panelBooks);
@@ -467,6 +467,27 @@ public class MenuAdmin extends javax.swing.JFrame {
         labelFullname.setText(User.getName() + " " + User.getSurname());
         labelFullname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        musicBtn.setText("\u25A0");
+        if (User.isMusicPlaying()) {
+            musicBtn.setText("\u25A0");
+        }
+        else {
+            musicBtn.setText("\u25B6");
+        }
+        musicBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                musicBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                musicBtnMouseExited(evt);
+            }
+        });
+        musicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicBtnActionPerformed(evt);
+            }
+        });
+
         menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         menuFile.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -660,20 +681,23 @@ public class MenuAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(logOutBtn)
+                .addGap(23, 23, 23)
+                .addComponent(musicBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logOutBtn)
-                    .addComponent(labelFullname))
-                .addGap(0, 0, 0)
+                    .addComponent(labelFullname)
+                    .addComponent(musicBtn))
+                .addGap(4, 4, 4)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -951,6 +975,30 @@ public class MenuAdmin extends javax.swing.JFrame {
         jMenuItem4ActionPerformed(evt);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
+    private void musicBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseEntered
+        musicBtn.setBackground(new java.awt.Color(201, 210, 216));
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            musicBtn.setToolTipText("Start the music");
+        } else {
+            musicBtn.setToolTipText("Stop the music");
+        }
+    }//GEN-LAST:event_musicBtnMouseEntered
+
+    private void musicBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicBtnMouseExited
+        musicBtn.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_musicBtnMouseExited
+
+    private void musicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicBtnActionPerformed
+        if (musicBtn.getText().equalsIgnoreCase("\u25B6")) {
+            User.playMusic();
+            musicBtn.setText("\u25A0");
+
+        } else {
+            User.stopMusic();
+            musicBtn.setText("\u25B6");
+        }
+    }//GEN-LAST:event_musicBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -998,6 +1046,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu menuUsers;
     private javax.swing.JMenuItem menuViewAuthor;
     private javax.swing.JMenuItem menuViewLog;
+    private javax.swing.JButton musicBtn;
     private javax.swing.JButton newUserBtn;
     private javax.swing.JPanel panelAbout;
     private javax.swing.JPanel panelAuthors;

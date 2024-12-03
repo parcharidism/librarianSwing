@@ -1,5 +1,7 @@
 package librarian.utils;
 
+import javax.sound.sampled.Clip;
+
 /**
  *
  * @author Miltiadis Parcharidis 011873
@@ -10,7 +12,8 @@ public class User {
     private static String name;
     private static String surname;
     private static int role;
-    private static Object exception;
+    private static Clip clip;
+    private static boolean musicPlaying;
 
     public User() {
     }
@@ -38,10 +41,6 @@ public class User {
         surname = surnameInput;
     }
 
-    public static void setException(Object exception) {
-        User.exception = exception;
-    }
-
     public static String getName() {
         return name;
     }
@@ -58,8 +57,12 @@ public class User {
         userid = useridInput;
     }
 
-    public static Object getException() {
-        return exception;
+    public static Clip getClip() {
+        return clip;
+    }
+
+    public static void setClip(Clip clip) {
+        User.clip = clip;
     }
 
     public static void clearValues() {
@@ -67,6 +70,24 @@ public class User {
         name = null;
         surname = null;
         role = -1;
-        exception = null;
     }
+
+    public static void playMusic() {
+        clip.start();
+        setMusicPlaying(true);
+    }
+
+    public static void stopMusic() {
+        clip.stop();
+        setMusicPlaying(false);
+    }
+
+    public static boolean isMusicPlaying() {
+        return musicPlaying;
+    }
+
+    public static void setMusicPlaying(boolean musicPlaying) {
+        User.musicPlaying = musicPlaying;
+    }
+
 }
