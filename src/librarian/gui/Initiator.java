@@ -176,7 +176,9 @@ public class Initiator extends javax.swing.JFrame {
 
         labelPassword.setText("password");
 
+        loginBtn.setMnemonic('L');
         loginBtn.setText("Login");
+        loginBtn.setToolTipText("Login to the application");
         loginBtn.setMnemonic(KeyEvent.VK_L);
         loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -192,7 +194,9 @@ public class Initiator extends javax.swing.JFrame {
             }
         });
 
+        resetBtn.setMnemonic('C');
         resetBtn.setText("Clear");
+        resetBtn.setToolTipText("Clear Fields");
         resetBtn.setMnemonic(KeyEvent.VK_C);
         resetBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -328,10 +332,10 @@ public class Initiator extends javax.swing.JFrame {
                 .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelForgot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelResolution, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(musicBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelResolution)
+                    .addComponent(musicBtn))
                 .addContainerGap())
         );
 
@@ -402,6 +406,7 @@ public class Initiator extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
             labelError.setText("Connection Error, try again in a while");
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
         if (rs != null) {
             try {
@@ -429,7 +434,7 @@ public class Initiator extends javax.swing.JFrame {
                     labelError.setText("Wrong password or user does not exists");
                     labelForgot.setText("Forgot your password?");
                     labelForgot.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-
+                    setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
                 }
             }
         }

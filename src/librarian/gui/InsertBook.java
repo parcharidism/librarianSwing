@@ -1122,11 +1122,13 @@ public class InsertBook extends javax.swing.JFrame {
 
     private void insertBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBtnMouseEntered
         insertBtn.setBackground(new java.awt.Color(193, 81, 135));
+        insertBtn.setForeground(Color.white);
         insertBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
     }//GEN-LAST:event_insertBtnMouseEntered
 
     private void insertBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBtnMouseExited
         insertBtn.setBackground(new java.awt.Color(255, 255, 255));
+        insertBtn.setForeground(Color.black);
         insertBtn.setFont(new java.awt.Font("Segoe UI", 0, 12));
     }//GEN-LAST:event_insertBtnMouseExited
 

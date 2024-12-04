@@ -262,10 +262,10 @@
                       <Component id="labelError" min="-2" pref="13" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="labelForgot" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="111" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelResolution" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="musicBtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelResolution" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="musicBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -280,7 +280,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="loginBtn">
               <Properties>
+                <Property name="mnemonic" type="int" value="76"/>
                 <Property name="text" type="java.lang.String" value="Login"/>
+                <Property name="toolTipText" type="java.lang.String" value="Login to the application"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginBtnMouseEntered"/>
@@ -293,7 +295,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="resetBtn">
               <Properties>
+                <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Clear"/>
+                <Property name="toolTipText" type="java.lang.String" value="Clear Fields"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="resetBtnMouseEntered"/>
