@@ -283,6 +283,7 @@ public class ViewBooks extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(140, 112, 104));
         jLabel1.setText("Browse Books");
 
+        backBtn.setMnemonic('B');
         backBtn.setText("<< Back");
         backBtn.setToolTipText("Return to main menu");
         backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -416,12 +417,12 @@ public class ViewBooks extends javax.swing.JFrame {
         logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
         logOutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         logOutBtn.setForeground(new java.awt.Color(255, 255, 255));
-        logOutBtn.setMnemonic('O');
+        logOutBtn.setMnemonic('L');
         logOutBtn.setText("Log Out");
+        logOutBtn.setToolTipText("Safely logout from the application");
         logOutBtn.setBorder(null);
         logOutBtn.setBorderPainted(false);
         logOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logOutBtn.setDisplayedMnemonicIndex(4);
         logOutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logOutBtnMouseEntered(evt);
@@ -468,6 +469,7 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
+        musicBtn.setMnemonic('M');
         musicBtn.setText("\u25A0");
         if (User.isMusicPlaying()) {
             musicBtn.setText("\u25A0");
@@ -565,7 +567,7 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewLog.setMnemonic('g');
         menuViewLog.setText("View Log");
         menuViewLog.setToolTipText("Examine the application log");
@@ -576,7 +578,7 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         menuFile.add(menuViewLog);
 
-        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuLogout.setText("Logout");
         menuLogout.setToolTipText("Exit safely from the application");
         menuLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -611,9 +613,9 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        menuLend.setMnemonic('L');
-        menuLend.setText("Lend a Book");
+        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuLend.setMnemonic('Q');
+        menuLend.setText("Quick Lend");
         menuLend.setToolTipText("Lend a book to a user");
         menuLend.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -632,7 +634,7 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         menuBooks.add(menuLend);
 
-        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuReturn.setMnemonic('R');
         menuReturn.setText("Return Book");
         menuReturn.setToolTipText("Return a book to the Library");
@@ -643,7 +645,7 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         menuBooks.add(menuReturn);
 
-        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuInsert.setMnemonic('I');
         menuInsert.setText("Register Book");
         menuInsert.setToolTipText("Register a new book to the Library");
@@ -654,8 +656,8 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         menuBooks.add(menuInsert);
 
-        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        menuSearch.setMnemonic('S');
+        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuSearch.setMnemonic('B');
         menuSearch.setText("Browse Books");
         menuSearch.setToolTipText("Find books based on title");
         menuSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -670,7 +672,7 @@ public class ViewBooks extends javax.swing.JFrame {
         menuAuthors.setText("Authors");
         menuAuthors.setToolTipText("Actions about Authors");
 
-        menuAuthorInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuAuthorInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuAuthorInsert.setMnemonic('A');
         menuAuthorInsert.setText("Insert Author");
         menuAuthorInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -680,7 +682,7 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         menuAuthors.add(menuAuthorInsert);
 
-        menuViewAuthor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewAuthor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewAuthor.setMnemonic('V');
         menuViewAuthor.setText("View/Edit Author");
         menuViewAuthor.setToolTipText("View or Edit Authors");
@@ -701,7 +703,7 @@ public class ViewBooks extends javax.swing.JFrame {
             }
         });
 
-        menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuUser.setMnemonic('U');
         menuUser.setText("Insert User");
         menuUser.addActionListener(new java.awt.event.ActionListener() {
@@ -711,6 +713,7 @@ public class ViewBooks extends javax.swing.JFrame {
         });
         menuUsers.add(menuUser);
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("View/Edit User");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -724,7 +727,7 @@ public class ViewBooks extends javax.swing.JFrame {
         menuHelp.setText("Help");
         menuHelp.setToolTipText("Find help for issues");
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem4.setMnemonic('b');
         jMenuItem4.setText("About");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -796,7 +799,10 @@ public class ViewBooks extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         ResultSet rs = null;
         int searchCat = jComboBoxFilter.getSelectedIndex() + 1;
-        String searchTerm = searchTermTxt.getText();
+        String searchTerm = "";
+        if (!searchTerm.equalsIgnoreCase("search here")) {
+            searchTerm = searchTermTxt.getText();
+        }
         rs = BookHandler.selectBooksDetail(searchCat, searchTerm);
         showBooks(rs);
     }//GEN-LAST:event_searchBtnActionPerformed
@@ -1062,7 +1068,7 @@ public class ViewBooks extends javax.swing.JFrame {
     private void searchTermTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTermTxtFocusGained
         if (searchTermTxt.getText().equals("search here")) {
             searchTermTxt.setText("");
-             searchTermTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
+            searchTermTxt.setFont(new java.awt.Font("Segoe UI", 0, 12));
         }
         searchTermTxt.setBackground(new java.awt.Color(201, 210, 216));
     }//GEN-LAST:event_searchTermTxtFocusGained

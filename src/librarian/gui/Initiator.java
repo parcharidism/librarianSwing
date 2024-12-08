@@ -129,12 +129,12 @@ public class Initiator extends javax.swing.JFrame {
         setTitle("Welcome to the Michigan University Library");
         setBackground(new java.awt.Color(242, 182, 128));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(700, 520));
         setResizable(false);
 
         jSplitPane1.setDividerLocation(320);
         jSplitPane1.setDividerSize(8);
-        jSplitPane1.setPreferredSize(new java.awt.Dimension(640, 480));
+        jSplitPane1.setEnabled(false);
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(690, 520));
 
         leftPanel.setBackground(new java.awt.Color(190, 132, 81));
         leftPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -218,6 +218,7 @@ public class Initiator extends javax.swing.JFrame {
         labelLogin.setText("Welcome back");
 
         usernameText.setText("parharidis@gmail.com");
+        usernameText.setToolTipText("Type your registered email");
         usernameText.setBorder(null);
         usernameText.setCaretColor(new java.awt.Color(140, 112, 104));
         usernameText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -236,6 +237,7 @@ public class Initiator extends javax.swing.JFrame {
         });
 
         passwordText.setText("123");
+        passwordText.setToolTipText("Type your password");
         passwordText.setBorder(null);
         passwordText.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -262,7 +264,14 @@ public class Initiator extends javax.swing.JFrame {
         labelResolution.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
         labelResolution.setText("Suggested Resolution: 1024x768");
 
+        musicBtn.setMnemonic('M');
         musicBtn.setText("\u25A0");
+        if (User.isMusicPlaying()) {
+            musicBtn.setText("\u25A0");
+        }
+        else {
+            musicBtn.setText("\u25B6");
+        }
         musicBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 musicBtnMouseEntered(evt);
@@ -289,7 +298,6 @@ public class Initiator extends javax.swing.JFrame {
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(rightPanelLayout.createSequentialGroup()
                                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(labelPassword)
@@ -302,8 +310,9 @@ public class Initiator extends javax.swing.JFrame {
                                         .addComponent(loginBtn))
                                     .addComponent(usernameText, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(passwordText, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(labelForgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 34, Short.MAX_VALUE))
+                            .addComponent(labelForgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(labelResolution)
@@ -332,7 +341,7 @@ public class Initiator extends javax.swing.JFrame {
                 .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelForgot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelResolution)
                     .addComponent(musicBtn))

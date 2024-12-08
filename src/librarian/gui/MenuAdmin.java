@@ -154,6 +154,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
         setBackground(new java.awt.Color(156, 193, 194));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 logoutHandler(evt);
@@ -161,12 +162,14 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
 
         jTabbedPane1.setBackground(new java.awt.Color(156, 193, 194));
+        jTabbedPane1.setToolTipText("");
 
         panelBooks.setBackground(new java.awt.Color(156, 193, 194));
         panelBooks.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         returnBookBtn.setMnemonic('R');
         returnBookBtn.setText("Return Book");
+        returnBookBtn.setToolTipText("Return a book to the library");
         returnBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 returnBookBtnMouseEntered(evt);
@@ -183,6 +186,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         insertBookBtn.setMnemonic('I');
         insertBookBtn.setText("Register Book");
+        insertBookBtn.setToolTipText("Insert a book into the library collection");
         insertBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertBookBtnMouseClicked(evt);
@@ -202,6 +206,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         searchBooksBtn.setMnemonic('B');
         searchBooksBtn.setText("Browse Books");
+        searchBooksBtn.setToolTipText("View all library books in one page");
         searchBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 searchBooksBtnMouseEntered(evt);
@@ -218,6 +223,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         lendBookBtn.setMnemonic('Q');
         lendBookBtn.setText("Quick Lend");
+        lendBookBtn.setToolTipText("Use a quick form to easily lend books to many users");
         lendBookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lendBookBtnMouseEntered(evt);
@@ -269,6 +275,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         panelAuthors.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         insertAuthorBtn.setText("Insert Author");
+        insertAuthorBtn.setToolTipText("Register a new author to the list of authors");
         insertAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 insertAuthorBtnMouseEntered(evt);
@@ -285,7 +292,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         editAuthorBtn.setMnemonic('v');
         editAuthorBtn.setText("View/Edit Author");
-        editAuthorBtn.setToolTipText("View or Edit Authors");
+        editAuthorBtn.setToolTipText("View or Edit Authors of the list");
         editAuthorBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 editAuthorBtnMouseEntered(evt);
@@ -325,8 +332,10 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         panelUsers.setBackground(new java.awt.Color(156, 193, 194));
         panelUsers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panelUsers.setToolTipText("Register | View members");
 
-        editUserBtn.setText("View/Edit User");
+        editUserBtn.setText("View/Edit Member");
+        editUserBtn.setToolTipText("View all registered members of the library");
         editUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 editUserBtnMouseEntered(evt);
@@ -341,7 +350,8 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        newUserBtn.setText("Insert User");
+        newUserBtn.setText("Insert Member");
+        newUserBtn.setToolTipText("Register a new customer/member");
         newUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 newUserBtnMouseEntered(evt);
@@ -377,13 +387,15 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addContainerGap(264, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Users", panelUsers);
+        jTabbedPane1.addTab("Members", panelUsers);
 
         panelSystem.setBackground(new java.awt.Color(156, 193, 194));
         panelSystem.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panelSystem.setToolTipText("Log view | About this app");
 
         logBtn.setMnemonic('G');
         logBtn.setText("View Log");
+        logBtn.setToolTipText("View the activity log");
         logBtn.setMaximumSize(new java.awt.Dimension(98, 23));
         logBtn.setMinimumSize(new java.awt.Dimension(98, 23));
         logBtn.setPreferredSize(new java.awt.Dimension(98, 23));
@@ -403,6 +415,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         aboutBtn.setMnemonic('G');
         aboutBtn.setText("About");
+        aboutBtn.setToolTipText("A few words about this application");
         aboutBtn.setMaximumSize(new java.awt.Dimension(98, 23));
         aboutBtn.setMinimumSize(new java.awt.Dimension(98, 23));
         aboutBtn.setPreferredSize(new java.awt.Dimension(98, 23));
@@ -446,12 +459,12 @@ public class MenuAdmin extends javax.swing.JFrame {
         logOutBtn.setBackground(new java.awt.Color(156, 193, 194));
         logOutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         logOutBtn.setForeground(new java.awt.Color(255, 255, 255));
-        logOutBtn.setMnemonic('O');
+        logOutBtn.setMnemonic('L');
         logOutBtn.setText("Log Out");
+        logOutBtn.setToolTipText("Safely logout from the application");
         logOutBtn.setBorder(null);
         logOutBtn.setBorderPainted(false);
         logOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logOutBtn.setDisplayedMnemonicIndex(4);
         logOutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logOutBtnMouseEntered(evt);
@@ -473,6 +486,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         jPanelFooter.setBackground(new java.awt.Color(156, 193, 194));
 
+        musicBtn.setMnemonic('M');
         musicBtn.setText("\u25A0");
         if (User.isMusicPlaying()) {
             musicBtn.setText("\u25A0");
@@ -523,7 +537,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, 0));
+        menuViewLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewLog.setMnemonic('g');
         menuViewLog.setText("View Log");
         menuViewLog.setToolTipText("Examine the application log");
@@ -534,7 +548,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuFile.add(menuViewLog);
 
-        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, 0));
+        menuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuLogout.setText("Logout");
         menuLogout.setToolTipText("Exit safely from the application");
         menuLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -569,7 +583,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, 0));
+        menuLend.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuLend.setMnemonic('Q');
         menuLend.setText("Quick Lend");
         menuLend.setToolTipText("Lend a book to a user");
@@ -590,7 +604,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuBooks.add(menuLend);
 
-        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
+        menuReturn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuReturn.setMnemonic('R');
         menuReturn.setText("Return Book");
         menuReturn.setToolTipText("Return a book to the Library");
@@ -601,7 +615,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuBooks.add(menuReturn);
 
-        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, 0));
+        menuInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuInsert.setMnemonic('I');
         menuInsert.setText("Register Book");
         menuInsert.setToolTipText("Register a new book to the Library");
@@ -612,7 +626,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuBooks.add(menuInsert);
 
-        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, 0));
+        menuSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuSearch.setMnemonic('S');
         menuSearch.setText("Browse Books");
         menuSearch.setToolTipText("Find books based on title");
@@ -628,7 +642,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuAuthors.setText("Authors");
         menuAuthors.setToolTipText("Actions about Authors");
 
-        menuAuthorInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuAuthorInsert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuAuthorInsert.setMnemonic('A');
         menuAuthorInsert.setText("Insert Author");
         menuAuthorInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -638,7 +652,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuAuthors.add(menuAuthorInsert);
 
-        menuViewAuthor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuViewAuthor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewAuthor.setMnemonic('V');
         menuViewAuthor.setText("View/Edit Author");
         menuViewAuthor.setToolTipText("View or Edit Authors");
@@ -659,7 +673,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuUser.setMnemonic('U');
         menuUser.setText("Insert User");
         menuUser.addActionListener(new java.awt.event.ActionListener() {
@@ -669,6 +683,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         menuUsers.add(menuUser);
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("View/Edit User");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -682,7 +697,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuHelp.setText("Help");
         menuHelp.setToolTipText("Find help for issues");
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem4.setMnemonic('b');
         jMenuItem4.setText("About");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {

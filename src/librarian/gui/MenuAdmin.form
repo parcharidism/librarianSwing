@@ -175,7 +175,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuViewLog">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="G"/>
+                  <KeyStroke key="Ctrl+G"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="103"/>
                 <Property name="text" type="java.lang.String" value="View Log"/>
@@ -188,7 +188,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuLogout">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="L"/>
+                  <KeyStroke key="Ctrl+L"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
                 <Property name="toolTipText" type="java.lang.String" value="Exit safely from the application"/>
@@ -214,7 +214,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuLend">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Q"/>
+                  <KeyStroke key="Ctrl+Q"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="81"/>
                 <Property name="text" type="java.lang.String" value="Quick Lend"/>
@@ -229,7 +229,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuReturn">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="R"/>
+                  <KeyStroke key="Ctrl+R"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="82"/>
                 <Property name="text" type="java.lang.String" value="Return Book"/>
@@ -242,7 +242,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuInsert">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="I"/>
+                  <KeyStroke key="Ctrl+I"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Register Book"/>
@@ -255,7 +255,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuSearch">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="B"/>
+                  <KeyStroke key="Ctrl+B"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" value="Browse Books"/>
@@ -276,7 +276,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuAuthorInsert">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+A"/>
+                  <KeyStroke key="Ctrl+A"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="65"/>
                 <Property name="text" type="java.lang.String" value="Insert Author"/>
@@ -288,7 +288,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuViewAuthor">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+V"/>
+                  <KeyStroke key="Ctrl+V"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="86"/>
                 <Property name="text" type="java.lang.String" value="View/Edit Author"/>
@@ -312,7 +312,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuUser">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+U"/>
+                  <KeyStroke key="Ctrl+U"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="85"/>
                 <Property name="text" type="java.lang.String" value="Insert User"/>
@@ -323,6 +323,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+E"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="View/Edit User"/>
               </Properties>
               <Events>
@@ -340,7 +343,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+B"/>
+                  <KeyStroke key="Ctrl+H"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="98"/>
                 <Property name="text" type="java.lang.String" value="About"/>
@@ -360,6 +363,7 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="c2" green="c1" red="9c" type="rgb"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
@@ -424,6 +428,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c2" green="c1" red="9c" type="rgb"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -490,6 +495,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="82"/>
                 <Property name="text" type="java.lang.String" value="Return Book"/>
+                <Property name="toolTipText" type="java.lang.String" value="Return a book to the library"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="returnBookBtnMouseEntered"/>
@@ -501,6 +507,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Register Book"/>
+                <Property name="toolTipText" type="java.lang.String" value="Insert a book into the library collection"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="insertBookBtnMouseClicked"/>
@@ -513,6 +520,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="66"/>
                 <Property name="text" type="java.lang.String" value="Browse Books"/>
+                <Property name="toolTipText" type="java.lang.String" value="View all library books in one page"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchBooksBtnMouseEntered"/>
@@ -524,6 +532,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="81"/>
                 <Property name="text" type="java.lang.String" value="Quick Lend"/>
+                <Property name="toolTipText" type="java.lang.String" value="Use a quick form to easily lend books to many users"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lendBookBtnMouseEntered"/>
@@ -584,6 +593,7 @@
             <Component class="javax.swing.JButton" name="insertAuthorBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Insert Author"/>
+                <Property name="toolTipText" type="java.lang.String" value="Register a new author to the list of authors"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="insertAuthorBtnMouseEntered"/>
@@ -595,7 +605,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="118"/>
                 <Property name="text" type="java.lang.String" value="View/Edit Author"/>
-                <Property name="toolTipText" type="java.lang.String" value="View or Edit Authors"/>
+                <Property name="toolTipText" type="java.lang.String" value="View or Edit Authors of the list"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editAuthorBtnMouseEntered"/>
@@ -615,11 +625,12 @@
                 <EtchetBorder bevelType="0"/>
               </Border>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Register | View members"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Users">
-                <Property name="tabTitle" type="java.lang.String" value="Users"/>
+              <JTabbedPaneConstraints tabName="Members">
+                <Property name="tabTitle" type="java.lang.String" value="Members"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -652,7 +663,8 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="editUserBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="View/Edit User"/>
+                <Property name="text" type="java.lang.String" value="View/Edit Member"/>
+                <Property name="toolTipText" type="java.lang.String" value="View all registered members of the library"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editUserBtnMouseEntered"/>
@@ -662,7 +674,8 @@
             </Component>
             <Component class="javax.swing.JButton" name="newUserBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Insert User"/>
+                <Property name="text" type="java.lang.String" value="Insert Member"/>
+                <Property name="toolTipText" type="java.lang.String" value="Register a new customer/member"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newUserBtnMouseEntered"/>
@@ -682,6 +695,7 @@
                 <EtchetBorder bevelType="0"/>
               </Border>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Log view | About this app"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -721,6 +735,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="71"/>
                 <Property name="text" type="java.lang.String" value="View Log"/>
+                <Property name="toolTipText" type="java.lang.String" value="View the activity log"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[98, 23]"/>
                 </Property>
@@ -741,6 +756,7 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="71"/>
                 <Property name="text" type="java.lang.String" value="About"/>
+                <Property name="toolTipText" type="java.lang.String" value="A few words about this application"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[98, 23]"/>
                 </Property>
@@ -772,8 +788,9 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="mnemonic" type="int" value="79"/>
+        <Property name="mnemonic" type="int" value="76"/>
         <Property name="text" type="java.lang.String" value="Log Out"/>
+        <Property name="toolTipText" type="java.lang.String" value="Safely logout from the application"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -781,7 +798,6 @@
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
-        <Property name="displayedMnemonicIndex" type="int" value="4"/>
       </Properties>
       <Events>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logOutBtnMouseEntered"/>
@@ -831,6 +847,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="musicBtn">
           <Properties>
+            <Property name="mnemonic" type="int" value="77"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="&quot;\u25A0&quot;" type="code"/>
             </Property>
