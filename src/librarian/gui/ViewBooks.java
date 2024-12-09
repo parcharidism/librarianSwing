@@ -55,6 +55,13 @@ public class ViewBooks extends javax.swing.JFrame {
         selectCustomerBtn = new javax.swing.JButton();
         cancelCustomerBtn = new javax.swing.JButton();
         labelNoCustomer = new javax.swing.JLabel();
+        dialogHelp = new javax.swing.JDialog();
+        panelHelp = new javax.swing.JPanel();
+        buttonHelp = new javax.swing.JButton();
+        labelImage1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAreaHelp = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
@@ -87,6 +94,7 @@ public class ViewBooks extends javax.swing.JFrame {
         menuUser = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuHelp = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
 
         dialogAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -267,6 +275,97 @@ public class ViewBooks extends javax.swing.JFrame {
                 .addGroup(lendToDialogLayout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        dialogHelp.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dialogHelp.setTitle("About this app");
+        dialogHelp.setBackground(new java.awt.Color(156, 193, 194));
+        dialogHelp.setUndecorated(true);
+        dialogHelp.setResizable(false);
+        dialogHelp.setSize(new java.awt.Dimension(584, 297));
+
+        panelHelp.setBackground(new java.awt.Color(156, 193, 194));
+        panelHelp.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panelHelp.setPreferredSize(new java.awt.Dimension(427, 230));
+
+        buttonHelp.setText("OK");
+        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHelpActionPerformed(evt);
+            }
+        });
+
+        labelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/external/images/libraryAbout.png"))); // NOI18N
+        labelImage1.setToolTipText("Library logo");
+
+        jScrollPane3.setHorizontalScrollBar(null);
+
+        textAreaHelp.setEditable(false);
+        textAreaHelp.setBackground(new java.awt.Color(156, 193, 194));
+        textAreaHelp.setColumns(20);
+        textAreaHelp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        textAreaHelp.setForeground(new java.awt.Color(140, 112, 104));
+        textAreaHelp.setLineWrap(true);
+        textAreaHelp.setRows(5);
+        textAreaHelp.setText("• Use Alt+key mnemonic for buttons\n\n• Use Ctrl+key for Menu shortcuts\n\n• Music can be turned off and on using the playback button on the lower right corner (shortcut Alt+M)\n\n• Always logout before closing the app");
+        textAreaHelp.setToolTipText("About this application");
+        textAreaHelp.setWrapStyleWord(true);
+        textAreaHelp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 210, 216), 3, true));
+        textAreaHelp.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        textAreaHelp.setSelectedTextColor(new java.awt.Color(201, 210, 216));
+        textAreaHelp.setSelectionColor(new java.awt.Color(140, 112, 104));
+        jScrollPane3.setViewportView(textAreaHelp);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(140, 112, 104));
+        jLabel4.setText("Navigation Quick Tips");
+
+        javax.swing.GroupLayout panelHelpLayout = new javax.swing.GroupLayout(panelHelp);
+        panelHelp.setLayout(panelHelpLayout);
+        panelHelpLayout.setHorizontalGroup(
+            panelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHelpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(panelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(panelHelpLayout.createSequentialGroup()
+                        .addGroup(panelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonHelp)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 24, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelHelpLayout.setVerticalGroup(
+            panelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHelpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelHelpLayout.createSequentialGroup()
+                        .addComponent(labelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHelpLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addComponent(buttonHelp)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialogHelpLayout = new javax.swing.GroupLayout(dialogHelp.getContentPane());
+        dialogHelp.getContentPane().setLayout(dialogHelpLayout);
+        dialogHelpLayout.setHorizontalGroup(
+            dialogHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+        );
+        dialogHelpLayout.setVerticalGroup(
+            dialogHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogHelpLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(panelHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -727,6 +826,15 @@ public class ViewBooks extends javax.swing.JFrame {
         menuHelp.setText("Help");
         menuHelp.setToolTipText("Find help for issues");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem2.setText("Contents");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuHelp.add(jMenuItem2);
+
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem4.setMnemonic('b');
         jMenuItem4.setText("About");
@@ -800,7 +908,7 @@ public class ViewBooks extends javax.swing.JFrame {
         ResultSet rs = null;
         int searchCat = jComboBoxFilter.getSelectedIndex() + 1;
         String searchTerm = "";
-        if (!searchTerm.equalsIgnoreCase("search here")) {
+        if (!searchTermTxt.getText().equalsIgnoreCase("search here")) {
             searchTerm = searchTermTxt.getText();
         }
         rs = BookHandler.selectBooksDetail(searchCat, searchTerm);
@@ -1112,6 +1220,15 @@ public class ViewBooks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_musicBtnActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dialogHelp.setLocationRelativeTo(this);
+        dialogHelp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        dialogHelp.dispose();
+    }//GEN-LAST:event_buttonHelpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1156,23 +1273,29 @@ public class ViewBooks extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonOK;
     private javax.swing.JButton cancelCustomerBtn;
     private javax.swing.JComboBox<String> customerCombo;
     private javax.swing.JDialog dialogAbout;
+    private javax.swing.JDialog dialogHelp;
     private javax.swing.JComboBox<String> jComboBoxFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableBooks;
     private javax.swing.JLabel labelFullname;
     private javax.swing.JLabel labelImage;
+    private javax.swing.JLabel labelImage1;
     private javax.swing.JLabel labelNoCustomer;
     private javax.swing.JButton lendBtn;
     private javax.swing.JDialog lendToDialog;
@@ -1194,11 +1317,13 @@ public class ViewBooks extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuViewLog;
     private javax.swing.JButton musicBtn;
     private javax.swing.JPanel panelAbout;
+    private javax.swing.JPanel panelHelp;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTermTxt;
     private javax.swing.JButton selectBtn;
     private javax.swing.JButton selectCustomerBtn;
     private javax.swing.JTextArea textAreaAbout;
+    private javax.swing.JTextArea textAreaHelp;
     // End of variables declaration//GEN-END:variables
 
     private void showBooks(ResultSet rs) {
