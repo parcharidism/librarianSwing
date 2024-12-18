@@ -162,6 +162,7 @@ public class ViewLog extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("View activity log");
         setPreferredSize(new java.awt.Dimension(950, 750));
         setResizable(false);
 
